@@ -1,0 +1,22 @@
+{
+  "name": "s0cial3r",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeman098/s0cial3r.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joeman098/s0cial3r/issues"
+  },
+  "homepage": "https://github.com/joeman098/s0cial3r#readme",
+  "dependencies": {
+    "sequelize": "^4.32.2"
+  }
+}

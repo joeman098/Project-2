@@ -35,10 +35,10 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 //==============================================
 // Import routes and give the server access to them.
-var routes = require("./controllers/html_controller.js");
+
 var authRoute = require('./routes/auth.js')(app,passport);
 
-app.use(routes);
+
 //==============================================
 //Listen with no sync
 // app.listen(PORT, function() {

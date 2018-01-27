@@ -4,6 +4,8 @@ var bodyParser = require("body-parser");
 var passport = require("passport");
 var session = require("express-session");
 var db = require("./models/index.js");
+var discord = require("discord.js");
+
 //========
 var PORT = process.env.PORT || 3000;
 
@@ -38,7 +40,7 @@ app.set("view engine", "handlebars");
 
 var authRoute = require('./routes/auth.js')(app,passport);
 
-
+require("./routes/api-routes.js")(app);
 //==============================================
 //Listen with no sync
 // app.listen(PORT, function() {

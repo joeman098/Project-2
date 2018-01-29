@@ -17,6 +17,9 @@ module.exports = function(app) {
       });
     
     });
+
+
+
     
     bot.on('message', function(message) {
         if (message.channel.isPrivate) {
@@ -24,7 +27,7 @@ module.exports = function(app) {
         } else {
                 console.log(`(${message.guild.name} / ${message.channel.name}) ${message.member.user.username}: ${message.content}`);
                
-
+                replyDiscord();
                 // app.post('/api/feed',urlencodedParser, function (req, res) {
                     db.Feed.create({
                         guild: message.guild.name,
@@ -33,17 +36,31 @@ module.exports = function(app) {
                         message:message.content
         
                     }).then(function(dbFeed) {
-                        console.log(dbFeed);
+                        // console.log(dbFeed);
+                      
+                        
+
+                    
                       });
                 // });
                 
     
         }
+        function replyDiscord(){
+            if(message.author.bot) return;
+            message.reply('Hey, I\'m a reply!')
+            .then(msg => console.log(`Sent a reply to ${msg.author}`) )
+            .catch(console.error);
+            return;
     
+        }
+     
     
     
     
     });
+
+ 
     
  
       bot.login(discordSettings.token);

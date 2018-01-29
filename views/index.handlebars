@@ -1,1 +1,38 @@
-<h1>im an awful test index</h1>
+<div id="main-page-container">
+        <video autoplay loop muted preload class="fullscreen-bg_video">
+            <source src="/assests/video/Circuit_Background.mp4" type="video/mp4">
+        </video>
+        <div class="row" id="main-page-content-row">
+            <div class="col s2" id="left-bar-main">
+            </div>
+            <div class="col s8" id="main-page-content">
+                <h1 id="main-page-title">s0cial3r</h1>
+                <div class="col s12 m10 offset-m1">
+                    <div class="card" id="login-card">
+                        <div class="card-content white-text">
+                           
+                                <input class="btn" type="submit" value="LOG IN WITH FACEBOOK" id="fb-login" />
+                                <input class="btn" type="submit" value="LOG IN WITH TWITTER" id="twitter-login" />
+                                <br>
+                                <p id="login-or">OR</p>
+                                <br>
+                                 <form id="signin" name="signin" method="post" action="signin">
+                                <label for="email" id="email-label-login">EMAIL ADDRESS</label>
+                                <input class="text" name="email" type="text" />
+                                <label for="password">PASSWORD</label>
+                                <input name="password" type="password" />
+                                <input class="btn" type="submit" value="SIGN IN" id="sign-in-button"/>
+                                </form>
+                           
+                        </div>
+                        <div class="card-action" id="login-card-links">
+                            <a href="signup" id="register">Register</a>
+                            <a href="forgot"id="forgot-password">Forgot Password</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s2" id="right-bar-main">
+            </div>
+        </div>
+    </div>

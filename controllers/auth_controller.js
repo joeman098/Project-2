@@ -22,6 +22,10 @@ exports.forgot = function (req, res) {
 exports.reset = function (req, res) {
     res.render('reset')
 }
+exports.home = function (req, res) {
+    res.render("index")
+    
+}
 exports.logout = function(req, res) {
  
     req.session.destroy(function(err) {
@@ -29,5 +33,6 @@ exports.logout = function(req, res) {
         res.redirect('/');
  
     });
+
  
 }

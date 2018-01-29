@@ -48,7 +48,7 @@ app.post('/forgot', function(req, res, next) {
         var mailOptions = {
           to: email,
           from: 'passwordreset@s0cil3r.com',
-          subject: 'Node.js Password Reset',
+          subject: 'S0cil3r Password Reset',
           text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
             'http://' + req.headers.host + '/reset/' + token + '\n\n' +

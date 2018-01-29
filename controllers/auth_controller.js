@@ -15,6 +15,13 @@ exports.dashboard = function(req, res) {
     res.render('dashboard');
  
 }
+exports.forgot = function (req, res) {
+    
+    res.render('forgot')
+}
+exports.reset = function (req, res) {
+    res.render('reset')
+}
 exports.logout = function(req, res) {
  
     req.session.destroy(function(err) {

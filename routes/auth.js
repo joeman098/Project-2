@@ -3,8 +3,10 @@ var authController = require("../controllers/auth_controller.js");
 module.exports = function(app, passport) {
   app.get("/signup", authController.signup);
   app.get("/signin", authController.signin);
+  app.get("/forgot", authController.forgot);
   app.get("/dashboard", isLoggedIn, authController.dashboard);
   app.get("/logout", authController.logout);
+  
   app.post(
     "/signup",
     passport.authenticate("local-signup", {

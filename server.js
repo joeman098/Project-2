@@ -41,6 +41,7 @@ app.set("view engine", "handlebars");
 var authRoute = require('./routes/auth.js')(app,passport);
 
 require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 //==============================================
 //Listen with no sync
 // app.listen(PORT, function() {

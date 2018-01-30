@@ -44,6 +44,31 @@ var feed;
       })
 
   }
+function feedSubmit(event){
+    var newPost ={
+        user: "Yo mama",//userInput.val().trim(),
+        message: "I be hur"//msgInput.val().trim()
+    }
+    postFeed(newPost);
+}
+function postFeed(data){
+    $.ajax({
+        method:"POST",
+        url: "/api/feed",
+        data:data
+
+    }).then(console.log(data))
+}
+
+
+
+
+
+
+
+
+
+
 
 
 function initializeRows() {
@@ -58,7 +83,7 @@ function initializeRows() {
   }
 
 getFeed();
-
+feedSubmit();
 
 
 

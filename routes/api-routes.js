@@ -26,6 +26,15 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/api/feed", function(req, res) {
+    db.Feed.create({
+      username:req.body.user,
+      message:req.body.message
+    }).then(function(dbFeed) {
+      res.json(dbFeed);
+    });
+  });
+
 
   
 
@@ -46,17 +55,14 @@ module.exports = function(app) {
         
                     }).then(function(dbFeed) {
                         // console.log(dbFeed);
-                      
-                        
-
-                    
-                      });}catch(err){
+                       });}catch(err){
                         //   console.log(err);
                       }
                 // });
                 
     
         }
+        
 
         //will reply to messages sent
         function replyDiscord(){
@@ -73,6 +79,26 @@ module.exports = function(app) {
     
     });
 
+
+    bot.on('message', function(message){
+      if (message.content.indexOf("invite") > -1){
+        message.channel.createInvite()
+        
+  .then(invite => 
+    db.Feed.create({
+      guild: message.guild.name,
+      channel: message.channel.name,
+      username:message.member.user.username,
+      message:`${invite.url}`
+
+  })
+    
+        // console.log(`Created an invite with a code of ${invite.url}`))
+  .catch(console.error));
+        
+      }
+          
+    })
  
     
  

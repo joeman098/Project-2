@@ -5,15 +5,23 @@
         <div class="row" id="profile-page-header">
         </div>
         <nav class="row" id="profile-nav">
-                <a href="#" id="profile-logo">0</a>
+            <img src="{{profileImage}}" alt="">
+                <a href="" id="profile-logo"></a>
             <span id="username-display">{{displayName}}</span>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="sass.html" class="nav-links">General Chat</a></li>
-                <li><a href="collapsible.html" class="nav-links">Edit Profile</a></li>
+                <li><a href="collapsible.html" class="nav-links"></a></li>
             </ul>
         </nav>
         <div class="row" id="profile-page-content">
-         
+            <div>{{aboutuser}}</div>
+             <form id="edit" name="edit" method="post" action="dashboard/edit">
+        <label for="about">About</label>
+        <input class="text" name="about" type="text" />
+        <label for="interests">interests</label>
+        <input name="interests" type="text" />
+        <input class="btn" type="submit" value=edit />
+    </form>
         </div>
 
         

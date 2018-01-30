@@ -28,7 +28,6 @@ module.exports = function(passport, user) {
           }
         }).then(function(user) {
           if (user) {
-
             return done(null, false, {
               message: "That email is already taken"
             });
@@ -40,8 +39,11 @@ module.exports = function(passport, user) {
 
               password: userPassword,
 
-              displayName: req.body.displayName
+              displayName: req.body.displayName,
+              
+              image: req.body.ProfileImage
             };
+
 
             User.create(data).then(function(newUser, created) {
               if (!newUser) {

@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/joeman098/s0cial3r#readme",
   "dependencies": {
+    "@sendgrid/mail": "^6.2.1",
+    "async": "^2.6.0",
+    "async-waterfall": "^0.1.5",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "discord.js": "^11.3.0",
@@ -26,6 +29,8 @@
     "jquery": "^3.3.1",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.1",
+    "nodemailer": "^4.4.2",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^4.32.2"

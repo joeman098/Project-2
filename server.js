@@ -2,6 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var passport = require("passport");
+var nodemailer = require('nodemailer');
 var session = require("express-session");
 var db = require("./models/index.js");
 var discord = require("discord.js");
@@ -39,7 +40,7 @@ app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
 
 var authRoute = require('./routes/auth.js')(app,passport);
-
+require('./routes/forgot.js')(app,db.user);
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 //==============================================
@@ -55,3 +56,10 @@ db.sequelize.sync({ force: false }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+// function test (){db.user.findOne({where: {email: "jlogue908@gmail.com"} }).then (function(user) {
+//   console.log(user.email);
+//   console.log("hello")
+// });
+// };
+// test();

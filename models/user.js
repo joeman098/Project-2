@@ -35,6 +35,12 @@ module.exports = function(sequelize, Sequelize) {
         status: {
             type: Sequelize.ENUM('active', 'inactive'),
             defaultValue: 'active'
+        },
+        resetPasswordToken:{
+            type: Sequelize.STRING,
+        } ,
+        resetPasswordExpires: {
+            type: Sequelize.DATE
         }
  
  

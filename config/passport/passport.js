@@ -28,7 +28,6 @@ module.exports = function(passport, user) {
           }
         }).then(function(user) {
           if (user) {
-
             return done(null, false, {
               message: "That email is already taken"
             });

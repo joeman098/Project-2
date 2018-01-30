@@ -19,9 +19,9 @@ module.exports = function(app) {
     });
 
 
- // POST route for saving a new post
- app.post("/api/posts", function(req, res) {
-    db.Feed.create(req.body).then(function(dbFeed) {
+
+ app.get("/api/feed", function(req, res) {
+    db.Feed.findAll({}).then(function(dbFeed) {
       res.json(dbFeed);
     });
   });

@@ -81,6 +81,13 @@ html, body, #main-page-content-row {
 #forgot-password:hover {
     color: #D9D9D9;
 }
+#blog-container{
+    color: black;
+    border-color: orange;
+    border: darkorange;
+    border-style: solid;
+    height: 250px;
+}
 
 <<<<<<< HEAD
 #fb-login {

@@ -238,7 +238,7 @@ html, body, #main-page-content-row {
     border-radius: 5px;
 }
 
-#post-input, #search-input {
+#post-input, #search-input, #comment-input {
     background-color: #E8E8E8;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -248,7 +248,7 @@ html, body, #main-page-content-row {
     padding-left: 10px;
 }
 
-#post-button {
+#post-button, #post-comment-button {
     height: 45px;
     background-color: rgba(88,88,88,1);
     border-top-left-radius: 0px;

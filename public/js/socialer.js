@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  console.log("I AM LINKED");
+
   var commentBarShown = false;
 
   var commentBarContainer;
@@ -34,8 +36,8 @@ $(document).ready(function() {
   $("#post-button").click(function(event){
     event.preventDefault();
     var newPost = {
-      post: $("#post-input").val().trim();
-      author: 
+      post: $("#post-input").val().trim(),
+      author: ""
     }
 
     $.ajax("/api/newPost", {
@@ -43,7 +45,7 @@ $(document).ready(function() {
       data: newPost
     }).then(function(data) {
       getAllPosts();
-    }
+    });
   });
 
   function getAllPosts() {
@@ -90,7 +92,7 @@ $(document).ready(function() {
         post.append(postContent);
         feed.append(post);
       }
-    })
-  }
+    });
+  };
 
 });

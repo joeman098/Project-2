@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  
 // var $ = require('jquery');
 // var http    = require('http');
 
@@ -34,12 +34,13 @@ var feed;
       $.get("/api/feed", function(data){
           console.log(data);
           feed = data;
-        //   if (!feed || !feed.length) {
-        //     displayEmpty();
-        //   }
-        //   else {
-        //     initializeRows();
-        //   }
+        
+          if (!feed || !feed.length) {
+            displayEmpty();
+          }
+          else {
+            initializeRows();
+          }
       })
 
   }
@@ -48,11 +49,12 @@ var feed;
 function initializeRows() {
     blogContainer.empty();
     console.log(feed);
-    // var postsToAdd = [];
-    // for (var i = 0; i < feed.length; i++) {
-    //   postsToAdd.push(feed[i]);
-    // }
-    // blogContainer.append(postsToAdd);
+    var postsToAdd = [];
+    for (var i = 0; i < feed.length; i++) {
+      postsToAdd.push(feed[i]);
+      console.log(feed[i]);
+    }
+    
   }
 
 getFeed();
@@ -60,14 +62,4 @@ getFeed();
 
 
 
-// $.ajax({
-//     type: "POST",
-//     url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
-//     data: newData,
-//     contentType: "application/json; charset=utf-8",
-//     dataType: "json",
-//     success: function(msg) {
-//     alert('In Ajax');
-//     }
-//    });
 });

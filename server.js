@@ -42,6 +42,7 @@ require("./routes/profile.js")(app,db);
 require('./routes/auth.js')(app,passport);
 require('./routes/forgot.js')(app,db.user);
 require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 //==============================================
 //Listen with no sync
 // app.listen(PORT, function() {

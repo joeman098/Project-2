@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       username: {
         type: DataTypes.STRING,
-        defaultValue: "Test"
+        allowNull:true
       },
       message: {
         type: DataTypes.STRING,

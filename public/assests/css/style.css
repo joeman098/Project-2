@@ -15,6 +15,11 @@ html, body, #main-page-content-row {
     margin-top: 1%;
 }
 
+#o {
+    color: #50a39a;
+    text-shadow: .05em .05em .1em white;
+}
+
 #main-page-container {
 	width: 100%;
 	height: 100%;

@@ -12,7 +12,7 @@ exports.signin = function(req, res) {
 }
 exports.dashboard = function(req, res) {
  
-    res.render('dashboard', {displayName: req.user.displayName });
+    res.render('dashboard', {displayName: req.user.displayName , profileImage:req.user.image , aboutuser: req.user.about});
  
 }
 exports.forgot = function (req, res) {
@@ -33,6 +33,8 @@ exports.logout = function(req, res) {
         res.redirect('/');
  
     });
+
+
 
  
 }

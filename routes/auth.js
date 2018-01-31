@@ -1,5 +1,5 @@
 var authController = require("../controllers/auth_controller.js");
-
+var db = require("../models/index.js");
 module.exports = function(app, passport) {
   app.get("/signup", authController.signup);
   app.get("/signin", authController.signin);
@@ -24,6 +24,14 @@ module.exports = function(app, passport) {
       failureRedirect: "/signin"
     })
   );
+ 
+
+
+  
+
+
+
+
   function logCheck(req,res,next) {
   if(!req.isAuthenticated()) return next()
   res.redirect("/dashboard")

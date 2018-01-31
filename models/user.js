@@ -1,3 +1,5 @@
+var db = require("./index.js");
+
 module.exports = function(sequelize, Sequelize) {
  
     var User = sequelize.define('user', {
@@ -41,11 +43,27 @@ module.exports = function(sequelize, Sequelize) {
         } ,
         resetPasswordExpires: {
             type: Sequelize.DATE
+        },
+        image:{
+            type: Sequelize.STRING,
+            validate: {
+                isUrl: true
+            }
+        },
+ 
+        friendsList: {
+            type: Sequelize.TEXT
+        },
+ 
+        interests: {
+            type: Sequelize.TEXT
         }
  
  
     });
- 
+
+      
+
     return User;
  
 }

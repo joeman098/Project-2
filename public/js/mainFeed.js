@@ -57,7 +57,27 @@ function postFeed(data){
         url: "/api/feed",
         data:data
 
-    }).then(console.log(data))
+    }).then(console.log(data));
+
+    
+    
+    var newerData ={
+        content: data.message,
+        username:data.user
+    };
+
+    var newData = JSON.stringify(newerData);
+    console.log(newData + "Test"); 
+    $.ajax({
+        type: "POST",
+        url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
+        data: newData,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(msg) {
+        console.log('In Ajax');
+        }
+       });
 }
 
 

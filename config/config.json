@@ -1,10 +1,9 @@
 {
   "development": {
-    "username": "service1",
-    "password": "Test123!!",
+    "username": "root",
+    "password": "",
     "database": "socialer",
     "host": "127.0.0.1",
-    "port": 3307,
     "dialect": "mysql"
   },
   "test": {

@@ -1,3 +1,5 @@
+// var df = require("./mainFeed.js")
+
 $(document).ready(function() {
 
   var commentBarShown = false;

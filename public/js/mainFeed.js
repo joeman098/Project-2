@@ -1,53 +1,29 @@
-$(document).ready(function() {
-  
-// var $ = require('jquery');
-// var http    = require('http');
 
-// var data = {
-//     content: "test from Ajax",
-//     username: "Dr Lost Respect"
-// };
+//   $(document).ready(function() {
 
-// var newData = JSON.stringify(data); 
 
-// function postMessage(){
 
-//     $.ajax({
-//         type: "POST",
-//         url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
-//         data: newData,
-//         contentType: "application/json; charset=utf-8",
-//         dataType: "json",
-//         success: function(msg) {
-//         alert('In Ajax');
-//         }
-//        });
-
-// }
-
-// postMessage();
-
-var blogContainer = $("#blog-container");
 var feed;
+var generalChannel = "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3";
+var gamingChannel = "https://discordapp.com/api/webhooks/408282323222790146/JuT5qAW9607mvfqwyiVBauObKG7Mq6_3wH3zYZPmuPsepr0vnnMQmbkFWrdsYnqLWxj2";
+var tvChannel ="https://discordapp.com/api/webhooks/408277081642893332/Q7EwsWNZJgsdFwXIvvqM57d0pLPQwIOx_tcbogpq3er5hJRCDVs6ZT7d3xNwpzkeFCmR";
+var sportsChannel  = {
+    url:"https://discordapp.com/api/webhooks/408290833171742720/ePL88vKgyqiGkgDNWcQwBPGHOpEFFoJmpfr1RRR88sTZhRGkfJ7QGrUUDeEEEW3NYCrZ",
+    name: "sports"};
 
   function getFeed(){
       $.get("/api/feed", function(data){
           console.log(data);
           feed = data;
-        
-          if (!feed || !feed.length) {
-            displayEmpty();
-          }
-          else {
             initializeRows();
-          }
-      })
+              })
 
   }
 function feedSubmit(event){
     var newPost ={
-        user: "Yo mama",//userInput.val().trim(),
-        message: "I be hur"//msgInput.val().trim()
+        channel: sportsChannel.name,//channel selection name
+        user: "God",//userInput.val().trim(),
+        message: "testing this sh!t3!!"//msgInput.val().trim()
     }
     postFeed(newPost);
 }
@@ -70,7 +46,7 @@ function postFeed(data){
     console.log(newData + "Test"); 
     $.ajax({
         type: "POST",
-        url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
+        url:sportsChannel.url ,//channel selection
         data: newData,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -83,16 +59,8 @@ function postFeed(data){
 
 
 
-
-
-
-
-
-
-
-
 function initializeRows() {
-    blogContainer.empty();
+    
     console.log(feed);
     var postsToAdd = [];
     for (var i = 0; i < feed.length; i++) {
@@ -105,6 +73,6 @@ function initializeRows() {
 getFeed();
 feedSubmit();
 
+//   });
 
-
-});
+// module.exports = df;

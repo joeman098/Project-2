@@ -35,6 +35,7 @@ module.exports = function(app) {
 
   app.post("/api/feed", function(req, res) {
     db.Feed.create({
+      channel:req.body.channel,
       username:req.body.user,
       message:req.body.message
     }).then(function(dbFeed) {
@@ -47,7 +48,7 @@ module.exports = function(app) {
 
 //Message collection from bot to database
     bot.on('message', function(message) {
-     
+    //  console.log(message);
                 // console.log(`(${message.guild.name} / ${message.channel.name}) ${message.member.user.username}: ${message.content}`);
                
                

@@ -15,6 +15,11 @@ html, body, #main-page-content-row {
     margin-top: 1%;
 }
 
+#o {
+    color: #50a39a;
+    text-shadow: .05em .05em .1em white;
+}
+
 #main-page-container {
 	width: 100%;
 	height: 100%;
@@ -59,9 +64,19 @@ html, body, #main-page-content-row {
     background: linear-gradient(to left, rgba(0,0,0,0.75), rgba(0,0,0,0.4));
 }
 
-#login-card {
+#login-card, #create-profile-card {
     background-color: rgba(33, 33, 33, 0.9);
     border-radius: 10px;
+    margin-top: 50px;
+}
+
+#email, #password {
+    color: white;
+}
+
+#create-profile-card {
+    transform:rotateY(-90deg);
+    margin-top: 20px;
 }
 
 #login-card-links {
@@ -72,6 +87,26 @@ html, body, #main-page-content-row {
 
 #register, #forgot-password {
     color: white;
+    background-color: rgba(33, 33, 33, 0);
+    border-color: rgba(33, 33, 33, 0);
+}
+
+#loginInfoTitle, #profilePicTitle, #interestsTitle {
+    color: #71E5D9;
+}
+
+
+#displayName, #userEmail, #passwordInput, #passwordConfirmInput, #about-me, #image-link {
+    line-height: 1em;
+    color: white;
+}
+
+#about-me {
+    overflow-y: scroll !important;
+}
+
+#forgot-password {
+    float: right;
 }
 
 #register:hover {
@@ -128,7 +163,7 @@ html, body, #main-page-content-row {
     color: #9e9e9e;
 }
 
-#sign-in-button {
+#sign-in-button, #create-profile-button {
     width: 100%;
     border-radius: 30px;
 }
@@ -318,7 +353,7 @@ html, body, #main-page-content-row {
     border-radius: 5px;
 }
 
-#post-input, #search-input {
+#post-input, #search-input, #comment-input {
     background-color: #E8E8E8;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -328,7 +363,7 @@ html, body, #main-page-content-row {
     padding-left: 10px;
 }
 
-#post-button {
+#post-button, #post-comment-button {
     height: 45px;
     background-color: rgba(88,88,88,1);
     border-top-left-radius: 0px;

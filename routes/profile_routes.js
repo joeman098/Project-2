@@ -29,42 +29,39 @@ module.exports = function(app, db) {
       });
     });
   });
-  app.get("/api/friends/:id",function (req, res) {
-    var id = req.params.id
-    friendDB.findAll({where:{User1: id}}).then(function (data) {
+  app.get("/api/friends/:id", function(req, res) {
+    var id = req.params.id;
+    friendDB.findAll({ where: { User1: id } }).then(function(data) {
       res.json(data);
-    })
+    });
   });
-  app.get("/api/profiles/",function (req, res) {
-    userDB.findAll().then(function (data) {
-      redactarray= [];
+  app.get("/api/profiles/", function(req, res) {
+    userDB.findAll().then(function(data) {
+      redactarray = [];
       for (let i = 0; i < data.length; i++) {
-       
         var redacted = {
           id: data[i].id,
-          displayName :data[i].displayName,
-          image:data[i].image
-        }
+          displayName: data[i].displayName,
+          image: data[i].image
+        };
         redactarray.push(redacted);
       }
-  
 
       res.json(redactarray);
-    })
+    });
   });
-  app.get("/api/profile/:id",function (req, res) {
-    var id = req.params.id
-    userDB.findAll({where:{id: id}}).then(function (data) {
+  app.get("/api/profile/:id", function(req, res) {
+    var id = req.params.id;
+    userDB.findAll({ where: { id: id } }).then(function(data) {
       var redacted = {
         id: data[0].id,
-        displayName :data[0].displayName,
-        image:data[0].image
-      }
+        displayName: data[0].displayName,
+        image: data[0].image
+      };
 
       res.json(redacted);
-    })
+    });
   });
-
 
   app.post("/sendFriend", function(req, res) {
     var reqid = req.user.id;
@@ -80,36 +77,34 @@ module.exports = function(app, db) {
         if (data) {
           console.log("your friends allready");
           res.json(data);
+        } else {
+          friendDB
+            .create(test)
+            .then(function(data) {
+              holdId = data.id;
+              res.json(data);
+            })
+            .then(function() {
+              friendDB
+                .findOne({ where: { User1: fid, User2: reqid } })
+                .then(function(data) {
+                  if (data) {
+                    var id = data.id;
+                    friendDB
+                      .update(
+                        { accepted: true },
+                        { where: { User1: fid, User2: reqid } }
+                      )
+                      .then(function() {
+                        friendDB.update(
+                          { accepted: true },
+                          { where: { User1: reqid, User2: fid } }
+                        );
+                      });
+                  }
+                });
+            });
         }
-        else {
-          friendDB.create(test).then(function(data) {
-            holdId = data.id
-            res.json(data);
-          }).then (function () {
-            friendDB.findOne({where: { User1: fid, User2: reqid }}).then(function (data) {
-              if(data){
-                var id = data.id
-                friendDB.update(
-                    { accepted: true }, 
-                    { where: { User1: fid ,User2: reqid}}
-                  ).then(function(){
-                    friendDB.update(
-                      { accepted: true }, 
-                      { where: { User1: reqid ,User2: fid}}
-                  );
-                  
-                })
-            }
-            
-          });
-        });
-      
-      
-      };
-    })
-  })
-}
-
-  
-
-
+      });
+  });
+};

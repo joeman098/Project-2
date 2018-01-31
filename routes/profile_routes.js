@@ -29,19 +29,20 @@ var friendDB = db.Friendship
         })
     })
   app.post("/sendFriend", function (req, res) {
-    var reqid = 1
-    var fid = 2
+    var reqid = req.user.id
+    var fid = req.body.uid
     var test ={
-      User1 : 1,
-      User2 :2
+      User1 : reqid,
+      User2 :fid
     }
     friendDB.findOne({where: {User1 : reqid , User2: fid}}).then(function (data) {
       if(data){
-        return "already your friend";
+        console.log(data)
+        res.json(data);
       }
       else{
         friendDB.create(test).then(function (data) {
-          res.redirect("/dashboard")
+         res.json(data)
         })
       }
       

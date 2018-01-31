@@ -35,9 +35,18 @@ var friendDB = db.Friendship
       User1 : 1,
       User2 :2
     }
-    friendDB.create(test).then(function (data) {
-      res.redirect("/dashboard")
-    })
+    friendDB.findOne({where: {User1 : reqid , User2: fid}}).then(function (data) {
+      if(data){
+        return "already your friend";
+      }
+      else{
+        friendDB.create(test).then(function (data) {
+          res.redirect("/dashboard")
+        })
+      }
+      
+    });
+   
   });
 
 }

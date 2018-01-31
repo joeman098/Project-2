@@ -1,12 +1,13 @@
-   <div id="profile-img-container">
-            <img src="http://blogs.cuit.columbia.edu/asj2122/files/2013/07/profile.jpg" id="profile-img">       
+    <div id="profile-body">
+    <div id="profile-img-container">
+            <img src={{profileImage}} id="profile-img">       
         </div>
         <div class="row" id="profile-page-header">
             <h1 id="profile-header-background-type">s0cial3r</h1>
         </div>
         <nav class="row" id="profile-nav">
                 <a href="#" id="profile-logo">0</a>
-            <span id="username-display">@johnlatona</span>
+            <span id="username-display">{{displayName}}</span>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#" class="nav-links">General Chat</a></li>
                 <li><a href="#" class="nav-links">Edit Profile</a></li>
@@ -103,6 +104,11 @@
                                 <a href="#" class="friendname">@friendname</a>
                             </div>
                         </div>
+                            <form id="forgot" name="forgot" method="post" action="/sendFriend">
+        <label for="uid">Email Address</label>
+        <input class="text" name="uid" type="text" />
+        <input class="btn" type="submit" value="Send Reset" />
+    </form>
                         <div class="friend">
                              <img src="http://www.trickscity.com/wp-content/uploads/2016/07/Cool-And-Stylish-Profile-Pictures-For-Facebook-For-Girls-17-1024x993.jpg" id="friend-img"/>
                             <div class="friend-name">
@@ -128,4 +134,4 @@
             
         </div>
     </div>
-    </div>
+</div>

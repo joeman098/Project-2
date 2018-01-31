@@ -1,6 +1,9 @@
-var authController = require("../controllers/auth_controller.js");
-module.exports = function(app, userDB){
 
+
+var authController = require("../controllers/auth_controller.js");
+module.exports = function(app, db){
+var userDB = db.user
+var friendDB = db.Friendship
     app.post("/dashboard/edit", function(req, res) {
         id = req.user.id
         var data = {
@@ -25,5 +28,26 @@ module.exports = function(app, userDB){
             res.render("profile",{displayName: data.displayName , profileImage:data.image , aboutuser: data.about} )
         })
     })
-    
+  app.post("/sendFriend", function (req, res) {
+    var reqid = req.user.id
+    var fid = req.body.uid
+    var test ={
+      User1 : reqid,
+      User2 :fid
+    }
+    friendDB.findOne({where: {User1 : reqid , User2: fid}}).then(function (data) {
+      if(data){
+        console.log(data)
+        res.json(data);
+      }
+      else{
+        friendDB.create(test).then(function (data) {
+         res.json(data)
+        })
+      }
+      
+    });
+   
+  });
+
 }

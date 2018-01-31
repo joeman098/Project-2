@@ -27,11 +27,21 @@ module.exports = function(app) {
 
 
 
- app.get("/api/feed", function(req, res) {
-    db.Feed.findAll({}).then(function(dbFeed) {
+ app.get("/api/feed/:channel", function(req, res) {
+    db.Feed.findAll({
+      where:{
+        channel: req.params.channel
+      }
+    }).then(function(dbFeed) {
       res.json(dbFeed);
     });
   });
+
+
+ 
+
+
+
 
   app.post("/api/feed", function(req, res) {
     db.Feed.create({

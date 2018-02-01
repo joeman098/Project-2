@@ -10,82 +10,39 @@
             <span id="username-display">{{displayName}}</span>
             <ul id="nav-mobile" class="right hide-on-med-and-down chat-nav-links">
                  <li></li><a href="/logout" class="waves-effect waves-light btn"><i class="material-icons left">cloud_off</i>Logout</a></li>
-                <li><a href="#" class="nav-links highlighted" id="main-chat-link">Main Chat</a></li>
-                <li><a href="#" class="nav-links" id="gaming-chat-link">Gaming Chat</a></li>
-                <li><a href="#" class="nav-links" id-"tv-chat-link">TV Chat</a></li>
-                <li><a href="#" class="nav-links" id="movie-chat-link">Movie Chat</a></li>
-                <li><a href="#" class="nav-links" id="sports-chat-link">Sports Chat</a></li>
+                <li><a href="/profile/{{id}}/general" class="nav-links highlighted" id="main-chat-link">Main Chat</a></li>
+                <li><a href="/profile/{{id}}/lfg" class="nav-links" id="gaming-chat-link">Gaming Chat</a></li>
+                <li><a href="/profile/{{id}}/tv_chat" class="nav-links" id-"tv-chat-link">TV Chat</a></li>
+                <li><a href="/profile/{{id}}/movie_chat" class="nav-links" id="movie-chat-link">Movie Chat</a></li>
+                <li><a href="/profile/{{id}}/super-bowl-xxx_giggity" class="nav-links" id="sports-chat-link">Sports Chat</a></li>
             </ul>
+           
+
         </nav>
         <div class="row" id="search-bar-div-profile">
             <div class="input-field col m6 offset-m3" id="post-bar-col">
                 <input placeholder="Say Something" name="post" type="text" id="post-input"/>
+
                 <input class="btn" type="submit" value="POST" id="post-button"/>
             </div>
         </div>
         <div class="row" id="feed-row">;
         <div class="col m6 offset-m3" id="feed">
-                <div class="card-panel" id="post">
+
+        {{#each feed}}
+         <div class="card-panel" id="post">
                      <div class="card-content">
-                        <a href="#" id="postername">@johnlatona</a><span id="says"> says:</span>
+                        <a href="#" id="postername">{{username}}</a><span id="says"> says:</span>
                         <br>
                         <br>
-                        <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</span>
+                        <span id="post-body">{{message}}</span>
                         <br><br>
                         <a href="#" id="reply">REPLY</a>
                     </div>
                 </div>
-                <div class="card-panel" id="post">
-                    <div class="card-content">
-                        <a href="#" id="postername">@blahblah</a><span id="says"> says:</span>
-                        <br>
-                        <br>
-                        <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</span>
-                        <br><br>
-                        <a href="#" id="reply">REPLY</a>
-                    </div>
-                </div>
-                <div class="card-panel" id="post">
-                        <div class="card-content">
-                            <a href="#" id="postername">@blahblah</a><span id="says"> says:</span>
-                            <br>
-                            <br>
-                            <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</span>
-                            <br><br>
-                            <a href="#" id="reply">REPLY</a>
-                        </div>
-                    </div>
-                    <div class="card-panel" id="post">
-                            <div class="card-content">
-                                <a href="#" id="postername">@blahblah</a><span id="says"> says:</span>
-                                <br>
-                                <br>
-                                <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</span>
-                                <br><br>
-                                <a href="#" id="reply">REPLY</a>
-                            </div>
-                        </div>
-                        <div class="card-panel" id="post">
-                                <div class="card-content">
-                                    <a href="#" id="postername">@blahblah</a><span id="says"> says:</span>
-                                    <br>
-                                    <br>
-                                    <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</span>
-                                    <br><br>
-                                    <a href="#" id="reply">REPLY</a>
-                                </div>
-                            </div>
-                            <div class="card-panel" id="post">
-                                    <div class="card-content">
-                                        <a href="#" id="postername">@blahblah</a><span id="says"> says:</span>
-                                        <br>
-                                        <br>
-                                        <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</span>
-                                        <br><br>
-                                        <a href="#" id="reply">REPLY</a>
-                                    </div>
-                                </div>
-                            </div> 
+        {{/each}}
+
+            </div>    
             </div>
         <div class="row" id="profile-page-content">
             <div class="col m3" id="discord-app-col">

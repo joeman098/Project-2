@@ -517,7 +517,7 @@ function initializeRows() {
         var sportsInterest = "Sports";
 
         if(isGamingChecked) {
-          gamingCategoryTitle.css("color", "#71E5D9");
+          gamingCategoryTitle.css("color", "#7289da");
           for (var i = -1; i < interests.length; i++) {
             if(interests.indexOf(gamingInterest) === -1) {
               interests.push(gamingInterest);
@@ -535,7 +535,7 @@ function initializeRows() {
         }
 
         if(isTvChecked) {
-          tvCategoryTitle.css("color", "#71E5D9");
+          tvCategoryTitle.css("color", "#7289da");
           for (var i = -1; i < interests.length; i++) {
             if(interests.indexOf(tvInterest) === -1) {
               interests.push(tvInterest);
@@ -553,7 +553,7 @@ function initializeRows() {
         }
 
         if(isMovieChecked) {
-          movieCategoryTitle.css("color", "#71E5D9");
+          movieCategoryTitle.css("color", "#7289da");
           for (var i = -1; i < interests.length; i++) {
             if(interests.indexOf(movieInterest) === -1) {
               interests.push(movieInterest);
@@ -571,7 +571,7 @@ function initializeRows() {
         }
 
         if(isSportsChecked) {
-          sportsCategoryTitle.css("color", "#71E5D9");
+          sportsCategoryTitle.css("color", "#7289da");
           for (var i = -1; i < interests.length; i++) {
             if(interests.indexOf(sportsInterest) === -1) {
               interests.push(sportsInterest);
@@ -732,10 +732,13 @@ function initializeRows() {
 //############END MORE CHARLES#############################
 
 
-  $(".chat-nav-links li").on("click", function() {
+  /*$(".chat-nav-links li").on("click", function() {
     $(".highlighted").removeClass("highlighted");
     $(this).addClass("highlighted");
   })
+
+  var chatSelected = $("#linky").val();
+  console.log("chat: " + chatSelected);*/
 
   $("#main-chat-link").on("click", function() {
     $("#feed-row").show();
@@ -1016,7 +1019,7 @@ function initializeRows() {
         var sportsInterest = "Sports";
 
         if(isGamingChecked) {
-          updateGamingCategoryTitle.css("color", "#71E5D9");
+          updateGamingCategoryTitle.css("color", "#7289da");
           for (var i = -1; i < updateInterests.length; i++) {
             if(updateInterests.indexOf(gamingInterest) === -1) {
               updateInterests.push(gamingInterest);
@@ -1034,7 +1037,7 @@ function initializeRows() {
         }
 
         if(isTvChecked) {
-          updateTvCategoryTitle.css("color", "#71E5D9");
+          updateTvCategoryTitle.css("color", "#7289da");
           for (var i = -1; i < updateInterests.length; i++) {
             if(updateInterests.indexOf(tvInterest) === -1) {
               updateInterests.push(tvInterest);
@@ -1052,7 +1055,7 @@ function initializeRows() {
         }
 
         if(isMovieChecked) {
-          updateMovieCategoryTitle.css("color", "#71E5D9");
+          updateMovieCategoryTitle.css("color", "#7289da");
           for (var i = -1; i < updateInterests.length; i++) {
             if(updateInterests.indexOf(movieInterest) === -1) {
               updateInterests.push(movieInterest);
@@ -1070,7 +1073,7 @@ function initializeRows() {
         }
 
         if(isSportsChecked) {
-          updateSportsCategoryTitle.css("color", "#71E5D9");
+          updateSportsCategoryTitle.css("color", "#7289da");
           for (var i = -1; i < updateInterests.length; i++) {
             if(updateInterests.indexOf(sportsInterest) === -1) {
               updateInterests.push(sportsInterest);

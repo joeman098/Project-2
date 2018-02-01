@@ -5,8 +5,10 @@ module.exports = function(app, db) {
   app.post("/dashboard/edit", function(req, res) {
     id = req.user.id;
     var data = {
-      about: req.body.about,
-      interests: req.body.interests
+      displayName: req.body.displayName,
+      email: req.body.email,
+      image: req.body.image,
+      interests: JSON.stringify(req.body.interests)
     };
     userDB
       .update(data, {
@@ -15,16 +17,19 @@ module.exports = function(app, db) {
         }
       })
       .then(function(userdb) {
+        console.log(".then");
         res.redirect("/dashboard");
       });
   });
   app.get("/profile/:id/:chan?", function(req, res) {
     
     var id = req.params.id;
+
     var chan = req.params.chan;
     if (!chan){
       chan = "general"
     }
+
     db.Feed.findAll({
       where:{
         channel: chan

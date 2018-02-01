@@ -5,8 +5,10 @@ module.exports = function(app, db) {
   app.post("/dashboard/edit", function(req, res) {
     id = req.user.id;
     var data = {
-      about: req.body.about,
-      interests: req.body.interests
+      displayName: req.body.displayName,
+      email: req.body.email,
+      image: req.body.image,
+      interests: JSON.stringify(req.body.interests)
     };
     userDB
       .update(data, {
@@ -15,6 +17,7 @@ module.exports = function(app, db) {
         }
       })
       .then(function(userdb) {
+        console.log(".then");
         res.redirect("/dashboard");
       });
   });

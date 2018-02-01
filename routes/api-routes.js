@@ -27,14 +27,26 @@ module.exports = function(app) {
 
 
 
- app.get("/api/feed", function(req, res) {
-    db.Feed.findAll({}).then(function(dbFeed) {
+ app.get("/api/feed/:channel", function(req, res) {
+    db.Feed.findAll({
+      limit:2,
+      where:{
+        channel: req.params.channel
+      }
+    }).then(function(dbFeed) {
       res.json(dbFeed);
     });
   });
 
+
+ 
+
+
+
+
   app.post("/api/feed", function(req, res) {
     db.Feed.create({
+      channel:req.body.channel,
       username:req.body.user,
       message:req.body.message
     }).then(function(dbFeed) {
@@ -47,7 +59,7 @@ module.exports = function(app) {
 
 //Message collection from bot to database
     bot.on('message', function(message) {
-     
+    //  console.log(message);
                 // console.log(`(${message.guild.name} / ${message.channel.name}) ${message.member.user.username}: ${message.content}`);
                
                

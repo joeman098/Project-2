@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           len: [1]
         },
-        defaultValue: "Test"
+        defaultValue: "s0cial3r App"
       },
       channel: {
         type: DataTypes.TEXT,
@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           len: [1]
         },
-        defaultValue: "Test"
+        defaultValue: "s0cial3r App"
       },
       username: {
         type: DataTypes.STRING,

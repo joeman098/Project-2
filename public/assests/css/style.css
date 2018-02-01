@@ -106,10 +106,6 @@ html, body, #main-page-content-row {
     color: white;
 }
 
-#about-me {
-    overflow-y: scroll !important;
-}
-
 #forgot-password {
     float: right;
 }
@@ -319,6 +315,28 @@ html, body, #main-page-content-row {
     width: 14%;
 }
 
+#logout-button {
+    background-color: rgba(88,88,88,1);
+    float: right;
+    height: 45px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 4px;
+    padding-top: 5px;
+} 
+
+#logout-button-col {
+    padding-right: 0 !important;
+}
+
+#logout-button:hover {
+    background-color: #6E6E6E;
+}
+
+#post-button:hover {
+    background-color: #6E6E6E;
+}
+
 #search-button {
     height: 45px;
     background-color: rgba(88,88,88,1);
@@ -426,4 +444,9 @@ html, body, #main-page-content-row {
 
 .highlighted {
     background-color: #3B7871;
+}
+
+#updateDisplayName, #updateUserEmail, #update-image-link {
+    line-height: 1em;
+    color: white;
 }

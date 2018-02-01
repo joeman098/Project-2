@@ -188,7 +188,7 @@ function initializeRows() {
   }
 
   var interests = [];
-  var updatedInterests = [];
+  var updateInterests = [];
 
   $("#register").on("click", function() {
     loginRotateY();
@@ -514,73 +514,73 @@ function initializeRows() {
 
         if(isGamingChecked) {
           gamingCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < updateInterests.length; i++) {
-            if(updateInterests.indexOf(gamingInterest) === -1) {
+          for (var i = -1; i < interests.length; i++) {
+            if(interests.indexOf(gamingInterest) === -1) {
               interests.push(gamingInterest);
-              console.log(updateInterests);
+              console.log(interests);
             }
           }
         }
         else {
           gamingCategoryTitle.css("color", "white");
-          if(updateInterests.indexOf(gamingInterest) !== -1) {
-            var interestIndex = updateInterests.indexOf(gamingInterest);
-            updateInterests.splice(interestIndex, 1);
-            console.log(updateInterests);
+          if(interests.indexOf(gamingInterest) !== -1) {
+            var interestIndex = interests.indexOf(gamingInterest);
+            interests.splice(interestIndex, 1);
+            console.log(interests);
           }
         }
 
         if(isTvChecked) {
           tvCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < updateInterests.length; i++) {
-            if(updateInterests.indexOf(tvInterest) === -1) {
-              updateInterests.push(tvInterest);
-              console.log(updateInterests);
+          for (var i = -1; i < interests.length; i++) {
+            if(interests.indexOf(tvInterest) === -1) {
+              interests.push(tvInterest);
+              console.log(interests);
             }
           }
         }
         else {
           tvCategoryTitle.css("color", "white");
-          if(updateInterests.indexOf(tvInterest) !== -1) {
-            var interestIndex = updateInterests.indexOf(tvInterest);
-            updateInterests.splice(interestIndex, 1);
-            console.log(updateInterests);
+          if(interests.indexOf(tvInterest) !== -1) {
+            var interestIndex = interests.indexOf(tvInterest);
+            interests.splice(interestIndex, 1);
+            console.log(interests);
           }
         }
 
         if(isMovieChecked) {
           movieCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < updateInterests.length; i++) {
-            if(updateInterests.indexOf(movieInterest) === -1) {
-              updateInterests.push(movieInterest);
-              console.log(updateInterests);
+          for (var i = -1; i < interests.length; i++) {
+            if(interests.indexOf(movieInterest) === -1) {
+              interests.push(movieInterest);
+              console.log(interests);
             }
           }        
         }
         else {
           movieCategoryTitle.css("color", "white");
-          if(updateInterests.indexOf(movieInterest) !== -1) {
-            var interestIndex = updateInterests.indexOf(movieInterest);
-            updateInterests.splice(interestIndex, 1);
-            console.log(updateInterests);
+          if(interests.indexOf(movieInterest) !== -1) {
+            var interestIndex = interests.indexOf(movieInterest);
+            interests.splice(interestIndex, 1);
+            console.log(interests);
           }
         }
 
         if(isSportsChecked) {
           sportsCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < updateInterests.length; i++) {
-            if(updateInterests.indexOf(sportsInterest) === -1) {
-              updateInterests.push(sportsInterest);
-              console.log(updateInterests);
+          for (var i = -1; i < interests.length; i++) {
+            if(interests.indexOf(sportsInterest) === -1) {
+              interests.push(sportsInterest);
+              console.log(interests);
             }
           }   
         }
         else {
           sportsCategoryTitle.css("color", "white");
-          if(updateInterests.indexOf(sportsInterest) !== -1) {
-            var interestIndex = updateInterests.indexOf(sportsInterest);
-            updateInterests.splice(interestIndex, 1);
-            console.log(updateInterests);
+          if(interests.indexOf(sportsInterest) !== -1) {
+            var interestIndex = interests.indexOf(sportsInterest);
+            interests.splice(interestIndex, 1);
+            console.log(interests);
           }
         }
       });
@@ -692,26 +692,6 @@ function initializeRows() {
     console.log("redirecting");
   })
 
-  $("#sign-in-button").on("click", function(event) {
-    event.preventDefault();
-
-    var userLogin = {
-      email: $("#email").val().trim(),
-      password: $("#password").val().trim()
-    }
-
-    console.log(userLogin);
-
-    $.ajax("/signin", {
-      type: "POST",
-      data: userLogin
-    }).then(function(data) {
-      console.log("New User Created");
-      console.log(data);
-      // location.reload();
-    });
-  })
-
   $(document).on("click", "#create-profile-button", function(event){
     event.preventDefault();
 
@@ -722,7 +702,7 @@ function initializeRows() {
       email: $("#userEmail").val().trim(),
       password: $("#passwordInput").val().trim(),
       ProfileImage: $("#image-link").val().trim(),
-      interests: interests
+      interests: JSON.stringify(interests)
     }
 
     $.ajax("/signup", {
@@ -764,12 +744,14 @@ function initializeRows() {
     $("#discord-widget").show();
     $("#friends-card").show();
     $("#search-bar-div-profile").show();
+    $("#update-profile-card").hide();
   })
 
   $("#gaming-chat-link").on("click", function() {
     $("#feed-row").show();
     $("#discord-widget").show();
     $("#friends-card").show();
+    $("#update-profile-card").hide();
   })
 
   $("#tv-chat-link").on("click", function() {
@@ -777,6 +759,7 @@ function initializeRows() {
     $("#discord-widget").show();
     $("#friends-card").show();
     $("#search-bar-div-profile").show();
+    $("#update-profile-card").hide();
   })
 
   $("#movie-chat-link").on("click", function() {
@@ -784,6 +767,7 @@ function initializeRows() {
     $("#discord-widget").show();
     $("#friends-card").show();
     $("#search-bar-div-profile").show();
+    $("#update-profile-card").hide();
   })
 
   $("#sports-chat-link").on("click", function() {
@@ -791,6 +775,7 @@ function initializeRows() {
     $("#discord-widget").show();
     $("#friends-card").show();
     $("#search-bar-div-profile").show();
+    $("#update-profile-card").hide();
   })
 
   $("#edit-profile-link").on("click", function() {
@@ -816,8 +801,8 @@ function initializeRows() {
     updateForm.addClass("col s12");
     updateForm.attr("id", "update-form");
     updateForm.attr("name", "update-form");
-    updateForm.attr("method", "post");
-    updateForm.attr("action", "/edit");
+    //updateForm.attr("method", "post");
+    //updateForm.attr("action", "/dashboard/edit");
 
     var updateFormTitle = $("<h5>");
     updateFormTitle.attr("id", "update-form-title");
@@ -867,7 +852,7 @@ function initializeRows() {
     var updateImageLink = $("<input>");
     updateImageLink.addClass("validate");
     updateImageLink.attr("id", "update-image-link");
-    updateImageLink.attr("name", "update-image-link");
+    updateImageLink.attr("name", "updateImageLink");
     updateImageLink.attr("type", "text");
 
     var updateImageLinkLabel = $("<label>");
@@ -1034,75 +1019,91 @@ function initializeRows() {
 
         if(isGamingChecked) {
           updateGamingCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < interests.length; i++) {
-            if(interests.indexOf(gamingInterest) === -1) {
-              interests.push(gamingInterest);
-              console.log(interests);
+          for (var i = -1; i < updateInterests.length; i++) {
+            if(updateInterests.indexOf(gamingInterest) === -1) {
+              updateInterests.push(gamingInterest);
+              console.log(updateInterests);
             }
           }
         }
         else {
           updateGamingCategoryTitle.css("color", "white");
-          if(interests.indexOf(gamingInterest) !== -1) {
-            var interestIndex = interests.indexOf(gamingInterest);
-            interests.splice(interestIndex, 1);
-            console.log(interests);
+          if(updateInterests.indexOf(gamingInterest) !== -1) {
+            var interestIndex = updateInterests.indexOf(gamingInterest);
+            updateInterests.splice(interestIndex, 1);
+            console.log(updateInterests);
           }
         }
 
         if(isTvChecked) {
           updateTvCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < interests.length; i++) {
-            if(interests.indexOf(tvInterest) === -1) {
-              interests.push(tvInterest);
-              console.log(interests);
+          for (var i = -1; i < updateInterests.length; i++) {
+            if(updateInterests.indexOf(tvInterest) === -1) {
+              updateInterests.push(tvInterest);
+              console.log(updateInterests);
             }
           }
         }
         else {
           updateTvCategoryTitle.css("color", "white");
-          if(interests.indexOf(tvInterest) !== -1) {
-            var interestIndex = interests.indexOf(tvInterest);
-            interests.splice(interestIndex, 1);
-            console.log(interests);
+          if(updateInterests.indexOf(tvInterest) !== -1) {
+            var interestIndex = updateInterests.indexOf(tvInterest);
+            updateInterests.splice(interestIndex, 1);
+            console.log(updateInterests);
           }
         }
 
         if(isMovieChecked) {
           updateMovieCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < interests.length; i++) {
-            if(interests.indexOf(movieInterest) === -1) {
-              interests.push(movieInterest);
-              console.log(interests);
+          for (var i = -1; i < updateInterests.length; i++) {
+            if(updateInterests.indexOf(movieInterest) === -1) {
+              updateInterests.push(movieInterest);
+              console.log(updateInterests);
             }
           }        
         }
         else {
           updateMovieCategoryTitle.css("color", "white");
-          if(interests.indexOf(movieInterest) !== -1) {
-            var interestIndex = interests.indexOf(movieInterest);
-            interests.splice(interestIndex, 1);
-            console.log(interests);
+          if(updateInterests.indexOf(movieInterest) !== -1) {
+            var interestIndex = updateInterests.indexOf(movieInterest);
+            updateInterests.splice(interestIndex, 1);
+            console.log(updateInterests);
           }
         }
 
         if(isSportsChecked) {
           updateSportsCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < interests.length; i++) {
-            if(interests.indexOf(sportsInterest) === -1) {
-              interests.push(sportsInterest);
-              console.log(interests);
+          for (var i = -1; i < updateInterests.length; i++) {
+            if(updateInterests.indexOf(sportsInterest) === -1) {
+              updateInterests.push(sportsInterest);
+              console.log(updateInterests);
             }
           }   
         }
         else {
           updateSportsCategoryTitle.css("color", "white");
-          if(interests.indexOf(sportsInterest) !== -1) {
-            var interestIndex = interests.indexOf(sportsInterest);
-            interests.splice(interestIndex, 1);
-            console.log(interests);
+          if(updateInterests.indexOf(sportsInterest) !== -1) {
+            var interestIndex = updateInterests.indexOf(sportsInterest);
+            updateInterests.splice(interestIndex, 1);
+            console.log(updateInterests);
           }
         }
+      });
+    });
+
+    $(document).on("click", "#update-profile-button", function(event) {
+      event.preventDefault();
+      var updateUser = {
+        displayName: $("#updateDisplayName").val(),
+        email: $("#updateUserEmail").val(),
+        image: $("#update-image-link").val(),
+        interests: JSON.stringify(updateInterests)
+      }
+      $.ajax("dashboard/edit", {
+        type: "POST",
+        data: updateUser
+      }).then(function(data){
+        location.reload();
       });
     });
   });

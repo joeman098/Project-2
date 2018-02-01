@@ -124,6 +124,7 @@ $(document).ready(function() {
   }
 
   var interests = [];
+  var updatedInterests = [];
 
   $("#register").on("click", function() {
     loginRotateY();
@@ -449,73 +450,73 @@ $(document).ready(function() {
 
         if(isGamingChecked) {
           gamingCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < interests.length; i++) {
-            if(interests.indexOf(gamingInterest) === -1) {
+          for (var i = -1; i < updateInterests.length; i++) {
+            if(updateInterests.indexOf(gamingInterest) === -1) {
               interests.push(gamingInterest);
-              console.log(interests);
+              console.log(updateInterests);
             }
           }
         }
         else {
           gamingCategoryTitle.css("color", "white");
-          if(interests.indexOf(gamingInterest) !== -1) {
-            var interestIndex = interests.indexOf(gamingInterest);
-            interests.splice(interestIndex, 1);
-            console.log(interests);
+          if(updateInterests.indexOf(gamingInterest) !== -1) {
+            var interestIndex = updateInterests.indexOf(gamingInterest);
+            updateInterests.splice(interestIndex, 1);
+            console.log(updateInterests);
           }
         }
 
         if(isTvChecked) {
           tvCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < interests.length; i++) {
-            if(interests.indexOf(tvInterest) === -1) {
-              interests.push(tvInterest);
-              console.log(interests);
+          for (var i = -1; i < updateInterests.length; i++) {
+            if(updateInterests.indexOf(tvInterest) === -1) {
+              updateInterests.push(tvInterest);
+              console.log(updateInterests);
             }
           }
         }
         else {
           tvCategoryTitle.css("color", "white");
-          if(interests.indexOf(tvInterest) !== -1) {
-            var interestIndex = interests.indexOf(tvInterest);
-            interests.splice(interestIndex, 1);
-            console.log(interests);
+          if(updateInterests.indexOf(tvInterest) !== -1) {
+            var interestIndex = updateInterests.indexOf(tvInterest);
+            updateInterests.splice(interestIndex, 1);
+            console.log(updateInterests);
           }
         }
 
         if(isMovieChecked) {
           movieCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < interests.length; i++) {
-            if(interests.indexOf(movieInterest) === -1) {
-              interests.push(movieInterest);
-              console.log(interests);
+          for (var i = -1; i < updateInterests.length; i++) {
+            if(updateInterests.indexOf(movieInterest) === -1) {
+              updateInterests.push(movieInterest);
+              console.log(updateInterests);
             }
           }        
         }
         else {
           movieCategoryTitle.css("color", "white");
-          if(interests.indexOf(movieInterest) !== -1) {
-            var interestIndex = interests.indexOf(movieInterest);
-            interests.splice(interestIndex, 1);
-            console.log(interests);
+          if(updateInterests.indexOf(movieInterest) !== -1) {
+            var interestIndex = updateInterests.indexOf(movieInterest);
+            updateInterests.splice(interestIndex, 1);
+            console.log(updateInterests);
           }
         }
 
         if(isSportsChecked) {
           sportsCategoryTitle.css("color", "#71E5D9");
-          for (var i = -1; i < interests.length; i++) {
-            if(interests.indexOf(sportsInterest) === -1) {
-              interests.push(sportsInterest);
-              console.log(interests);
+          for (var i = -1; i < updateInterests.length; i++) {
+            if(updateInterests.indexOf(sportsInterest) === -1) {
+              updateInterests.push(sportsInterest);
+              console.log(updateInterests);
             }
           }   
         }
         else {
           sportsCategoryTitle.css("color", "white");
-          if(interests.indexOf(sportsInterest) !== -1) {
-            var interestIndex = interests.indexOf(sportsInterest);
-            interests.splice(interestIndex, 1);
-            console.log(interests);
+          if(updateInterests.indexOf(sportsInterest) !== -1) {
+            var interestIndex = updateInterests.indexOf(sportsInterest);
+            updateInterests.splice(interestIndex, 1);
+            console.log(updateInterests);
           }
         }
       });
@@ -716,6 +717,7 @@ $(document).ready(function() {
     $("#discord-widget").hide();
     $("#friends-card").hide();
     $("#search-bar-div-profile").hide();
+
     var updateProfileCardCol = $("<div>");
     updateProfileCardCol.addClass("col s8 offset-s2");
 
@@ -936,7 +938,91 @@ $(document).ready(function() {
     updateProfileCard.append(updateCardContent);
     updateProfileCardCol.append(updateProfileCard)
     $("#profile-page-content").append(updateProfileCardCol);
-  })
 
+    $(function() {
+      $(".updateCategoryCheckbox").click(function() {
+        var isGamingChecked = $("#updateGamingCheckbox").prop("checked");
+        var isTvChecked = $("#updateTvCheckbox").prop("checked");
+        var isMovieChecked = $("#updateMovieCheckbox").prop("checked");
+        var isSportsChecked = $("#updateSportsCheckbox").prop("checked");
 
+        var gamingInterest = "Gaming";
+        var tvInterest = "TV Shows";
+        var movieInterest = "Movies";
+        var sportsInterest = "Sports";
+
+        if(isGamingChecked) {
+          updateGamingCategoryTitle.css("color", "#71E5D9");
+          for (var i = -1; i < interests.length; i++) {
+            if(interests.indexOf(gamingInterest) === -1) {
+              interests.push(gamingInterest);
+              console.log(interests);
+            }
+          }
+        }
+        else {
+          updateGamingCategoryTitle.css("color", "white");
+          if(interests.indexOf(gamingInterest) !== -1) {
+            var interestIndex = interests.indexOf(gamingInterest);
+            interests.splice(interestIndex, 1);
+            console.log(interests);
+          }
+        }
+
+        if(isTvChecked) {
+          updateTvCategoryTitle.css("color", "#71E5D9");
+          for (var i = -1; i < interests.length; i++) {
+            if(interests.indexOf(tvInterest) === -1) {
+              interests.push(tvInterest);
+              console.log(interests);
+            }
+          }
+        }
+        else {
+          updateTvCategoryTitle.css("color", "white");
+          if(interests.indexOf(tvInterest) !== -1) {
+            var interestIndex = interests.indexOf(tvInterest);
+            interests.splice(interestIndex, 1);
+            console.log(interests);
+          }
+        }
+
+        if(isMovieChecked) {
+          updateMovieCategoryTitle.css("color", "#71E5D9");
+          for (var i = -1; i < interests.length; i++) {
+            if(interests.indexOf(movieInterest) === -1) {
+              interests.push(movieInterest);
+              console.log(interests);
+            }
+          }        
+        }
+        else {
+          updateMovieCategoryTitle.css("color", "white");
+          if(interests.indexOf(movieInterest) !== -1) {
+            var interestIndex = interests.indexOf(movieInterest);
+            interests.splice(interestIndex, 1);
+            console.log(interests);
+          }
+        }
+
+        if(isSportsChecked) {
+          updateSportsCategoryTitle.css("color", "#71E5D9");
+          for (var i = -1; i < interests.length; i++) {
+            if(interests.indexOf(sportsInterest) === -1) {
+              interests.push(sportsInterest);
+              console.log(interests);
+            }
+          }   
+        }
+        else {
+          updateSportsCategoryTitle.css("color", "white");
+          if(interests.indexOf(sportsInterest) !== -1) {
+            var interestIndex = interests.indexOf(sportsInterest);
+            interests.splice(interestIndex, 1);
+            console.log(interests);
+          }
+        }
+      });
+    });
+  });
 });

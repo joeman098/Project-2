@@ -1,13 +1,24 @@
 <body id="profile-body">
         <div id="profile-img-container">
-            <img src="{{profileImage}}" id="profile-img">       
+            <img src="{{profileImage}}" id="profile-img">     
+          
+            <h1>{{messages.error}}</h1>
+             <h1>{{messages.info}}</h1>
         </div>
         <div class="row" id="profile-page-header">
             <h1 id="profile-header-background-type">s0cial3r</h1>
         </div>
         <nav class="row" id="profile-nav">
-                <a href="#" id="profile-logo">{{id}}</a>
-            <span id="username-display">{{displayName}}</span>
+            <ul>
+            <li> <a href="#" id="profile-logo">{{id}}</a></li>
+           <li><span id="username-display">{{displayName}}</span></li>
+            <li><form id ="friendhide"method="post" action="/sendfriend/{{id}}"  class="inline">
+  <input type="hidden" name="submit_param" value={{id}}>
+  <button type="submit" name="submit_param" value="submit_value" class="link-button">
+    Add friend
+  </button>
+</form></li>
+            </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down chat-nav-links">
                  <li></li><a href="/logout" class="waves-effect waves-light btn"><i class="material-icons left">cloud_off</i>Logout</a></li>
                 <li><a href="/profile/{{id}}/general" class="nav-links highlighted" id="main-chat-link">Main Chat</a></li>
@@ -54,31 +65,9 @@
             <div class="col m3" id="friends-col">
                 <div class="card" id="friends-card">
                     <div class="card-content" id="friends-content">
-                        <span class="card-title" id="friends-title">You have <a href="#" id="friends-count">4</a> friends</span>
-                        <div class="friend">
-                            <img src="https://statusandphoto.weebly.com/uploads/6/0/1/5/60158603/8347592_orig.png" id="friend-img"/>
-                            <div class="friend-name">
-                                <a href="#" class="friendname">@friendname</a>
-                            </div>
-                        </div>
-                        <div class="friend">
-                             <img src="http://www.trickscity.com/wp-content/uploads/2016/07/Cool-And-Stylish-Profile-Pictures-For-Facebook-For-Girls-17-1024x993.jpg" id="friend-img"/>
-                            <div class="friend-name">
-                                <a href="#" class="friendname">@friendname</a>
-                            </div>
-                        </div>
-                        <div class="friend">
-                            <img src="http://static2.businessinsider.com/image/5899ffcf6e09a897008b5c04-1200/.jpg" id="friend-img"/>
-                            <div class="friend-name">
-                                <a href="#" class="friendname">@friendname194503849</a>
-                            </div>
-                        </div>
-                        <div class="friend">
-                            <img src="https://cdn.imaginetricks.com/wp-content/uploads/2017/08/Wonderful-Cute-Girls-Profile-Picture.jpg" id="friend-img"/>
-                            <div class="friend-name">
-                                <a href="#" class="friendname">@friendname</a>
-                            </div>
-                        </div>
+                        <span class="card-title" id="friends-title">You have <a href="#" id="friends-count"></a> friends</span>
+                        <div id="frendo">
+                  
                     </div>
                 </div>
                 

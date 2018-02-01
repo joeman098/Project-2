@@ -21,6 +21,7 @@ module.exports = function(app, db) {
   app.get("/profile/:id/:chan?", function(req, res) {
     var id = req.params.id;
     var chan = req.params.chan
+
     db.Feed.findAll({
       where:{
         channel: chan
@@ -73,9 +74,9 @@ module.exports = function(app, db) {
     });
   });
 
-  app.post("/sendFriend", function(req, res) {
+  app.post("/sendFriend/:uid", function(req, res) {
     var reqid = req.user.id;
-    var fid = req.body.uid;
+    var fid = req.params.uid;
     var test = {
       User1: reqid,
       User2: fid
@@ -86,13 +87,16 @@ module.exports = function(app, db) {
       .then(function(data) {
         if (data) {
           console.log("your friends allready");
-          res.json(data);
+         req.flash('error', 'You are already friends');
+         res.redirect("/profile/"+fid).end()
+         
+          // res.json(data);
         } else {
           friendDB
             .create(test)
             .then(function(data) {
               holdId = data.id;
-              res.json(data);
+              // res.json(data);
             })
             .then(function() {
               friendDB
@@ -109,8 +113,15 @@ module.exports = function(app, db) {
                         friendDB.update(
                           { accepted: true },
                           { where: { User1: reqid, User2: fid } }
+                        
                         );
+                        req.flash("info","You are now BEST FRIENDS")
+                    res.redirect("/profile/"+fid).end()
                       });
+                  }
+                  else{
+                    req.flash("info","You are now friends gratz")
+                    res.redirect("/profile/"+fid).end()
                   }
                 });
             });

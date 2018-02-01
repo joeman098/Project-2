@@ -22,12 +22,19 @@ module.exports = function(app, db) {
       });
   });
   app.get("/profile/:id/:chan?", function(req, res) {
+    
     var id = req.params.id;
-    var chan = req.params.chan
+    var chan = req.params.chan;
+    if (!chan){
+      chan = "general"
+    }
     db.Feed.findAll({
       where:{
         channel: chan
-      }
+      },
+      order:[
+        ['id', 'DESC'],
+      ]
     }).then(function (feed) {
       var feeddata = feed
       console.log(feeddata);
@@ -37,11 +44,13 @@ module.exports = function(app, db) {
           id:data.id,
           displayName: data.displayName,
           profileImage: data.image,
-          aboutuser: data.about
+          aboutuser: data.about,
+          chan:chan
         });
       });
     })
   });
+
   app.get("/api/friends/:id", function(req, res) {
     var id = req.params.id;
     friendDB.findAll({ where: { User1: id } }).then(function(data) {

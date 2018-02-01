@@ -76,21 +76,10 @@ function getMovies(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function feedSubmit(event){
     var newPost ={
         channel: sportsChannel.name,//channel selection name
-        user: "Franklin",//userInput.val().trim(),
+        user: "Test",
         message: "ALL YOUR ASSESSMENT ARE BELONG TO US!!"//msgInput.val().trim()
     }
     postFeed(newPost);
@@ -142,7 +131,7 @@ function initializeRows() {
 getSports();
 
 // getFeed();
-    // feedSubmit();
+    feedSubmit();
 
 
 

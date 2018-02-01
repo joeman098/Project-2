@@ -1,47 +1,175 @@
+
 $(document).ready(function() {
 
   console.log("I AM LINKED");
-/*
-  var commentBarShown = false;
+//########################CHARLES###################################
+var feeder;
+var generalChannel ={
+url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
+name: "general"
+} ;
+var gamingChannel = {
+  url:"https://discordapp.com/api/webhooks/408282323222790146/JuT5qAW9607mvfqwyiVBauObKG7Mq6_3wH3zYZPmuPsepr0vnnMQmbkFWrdsYnqLWxj2",
+  name: "gaming"
+};
+var tvChannel ={
+  url:"https://discordapp.com/api/webhooks/408277081642893332/Q7EwsWNZJgsdFwXIvvqM57d0pLPQwIOx_tcbogpq3er5hJRCDVs6ZT7d3xNwpzkeFCmR",
+  name: "tv"
+};
+var sportsChannel  = {
+    url:"https://discordapp.com/api/webhooks/408290833171742720/ePL88vKgyqiGkgDNWcQwBPGHOpEFFoJmpfr1RRR88sTZhRGkfJ7QGrUUDeEEEW3NYCrZ",
+    name: "sports"
+  };
+var movieChannel ={
+  url: "https://discordapp.com/api/webhooks/408334142338629632/J-uIxfGDMXSF8U9ZCBMjJ4HQ6Dx7Lkv5BQMSd0ysIaKZlj4HZtHSVpkCsdfF53wN7-An",
+  name: "movies"
+};
 
-  var commentBarContainer;
 
-  function showCommentBar() {
-    commentBarContainer = $("<div>");
-    commentBarContainer.addClass("comment-bar-container");
-    var commentBar = $('<input placeholder="Comment" name="comment" type="text" id="comment-input"/>');
-    var postComment = $('<input class="btn" type="submit" value="POST" id="post-comment-button"/>');
-    commentBarContainer.append(commentBar);
-    commentBarContainer.append(postComment);
-    var postContainer = $("#post"); 
-    postContainer.append(commentBarContainer);  
-  }
 
-  function hideCommentBar() {
-    commentBarContainer.hide();
-  }
-  
-  $(document).on("click", "#reply", function() {
 
-    if(commentBarShown === true) {
-      hideCommentBar();
-      commentBarShown = false;
+function getSports(data){
+  $.get("/api/feed/" + sportsChannel.name, function(data){
+    console.log(data);
+    feeder = data;
+        // initializeRows();
+        })
+          
+
+}
+function getTV(){
+  $.get("/api/tv/" + tvChannel.name, function(data){
+      console.log(data);
+      feeder = data;
+          initializeRows();
+          })
+
+}
+function getGaming(){
+  $.get("/api/gaming/" + gamingChannel.name, function(data){
+      console.log(data);
+      feeder = data;
+          initializeRows();
+          })
+
+}
+function getMovies(){
+  $.get("/api/movies/" + movieChannel.name, function(data){
+      console.log(data);
+      feeder = data;
+          initializeRows();
+          })
+
+}
+
+
+
+
+function feedSubmit(event){
+    var newPost ={
+        channel: generalChannel.name,//channel selection name
+        user: "Test",
+        message: $("#post-input").val().trim()  //msgInput.val().trim()
     }
-    else {
-      showCommentBar();
-      commentBarShown = true;
-    }
-  });
+    postFeed(newPost);
+}
+function postFeed(data){
+    $.ajax({
+        method:"POST",
+        url: "/api/feed",
+        data:data
 
-  */
+    }).then(console.log(data));
 
+    
+    
+    var newerData ={
+        content: data.message,
+        username:data.user
+    };
+
+    var newData = JSON.stringify(newerData);
+    console.log(newData + "Test"); 
+    $.ajax({
+        type: "POST",
+        url:generalChannel.url ,//channel selection
+        data: newData,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(msg) {
+        console.log('In Ajax');
+        }
+    });
+}
+
+
+
+
+function initializeRows() {
+    
+    
+    var postsToAdd = [];
+    for (var i = 0; i < feeder.length; i++) {
+      // console.log(feeder[i].message)
+    
+}
+}
+
+
+
+
+
+//This is functional, posts to db and discord
   $("#post-button").click(function(event){
     event.preventDefault();
-    var newPost = {
-      post: $("#post-input").val().trim(),
-      author: ""
-    }
+    feedSubmit();
+    $("#post-input").val('');
   });
+
+getFeed();
+
+
+
+  function getFeed(){
+    $.get("/api/feed/" + generalChannel.name, function(data){
+       
+
+        feeder = data;
+        console.log(feeder)
+        // initializeRows();
+        // for (var i = 0; i < feeder.length; i++) {
+        //   console.log(feeder[i].message);
+        //   var feeder2 = feeder[i];
+          var source = $("#feed-template").html();
+          var template = Handlebars.compile(source);
+          var html = template({dPost:feeder});
+          $('#feed').html(html);
+          // $('#feedResults').html(template({feeder2:feeder2}));
+
+        
+    // }
+
+        
+      
+            
+            }).done(function(data) {
+
+              // console.log(data);
+            
+          
+              
+             
+            });
+
+}
+
+
+
+
+
+
+
+
 
   function getAllPosts() {
     var feed = $("#feed");
@@ -669,6 +797,22 @@ $(document).ready(function() {
       location.reload();
     });
   })
+
+//#########MORE CHARLES###################
+
+
+
+
+
+
+
+
+
+
+//############END MORE CHARLES#############################
+
+
+
 
   $("#profile-logo").on("click", function() {
     

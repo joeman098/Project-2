@@ -4,142 +4,7 @@ $(document).ready(function() {
 
   console.log("I AM LINKED");
 
-//#######################CHARLES#####################################
 
-
-var feeder;
-var generalChannel ={
-url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
-name: "general"
-} ;
-var gamingChannel = {
-  url:"https://discordapp.com/api/webhooks/408282323222790146/JuT5qAW9607mvfqwyiVBauObKG7Mq6_3wH3zYZPmuPsepr0vnnMQmbkFWrdsYnqLWxj2",
-  name: "gaming"
-};
-var tvChannel ={
-  url:"https://discordapp.com/api/webhooks/408277081642893332/Q7EwsWNZJgsdFwXIvvqM57d0pLPQwIOx_tcbogpq3er5hJRCDVs6ZT7d3xNwpzkeFCmR",
-  name: "tv"
-};
-var sportsChannel  = {
-    url:"https://discordapp.com/api/webhooks/408290833171742720/ePL88vKgyqiGkgDNWcQwBPGHOpEFFoJmpfr1RRR88sTZhRGkfJ7QGrUUDeEEEW3NYCrZ",
-    name: "sports"
-  };
-var movieChannel ={
-  url: "https://discordapp.com/api/webhooks/408334142338629632/J-uIxfGDMXSF8U9ZCBMjJ4HQ6Dx7Lkv5BQMSd0ysIaKZlj4HZtHSVpkCsdfF53wN7-An",
-  name: "movies"
-};
-
-
-function getFeed(){
-    $.get("/api/feed/" + generalChannel.name, function(data){
-        console.log(data);
-        feeder = data;
-            initializeRows();
-            })
-
-}
-
-function getSports(data){
-  $.get("/api/feed/" + sportsChannel.name, function(data){
-    console.log(data);
-    feeder = data;
-        // initializeRows();
-        })
-          
-
-}
-function getTV(){
-  $.get("/api/tv/" + tvChannel.name, function(data){
-      console.log(data);
-      feeder = data;
-          initializeRows();
-          })
-
-}
-function getGaming(){
-  $.get("/api/gaming/" + gamingChannel.name, function(data){
-      console.log(data);
-      feeder = data;
-          initializeRows();
-          })
-
-}
-function getMovies(){
-  $.get("/api/movies/" + movieChannel.name, function(data){
-      console.log(data);
-      feeder = data;
-          initializeRows();
-          })
-
-}
-
-
-
-
-function feedSubmit(event){
-    var newPost ={
-        channel: sportsChannel.name,//channel selection name
-        user: "Test",
-        message: "ALL YOUR ASSESSMENT ARE BELONG TO US!!"//msgInput.val().trim()
-    }
-    postFeed(newPost);
-}
-function postFeed(data){
-    $.ajax({
-        method:"POST",
-        url: "/api/feed",
-        data:data
-
-    }).then(console.log(data));
-
-    
-    
-    var newerData ={
-        content: data.message,
-        username:data.user
-    };
-
-    var newData = JSON.stringify(newerData);
-    console.log(newData + "Test"); 
-    $.ajax({
-        type: "POST",
-        url:sportsChannel.url ,//channel selection
-        data: newData,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function(msg) {
-        console.log('In Ajax');
-        }
-    });
-}
-
-
-
-
-function initializeRows() {
-    
-    console.log(feeder);
-    var postsToAdd = [];
-    for (var i = 0; i < feeder.length; i++) {
-    postsToAdd.push(feeder[i]);
-    console.log(feeder[i]);
-    }
-    
-}
-
-
-getSports();
-
-// getFeed();
-    feedSubmit();
-
-
-
-
-
-
-
-  //################################################################
 /*
   var commentBarShown = false;
 
@@ -176,18 +41,10 @@ getSports();
   // feedSubmit();
   $("#post-button").click(function(event){
     event.preventDefault();
-    feedSubmit();
-    // var newPost = {
-    //   post: $("#post-input").val().trim(),
-    //   author: ""
-    // }
-
-    // $.ajax("/api/newPost", {
-    //   type: "POST",
-    //   data: newPost
-    // }).then(function(data) {
-    //   getAllPosts();
-    // });
+    var newPost = {
+      post: $("#post-input").val().trim(),
+      author: ""
+    }
   });
 
   function getAllPosts() {
@@ -581,7 +438,6 @@ getSports();
       }
     });
     */
-    
 
     $(function() {
       $(".categoryCheckbox").click(function() {
@@ -670,6 +526,111 @@ getSports();
     });
   });
 
+  var forgotEmailInput;
+
+  $("#forgot-password").on("click", function() {
+    console.log("button working");
+    $("#sign-in-row").hide();
+    $("#login-card-links").hide();
+
+    var mainForgotRow = $('<div class="row">');
+    mainForgotRow.attr("id", "forgot-password-row");
+
+    var forgotForm = $("<form>");
+    forgotForm.addClass("col s12");
+    forgotForm.attr("id", "forgot-form");
+    forgotForm.attr("name", "forgot-form");
+    forgotForm.attr("method", "post");
+    forgotForm.attr("action", "/forgot");
+
+    var forgotTitle = $("<h5>");
+    forgotTitle.attr("id", "forgot-title");
+    forgotTitle.text("RESET PASSWORD");
+
+    var forgotTitleBreak = $("<br>");
+
+    var forgotRowOne = $('<div class="row">');
+
+    var forgotInstructions = $("<h6>");
+    forgotInstructions.attr("id", "forgot-instructions");
+    forgotInstructions.text("PLEASE ENTER YOUR EMAIL");
+
+    var forgotInputFieldOne = $("<div>");
+    forgotInputFieldOne.addClass("input-field col s12");
+
+    forgotEmailInput = $("<input>");
+    forgotEmailInput.addClass("validate");
+    forgotEmailInput.attr("id", "forgotEmail");
+    forgotEmailInput.attr("name", "forgotEmail");
+    forgotEmailInput.attr("type", "email");
+
+    var forgotEmailLabel = $("<label>");
+    forgotEmailLabel.attr("for", "user-email");
+    forgotEmailLabel.attr("id", "userEmailLabel");
+    forgotEmailLabel.text("Email");
+
+    forgotInputFieldOne.append(forgotEmailInput, forgotEmailLabel);
+    forgotRowOne.append(forgotInstructions, forgotInputFieldOne);
+
+    var forgotRowTwo = $('<div class="row">');
+
+    var forgotInputFieldTwo = $("<div>");
+    forgotInputFieldTwo.addClass("input-field col s12");
+
+    var resetPasswordButton = $("<input>");
+    resetPasswordButton.addClass("btn");
+    resetPasswordButton.attr("type", "submit");
+    resetPasswordButton.attr("value", "RESET PASSWORD");
+    resetPasswordButton.attr("id", "reset-password-button");
+
+    forgotInputFieldTwo.append(resetPasswordButton);
+    forgotRowTwo.append(forgotInputFieldTwo);
+
+    forgotForm.append(forgotTitle, forgotTitleBreak, forgotRowOne, forgotRowTwo);
+    mainForgotRow.append(forgotForm);
+    $("#card-content").append(mainForgotRow);
+  });
+
+  $(document).on("click", "#reset-password-button", function(event) {
+    event.preventDefault();
+    $("#forgot-password-row").hide();
+
+    console.log("button working");
+
+    var resetMessageRow = $('<div class="row">');
+    resetMessageRow.attr("id", "reset-message-row");
+
+    var forgotEmailInputUpper = forgotEmailInput.val().toUpperCase();
+
+    var resetInstructions1 = $("<h6>");
+    resetInstructions1.addClass("reset-instructions");
+    resetInstructions1.html('AN EMAIL HAS BEEN SENT TO: <span id="forgot-email-upper">' + forgotEmailInputUpper + "</span>.");
+
+    var resetInstructions2 = $("<h6>");
+    resetInstructions2.addClass("reset-instructions");
+    resetInstructions2.html("<br>PLEASE FOLLOW THE INSTRUCTIONS TO RESET YOUR PASSWORD.");
+
+    var resetBreak = $("<br>");
+
+    var loginButtonRow = $('<div class="row">');
+
+    var loginButton = $("<input>");
+    loginButton.addClass("btn");
+    loginButton.attr("type", "submit");
+    loginButton.attr("value", "LOG IN");
+    loginButton.attr("id", "login-button");
+
+    loginButtonRow.append(loginButton);
+
+    resetMessageRow.append(resetInstructions1, resetInstructions2, resetBreak, loginButtonRow);
+
+    $("#card-content").append(resetMessageRow);
+  });
+
+  $(document).on("click", "#login-button", function() {
+    console.log("redirecting");
+  })
+
   $("#sign-in-button").on("click", function(event) {
     event.preventDefault();
 
@@ -698,7 +659,7 @@ getSports();
       displayName: $("#displayName").val().trim(),
       email: $("#userEmail").val().trim(),
       password: $("#passwordInput").val().trim(),
-      image: $("#image-link").val().trim(),
+      profileImage: $("#image-link").val().trim(),
       interests: interests
     }
 
@@ -710,5 +671,276 @@ getSports();
       console.log(data);
     });
   })
+
+  $("#profile-logo").on("click", function() {
+    
+  })
+
+  $(".chat-nav-links li").on("click", function() {
+    $(".highlighted").removeClass("highlighted");
+    $(this).addClass("highlighted");
+  })
+
+  $("#main-chat-link").on("click", function() {
+    $("#feed-row").show();
+    $("#discord-widget").show();
+    $("#friends-card").show();
+    $("#search-bar-div-profile").show();
+  })
+
+  $("#gaming-chat-link").on("click", function() {
+    $("#feed-row").show();
+    $("#discord-widget").show();
+    $("#friends-card").show();
+  })
+
+  $("#tv-chat-link").on("click", function() {
+    $("#feed-row").show();
+    $("#discord-widget").show();
+    $("#friends-card").show();
+    $("#search-bar-div-profile").show();
+  })
+
+  $("#movie-chat-link").on("click", function() {
+    $("#feed-row").show();
+    $("#discord-widget").show();
+    $("#friends-card").show();
+    $("#search-bar-div-profile").show();
+  })
+
+  $("#sports-chat-link").on("click", function() {
+    $("#feed-row").show();
+    $("#discord-widget").show();
+    $("#friends-card").show();
+    $("#search-bar-div-profile").show();
+  })
+
+  $("#edit-profile-link").on("click", function() {
+    $("#feed-row").hide();
+    $("#discord-widget").hide();
+    $("#friends-card").hide();
+    $("#search-bar-div-profile").hide();
+    var updateProfileCardCol = $("<div>");
+    updateProfileCardCol.addClass("col s8 offset-s2");
+
+    var updateProfileCard = $("<div>");
+    updateProfileCard.addClass("card");
+    updateProfileCard.attr("id", "update-profile-card");
+
+    var updateCardContent = $("<div>");
+    updateCardContent.addClass("card-content white-text ");
+    updateCardContent.attr("id", "update-profile-card-content");
+
+    var updateMainRow = $('<div class="row">');
+
+    var updateForm = $("<form>");
+    updateForm.addClass("col s12");
+    updateForm.attr("id", "update-form");
+    updateForm.attr("name", "update-form");
+    updateForm.attr("method", "post");
+    updateForm.attr("action", "/edit");
+
+    var updateFormTitle = $("<h5>");
+    updateFormTitle.attr("id", "update-form-title");
+    updateFormTitle.text("UPDATE YOUR PROFILE INFORMATION");
+
+    var updateTitleBreak = $("<br>");
+
+    var updateRowOne = $('<div class="row">');
+
+    var updateInputFieldOne = $("<div>");
+    updateInputFieldOne.addClass("input-field col s12 m6");
+
+    var updateDisplayNameInput = $("<input>");
+    updateDisplayNameInput.addClass("validate");
+    updateDisplayNameInput.attr("id", "updateDisplayName");
+    updateDisplayNameInput.attr("name", "updateDisplayName");
+    updateDisplayNameInput.attr("type", "text");
+
+    var updateDisplayNameLabel = $("<label>");
+    updateDisplayNameLabel.attr("for", "updateDisplayName");
+    updateDisplayNameLabel.attr("id", "updateDisplayNameLabel");
+    updateDisplayNameLabel.text("Display Name");
+
+    var updateInputFieldTwo = $("<div>");
+    updateInputFieldTwo.addClass("input-field col s12 m6");
+
+    var updateUserEmailInput = $("<input>");
+    updateUserEmailInput.addClass("validate");
+    updateUserEmailInput.attr("id", "updateUserEmail");
+    updateUserEmailInput.attr("name", "updateUserEmail");
+    updateUserEmailInput.attr("type", "email");
+
+    var updateUserEmailLabel = $("<label>");
+    updateUserEmailLabel.attr("for", "updateUserEmail");
+    updateUserEmailLabel.attr("id", "updateUserEmailLabel");
+    updateUserEmailLabel.text("Email");
+
+    updateInputFieldOne.append(updateDisplayNameInput, updateDisplayNameLabel);
+    updateInputFieldTwo.append(updateUserEmailInput, updateUserEmailLabel);
+    updateRowOne.append(updateInputFieldOne, updateInputFieldTwo);
+
+    var updateRowTwo = $('<div class="row">');
+
+    var updateInputFieldThree = $("<div>");
+    updateInputFieldThree.addClass("input-field col s12");
+
+    var updateImageLink = $("<input>");
+    updateImageLink.addClass("validate");
+    updateImageLink.attr("id", "update-image-link");
+    updateImageLink.attr("name", "update-image-link");
+    updateImageLink.attr("type", "text");
+
+    var updateImageLinkLabel = $("<label>");
+    updateImageLinkLabel.attr("for", "update-image-link");
+    updateImageLinkLabel.attr("id", "updateImageLinkLabel");
+    updateImageLinkLabel.text("Paste a link to an image of yourself");
+
+    updateInputFieldThree.append(updateImageLink, updateImageLinkLabel);
+    updateRowTwo.append(updateInputFieldThree);
+
+    var updateRowThree = $('<div class="row">');
+
+    var updateInterestsTitle = $("<h6>");
+    updateInterestsTitle.attr("id", "updateInterestsTitle");
+    updateInterestsTitle.text("TOPICS OF INTEREST");
+
+    updateRowThree.append(updateInterestsTitle);
+
+    var updateRowFour = $('<div class="row">');
+
+    var updateGamingCategoryTitleCol = $("<div>");
+    updateGamingCategoryTitleCol.addClass("col s3");
+
+    var updateGamingCategoryTitle = $("<h6>");
+    updateGamingCategoryTitle.attr("id", "updateGamingCategoryTitle");
+    updateGamingCategoryTitle.text("GAMING");
+
+    updateGamingCategoryTitleCol.append(updateGamingCategoryTitle);
+
+    var updateTvCategoryTitleCol = $("<div>");
+    updateTvCategoryTitleCol.addClass("col s3");
+
+    var updateTvCategoryTitle = $("<h6>");
+    updateTvCategoryTitle.attr("id", "updateTvCategoryTitle");
+    updateTvCategoryTitle.text("TV SHOWS");
+
+    updateTvCategoryTitleCol.append(updateTvCategoryTitle);
+
+    var updateMovieCategoryTitleCol = $("<div>");
+    updateMovieCategoryTitleCol.addClass("col s3");
+
+    var updateMovieCategoryTitle = $("<h6>");
+    updateMovieCategoryTitle.attr("id", "updateMovieCategoryTitle");
+    updateMovieCategoryTitle.text("MOVIES");
+
+    updateMovieCategoryTitleCol.append(updateMovieCategoryTitle);
+
+    var updateSportsCategoryTitleCol = $("<div>");
+    updateSportsCategoryTitleCol.addClass("col s3");
+
+    var updateSportsCategoryTitle = $("<h6>");
+    updateSportsCategoryTitle.attr("id", "updateSportsCategoryTitle");
+    updateSportsCategoryTitle.text("SPORTS");
+
+    updateSportsCategoryTitleCol.append(updateSportsCategoryTitle);
+
+    updateRowFour.append(updateGamingCategoryTitleCol, updateTvCategoryTitleCol, updateMovieCategoryTitleCol, updateSportsCategoryTitleCol);
+
+    var updateRowFive= $('<div class="row">');
+
+    var updateGamingSwitchCol = $("<div>");
+    updateGamingSwitchCol.addClass("col s3");
+
+    var updateGamingSwitch = $("<div>");
+    updateGamingSwitch.addClass("switch");
+    var updateGamingLabel = $("<label>");
+    var updateGamingInput = $("<input>");
+    updateGamingInput.attr("type", "checkbox");
+    updateGamingInput.attr("id", "updateGamingCheckbox");
+    updateGamingInput.addClass("updateCategoryCheckbox");
+    var updateGamingSpan = $("<span>");
+    updateGamingSpan.attr("class", "lever");
+
+    updateGamingLabel.append("No", updateGamingInput, updateGamingSpan, "Yes")
+    updateGamingSwitch.append(updateGamingLabel);
+    updateGamingSwitchCol.append(updateGamingSwitch);
+
+    var updateTvSwitchCol = $("<div>");
+    updateTvSwitchCol.addClass("col s3");
+
+    var updateTvSwitch = $("<div>");
+    updateTvSwitch.addClass("switch");
+    var updateTvLabel = $("<label>");
+    var updateTvInput = $("<input>");
+    updateTvInput.attr("type", "checkbox");
+    updateTvInput.attr("id", "updateTvCheckbox");
+    updateTvInput.addClass("updateCategoryCheckbox");
+    var updateTvSpan = $("<span>");
+    updateTvSpan.attr("class", "lever");
+
+    updateTvLabel.append("No", updateTvInput, updateTvSpan, "Yes")
+    updateTvSwitch.append(updateTvLabel);
+    updateTvSwitchCol.append(updateTvSwitch);
+
+    var updateMovieSwitchCol = $("<div>");
+    updateMovieSwitchCol.addClass("col s3");
+
+    var updateMovieSwitch = $("<div>");
+    updateMovieSwitch.addClass("switch");
+    var updateMovieLabel = $("<label>");
+    var updateMovieInput = $("<input>");
+    updateMovieInput.attr("type", "checkbox");
+    updateMovieInput.attr("id", "updateMovieCheckbox");
+    updateMovieInput.addClass("updateCategoryCheckbox");
+    var updateMovieSpan = $("<span>");
+    updateMovieSpan.attr("class", "lever");
+
+    updateMovieLabel.append("No", updateMovieInput, updateMovieSpan, "Yes")
+    updateMovieSwitch.append(updateMovieLabel);
+    updateMovieSwitchCol.append(updateMovieSwitch);
+
+    var updateSportsSwitchCol = $("<div>");
+    updateSportsSwitchCol.addClass("col s3");
+
+    var updateSportsSwitch = $("<div>");
+    updateSportsSwitch.addClass("switch");
+    var updateSportsLabel = $("<label>");
+    var updateSportsInput = $("<input>");
+    updateSportsInput.attr("type", "checkbox");
+    updateSportsInput.attr("id", "updateSportsCheckbox");
+    updateSportsInput.addClass("updateCategoryCheckbox");
+    var updateSportsSpan = $("<span>");
+    updateSportsSpan.attr("class", "lever");
+
+    updateSportsLabel.append("No", updateSportsInput, updateSportsSpan, "Yes")
+    updateSportsSwitch.append(updateSportsLabel);
+    updateSportsSwitchCol.append(updateSportsSwitch);
+
+    updateRowFive.append(updateGamingSwitchCol, updateTvSwitchCol, updateMovieSwitchCol, updateSportsSwitchCol);
+
+    var updateRowSix = $('<div class="row">');
+
+    var updateInputFieldFour = $("<div>");
+    updateInputFieldFour.addClass("input-field col s12");
+
+    var updateProfileButton = $("<input>");
+    updateProfileButton.addClass("btn");
+    updateProfileButton.attr("type", "submit");
+    updateProfileButton.attr("value", "UPDATE PROFILE");
+    updateProfileButton.attr("id", "update-profile-button");
+
+    updateInputFieldFour.append(updateProfileButton);
+    updateRowSix.append(updateInputFieldFour);
+
+
+    updateForm.append(updateRowOne, updateRowTwo, updateRowThree, updateRowFour, updateRowFive, updateRowSix);
+    updateMainRow.append(updateFormTitle, updateForm);
+    updateCardContent.append(updateMainRow);
+    updateProfileCard.append(updateCardContent);
+    updateProfileCardCol.append(updateProfileCard)
+    $("#profile-page-content").append(updateProfileCardCol);
+  })
+
 
 });

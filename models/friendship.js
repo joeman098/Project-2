@@ -4,10 +4,10 @@ module.exports = function(sequelize, Sequelize) {
 
     {
         User1:{
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
         },
         User2:{
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
         },
 
       accepted: {
@@ -20,8 +20,8 @@ module.exports = function(sequelize, Sequelize) {
     
   );
 
-  Friendship.associate = function (models) {
-    Friendship.belongsToMany(models.user, {as:"groups",through: "friendship", foreignKey:"FID" })
-}
+//   Friendship.associate = function (models) {
+//     Friendship.belongsToMany(models.user, {as:"groups",through: "friendship", foreignKey:"FID" })
+// }
   return Friendship;
 };

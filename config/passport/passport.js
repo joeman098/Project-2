@@ -42,7 +42,9 @@ module.exports = function(passport, user) {
 
               displayName: req.body.displayName,
               
-              image: req.body.ProfileImage
+              image: req.body.ProfileImage,
+
+              interests: req.body.interests
             };
 
 
@@ -103,14 +105,15 @@ module.exports = function(passport, user) {
         })
           .then(function(user) {
             if (!user) {
+              req.flash('error', 'No account with that email address exists.');
               return done(null, false, {
-                message: "Email does not exist"
+                
               });
             }
 
             if (!isValidPassword(user.password, password)) {
+              req.flash('error', 'Incorrect password.');
               return done(null, false, {
-                message: "Incorrect password."
               });
             }
 
@@ -119,9 +122,8 @@ module.exports = function(passport, user) {
           })
           .catch(function(err) {
             console.log("Error:", err);
-
+            req.flash('error', 'Something went wrong with your Signin');
             return done(null, false, {
-              message: "Something went wrong with your Signin"
             });
           });
       }

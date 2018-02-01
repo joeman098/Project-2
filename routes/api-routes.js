@@ -29,7 +29,7 @@ module.exports = function(app) {
 
  app.get("/api/feed/:channel", function(req, res) {
     db.Feed.findAll({
-      limit:5,
+      limit:2,
       where:{
         channel: req.params.channel
       }

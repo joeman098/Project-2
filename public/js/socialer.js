@@ -110,53 +110,14 @@ function initializeRows() {
     
     var postsToAdd = [];
     for (var i = 0; i < feeder.length; i++) {
-    postsToAdd.push(feeder[i]);
+      // console.log(feeder[i].message)
     
-    }
-    console.log(postsToAdd);
+}
 }
 
 
-// getSports();
 
 
-// getFeed();
-// feedSubmit();
-
-//########################CHARLES END###################################
-/*
-  var commentBarShown = false;
-
-  var commentBarContainer;
-
-  function showCommentBar() {
-    commentBarContainer = $("<div>");
-    commentBarContainer.addClass("comment-bar-container");
-    var commentBar = $('<input placeholder="Comment" name="comment" type="text" id="comment-input"/>');
-    var postComment = $('<input class="btn" type="submit" value="POST" id="post-comment-button"/>');
-    commentBarContainer.append(commentBar);
-    commentBarContainer.append(postComment);
-    var postContainer = $("#post"); 
-    postContainer.append(commentBarContainer);  
-  }
-
-  function hideCommentBar() {
-    commentBarContainer.hide();
-  }
-  
-  $(document).on("click", "#reply", function() {
-
-    if(commentBarShown === true) {
-      hideCommentBar();
-      commentBarShown = false;
-    }
-    else {
-      showCommentBar();
-      commentBarShown = true;
-    }
-  });
-
-  */
 
 //This is functional, posts to db and discord
   $("#post-button").click(function(event){
@@ -169,73 +130,35 @@ getFeed();
 
 
 
-  
-
-
-
-
-
   function getFeed(){
     $.get("/api/feed/" + generalChannel.name, function(data){
-        // console.log(data);
-        // feeder = JSON.stringify(data);
-        // feeder = JSON.stringify(data);
-        // feeder = data;
-          
-            
-            }).then(function(feeder) {
+       
 
-              console.log(feeder);
-            
-                var source = $("#feed-template").html();
-                var template = Handlebars.compile(source);
-                // var html = template(feeder);
-                // $('#FeedResults').html(html);
-                $('#feedResults').html(template({feeder:feeder}));
-              
-              // for (var i = 0; i < feeder.length; i++) {
-                
-              //   // console.log(data[i]);
-              //   var $postDiv = $("<div>", {id:"post", class:"card-panel"});
-              //   var postDiv = $('<div class ="card-panel"></div>');
-              //   postDiv.addClass("card-panel");
-              //   postDiv.attr("id", "post");
-               
-              //   var postContent = $("<div>");
-              //   postContent.addClass("card-content");
-                
-              //   var postAuthor = $("<a>");
-              //   var currentUser = data[i].username;
-              //   postAuthor.text = "@" + currentUser;
-              //   postAuthor.attr("href", "/profile/" + currentUser);
-                
-              //   var says = $("<span>");
-              //   says.attr("id", "says");
-              //   says.text(" says:");
-                
-              //   var doubleBreak = $("<br><br>");
-               
-              //   var postBody = $("<span>");
-              //   postBody.attr("id", "post-body");
-              //   postBody.text(data[i].message);
-                
-              //   var replyButton = $("<button>");
-              //   replyButton.attr("id", "reply");
-              //   replyButton.attr("type", "submit");
-              //   replyButton.text("REPLY");
+        feeder = data;
+        console.log(feeder)
+        // initializeRows();
+        // for (var i = 0; i < feeder.length; i++) {
+        //   console.log(feeder[i].message);
+        //   var feeder2 = feeder[i];
+          var source = $("#feed-template").html();
+          var template = Handlebars.compile(source);
+          var html = template({dPost:feeder});
+          $('#feed').html(html);
+          // $('#feedResults').html(template({feeder2:feeder2}));
+
         
-              //   postContent.append(postAuthor);
-              //   postContent.append(says);
-              //   postContent.append(doubleBreak);
-              //   postContent.append(postBody);
-              //   postContent.append(doubleBreak);
-              //   postContent.append(replyButton);
-                
-              //   post.append(postContent);
-              //   console.log(post);
-              //   feed.append(JSON.stringify(feeder[i].message));
-              //   feed.append($postDiv);
-              // }
+    // }
+
+        
+      
+            
+            }).done(function(data) {
+
+              // console.log(data);
+            
+          
+              
+             
             });
 
 }

@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
   console.log("I AM LINKED");
-//########################CHARLES###################################
+//########################CHARLES Fn' rocks###################################
 var feeder;
 var generalChannel ={
 url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",

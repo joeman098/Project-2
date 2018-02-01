@@ -26,9 +26,9 @@ module.exports = function(app, db) {
     var id = req.params.id;
 
     var chan = req.params.chan;
-    /*if (!chan){
+    if (!chan){
       chan = "general"
-    }*/
+    }
     var class1;
     var class2;
     var class3;

@@ -18,17 +18,26 @@ module.exports = function(app, db) {
         res.redirect("/dashboard");
       });
   });
-  app.get("/profile/:id", function(req, res) {
+  app.get("/profile/:id/:chan?", function(req, res) {
     var id = req.params.id;
-
-    userDB.findOne({ where: { id: id } }).then(function(data) {
-      res.render("profile", {
-        id:data.id,
-        displayName: data.displayName,
-        profileImage: data.image,
-        aboutuser: data.about
+    var chan = req.params.chan
+    db.Feed.findAll({
+      where:{
+        channel: chan
+      }
+    }).then(function (feed) {
+      var feeddata = feed
+      console.log(feeddata);
+      userDB.findOne({ where: { id: id } }).then(function(data) {
+        res.render("profile", {
+          feed:feed,
+          id:data.id,
+          displayName: data.displayName,
+          profileImage: data.image,
+          aboutuser: data.about
+        });
       });
-    });
+    })
   });
   app.get("/api/friends/:id", function(req, res) {
     var id = req.params.id;
@@ -108,4 +117,18 @@ module.exports = function(app, db) {
         }
       });
   });
+  function getFeed(){
+  
+      db.Feed.findAll({
+        limit:2,
+        where:{
+          channel:"test"
+        }
+      }).then(function(dbFeed) {
+        // console.log(dbFeed)
+        feed = dbFeed
+      });
+
+    };
+  
 };

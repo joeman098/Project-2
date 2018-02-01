@@ -22,6 +22,19 @@
         <input name="interests" type="text" />
         <input class="btn" type="submit" value=edit />
     </form>
+    <div class="row">
+  <div class="col-lg-6">
+<h2>POSTS!!</h2>
+
+<ul>
+  {{#each feeder}}
+    
+      {{> posts/feed-block }}
+    
+  {{/each}}
+</ul>
+
+  </div>
         </div>
 
         

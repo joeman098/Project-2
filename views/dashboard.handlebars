@@ -25,13 +25,13 @@
     <div class="row">
   <div class="col-lg-6">
 <h2>POSTS!!</h2>
-<div id="DocumentResults"></div>
-<script id="document-template" type="text/x-handlebars-template">
+<div id="feedResults"></div>
+<script id="feed-template" type="text/x-handlebars-template">
     <div>
-        {{#each this}}
+        {{#each .}}
             <div class="card-panel" id="post">
                 <div class="card-content">
-                    <p>{{username}}</p>
+                    <span id="post-body">{{feeder}}</span>
                         
                     <p>{{message}} </p>
                         

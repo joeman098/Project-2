@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
   console.log("I AM LINKED");
@@ -112,7 +113,7 @@ function initializeRows() {
     postsToAdd.push(feeder[i]);
     
     }
-    
+    console.log(postsToAdd);
 }
 
 
@@ -178,19 +179,20 @@ getFeed();
     $.get("/api/feed/" + generalChannel.name, function(data){
         // console.log(data);
         // feeder = JSON.stringify(data);
-        feeder = data;
-          // initializeRows();
+        // feeder = JSON.stringify(data);
+        // feeder = data;
+          
             
             }).then(function(feeder) {
 
-
-              $(function() {
+              console.log(feeder);
+            
                 var source = $("#feed-template").html();
                 var template = Handlebars.compile(source);
-                var html = template(feeder);
-                $('#FeedResults').html(html);
-                });
-              console.log(feeder);
+                // var html = template(feeder);
+                // $('#FeedResults').html(html);
+                $('#feedResults').html(template({feeder:feeder}));
+              
               // for (var i = 0; i < feeder.length; i++) {
                 
               //   // console.log(data[i]);

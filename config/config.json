@@ -1,7 +1,8 @@
 {
   "development": {
+
     "username": "root",
-    "password": "something",
+    "password": "",
     "database": "socialer",
     "host": "127.0.0.1",
     "port": 3306,

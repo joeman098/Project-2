@@ -5,8 +5,10 @@ module.exports = function(app, db) {
   app.post("/dashboard/edit", function(req, res) {
     id = req.user.id;
     var data = {
-      about: req.body.about,
-      interests: req.body.interests
+      displayName: req.body.displayName,
+      email: req.body.email,
+      image: req.body.image,
+      interests: JSON.stringify(req.body.interests)
     };
     userDB
       .update(data, {
@@ -15,31 +17,87 @@ module.exports = function(app, db) {
         }
       })
       .then(function(userdb) {
+        console.log(".then");
         res.redirect("/dashboard");
       });
   });
   app.get("/profile/:id/:chan?", function(req, res) {
+    
     var id = req.params.id;
-    var chan = req.params.chan
+
+    var chan = req.params.chan;
+    if (!chan){
+      chan = "general"
+    }
+    var class1;
+    var class2;
+    var class3;
+    var class4;
+    var class5;
+    if(chan === "general") {
+      class1 = "nav-links highlighted";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "gaming_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links highlighted";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "tv_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links highlighted";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "movie_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links highlighted";
+      class5 = "nav-links";
+    }
+    else if (chan === "super-bowl-xxx_giggity"){
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links highlighted";
+    }
 
     db.Feed.findAll({
       where:{
         channel: chan
-      }
+      },
+      order:[
+        ['id', 'DESC'],
+      ]
     }).then(function (feed) {
       var feeddata = feed
-      console.log(feeddata);
+      //çconsole.log(feeddata);
       userDB.findOne({ where: { id: id } }).then(function(data) {
         res.render("profile", {
           feed:feed,
           id:data.id,
           displayName: data.displayName,
           profileImage: data.image,
-          aboutuser: data.about
+          aboutuser: data.about,
+          chan:chan,
+          class1: class1,
+          class2: class2,
+          class3: class3,
+          class4: class4,
+          class5: class5
         });
       });
     })
   });
+
   app.get("/api/friends/:id", function(req, res) {
     var id = req.params.id;
     friendDB.findAll({ where: { User1: id } }).then(function(data) {

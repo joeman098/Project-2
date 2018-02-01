@@ -8,9 +8,11 @@
         <div class="row" id="profile-page-header">
             <h1 id="profile-header-background-type">s0cial3r</h1>
         </div>
+
+
         <nav class="row" id="profile-nav">
             <ul>
-            <li> <a href="#" id="profile-logo">{{id}}</a></li>
+            <li> <a href="/dashboard" id="profile-logo">{{id}}</a></li>
            <li><span id="username-display">{{displayName}}</span></li>
             <li><form id ="friendhide"method="post" action="/sendfriend/{{id}}"  class="inline">
   <input type="hidden" name="submit_param" value={{id}}>
@@ -20,21 +22,21 @@
 </form></li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down chat-nav-links">
-                 <li></li><a href="/logout" class="waves-effect waves-light btn"><i class="material-icons left">cloud_off</i>Logout</a></li>
-                <li><a href="/profile/{{id}}/general" class="nav-links highlighted" id="main-chat-link">Main Chat</a></li>
-                <li><a href="/profile/{{id}}/lfg" class="nav-links" id="gaming-chat-link">Gaming Chat</a></li>
-                <li><a href="/profile/{{id}}/tv_chat" class="nav-links" id-"tv-chat-link">TV Chat</a></li>
-                <li><a href="/profile/{{id}}/movie_chat" class="nav-links" id="movie-chat-link">Movie Chat</a></li>
-                <li><a href="/profile/{{id}}/super-bowl-xxx_giggity" class="nav-links" id="sports-chat-link">Sports Chat</a></li>
+                <li><a href="/profile/{{id}}/general" class="{{class1}}" id="main-chat-link">Main Chat</a></li>
+                <li><a href="/profile/{{id}}/gaming_chat" class="{{class2}}" id="gaming-chat-link">Gaming Chat</a></li>
+                <li><a href="/profile/{{id}}/tv_chat" class="{{class3}}" id="tv-chat-link">TV Chat</a></li>
+                <li><a href="/profile/{{id}}/movie_chat" class="{{class4}}"  id="movie-chat-link">Movie Chat</a></li>
+                <li><a href="/profile/{{id}}/super-bowl-xxx_giggity" class="{{class5}}" id="sports-chat-link">Sports Chat</a></li>
             </ul>
            
 
         </nav>
         <div class="row" id="search-bar-div-profile">
-            <div class="input-field col m6 offset-m3" id="post-bar-col">
-                <input placeholder="Say Something" name="post" type="text" id="post-input"/>
+            <div class="input-field col l6 offset-l3 xl6 offset-xl3" id="post-bar-col">
 
-                <input class="btn" type="submit" value="POST" id="post-button"/>
+            </div>
+            <div class="col m3" id="logout-button-col">
+                <a href="/logout" class="waves-effect waves-light btn" id="logout-button"><i class="material-icons left">cloud_off</i>Logout</a>
             </div>
         </div>
         <div class="row" id="feed-row">;
@@ -55,6 +57,8 @@
 
             </div>    
             </div>
+
+            <div id ="linky" style="display:none;">{{chan}}</div>
         <div class="row" id="profile-page-content">
             <div class="col m3" id="discord-app-col">
                 <iframe src="https://discordapp.com/widget?id=406842588239495168&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" id="discord-widget"></iframe>

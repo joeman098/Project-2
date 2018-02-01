@@ -6,10 +6,9 @@
             <h1 id="profile-header-background-type">s0cial3r</h1>
         </div>
         <nav class="row" id="profile-nav">
-                <a href="#" id="profile-logo">{{id}}</a>
+                <a href="/dashboard" id="profile-logo">0</a>
             <span id="username-display">{{displayName}}</span>
             <ul id="nav-mobile" class="right hide-on-med-and-down chat-nav-links">
-                 <li></li><a href="/logout" class="waves-effect waves-light btn"><i class="material-icons left">cloud_off</i>Logout</a></li>
                 <li><a href="#" class="nav-links highlighted" id="main-chat-link">Main Chat</a></li>
                 <li><a href="#" class="nav-links" id="gaming-chat-link">Gaming Chat</a></li>
                 <li><a href="#" class="nav-links" id="tv-chat-link">TV Chat</a></li>
@@ -23,34 +22,30 @@
                 <input placeholder="Say Something" name="post" type="text" id="post-input"/>
                 <input class="btn" type="submit" value="POST" id="post-button"/>
             </div>
-        </div>
-        <div class="row" id="feed-row">;
-        <div class="col m6 offset-m3" id="feed">
-           
-{{!-- <div id="feedResults"></div> --}}
-<script id="feed-template" type="text/x-handlebars-template">
-
- {{#each this}}
-<div class="card-panel" id="post">
-    <div class="card-content">
-        <h2>DICKS</h2>
-
-        <p>{{user}} </p>
-        <a href="#" id="postername">@blahblah</a>
-        <span id="says"> says:</span>
-        <br>
-        <br>
-        <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</span>
-        <br>
-        <br>
-        <a href="#" id="reply">REPLY</a>
-
-    </div>
-</div>
-{{/each}}
-     </script>                       </div> 
-                            </div> 
+            <div class="col m3" id="logout-button-col">
+                <a href="/logout" class="waves-effect waves-light btn" id="logout-button"><i class="material-icons left">cloud_off</i>Logout</a>
             </div>
+        </div>
+
+        <div class="row" id="feed-row">;
+                <div class="col m6 offset-m3" id="feed">
+
+        {{#each feed}}
+         <div class="card-panel" id="post">
+                     <div class="card-content">
+                        <a href="#" id="postername">{{username}}</a><span id="says"> says:</span>
+                        <br>
+                        <br>
+                        <span id="post-body">{{message}}</span>
+                        <br><br>
+                        <a href="#" id="reply">REPLY</a>
+                    </div>
+                </div>
+        {{/each}}
+
+            </div>    
+            </div>
+
         <div class="row" id="profile-page-content">
             <div class="col m3" id="discord-app-col">
                 <iframe src="https://discordapp.com/widget?id=406842588239495168&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" id="discord-widget"></iframe>
@@ -94,7 +89,30 @@
         </div>
     </div>
 
+<script id="feed-template" type="text/x-handlebars-template"></div>
+{{log this}}
+<p>{{data3}}</p>
 
+ {{#each feed}}
+ 
+<div class="card-panel" id="post">
+    <div class="card-content">
+        <h2>DICKS</h2>
+
+        <p>{{name}} </p>
+        <a href="#" id="postername">@blahblah</a>
+        <span id="says"> says:</span>
+        <br>
+        <br>
+        <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</span>
+        <br>
+        <br>
+        <a href="#" id="reply">REPLY</a>
+
+    </div>
+</div>
+{{/each}}
+     </script>               
 
 
 

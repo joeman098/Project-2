@@ -16,7 +16,7 @@ html, body, #main-page-content-row {
 }
 
 #o {
-    color: #50a39a;
+    color: 	#7289da;
     text-shadow: .05em .05em .1em white;
 }
 
@@ -97,17 +97,13 @@ html, body, #main-page-content-row {
 }
 
 #loginInfoTitle, #profilePicTitle, #interestsTitle {
-    color: #71E5D9;
+    color: #7C95ED;
 }
 
 
 #displayName, #userEmail, #passwordInput, #passwordConfirmInput, #about-me, #image-link {
     line-height: 1em;
     color: white;
-}
-
-#about-me {
-    overflow-y: scroll !important;
 }
 
 #forgot-password {
@@ -121,34 +117,43 @@ html, body, #main-page-content-row {
 #forgot-password:hover {
     color: #D9D9D9;
 }
-#blog-container{
-    color: black;
-    border-color: orange;
-    border: darkorange;
-    border-style: solid;
-    height: 250px;
-}
-
-#discord-login {
-    background-color: #7289da;
-    color: white;
-    width: 100%;
-    border-radius: 30px;
-}
-
-#discord-login:hover {
-    background-color: #5F72B5;
-}
-
-#login-or {
-    margin-top: 3%;
-    text-align: center;
-    color: #9e9e9e;
-}
 
 #sign-in-button, #create-profile-button, #reset-password-button, #login-button, #update-profile-button {
     width: 100%;
     border-radius: 30px;
+    background-color: #7289da;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #7289da;
+  }
+  
+  .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #85A0FF;
+  }
+
+#sign-in-button {
+    margin-top: 20px;
+}
+
+#sign-in-button:hover {
+    background-color: #85A0FF;
+}
+
+#create-profile-button:hover {
+    background-color: #85A0FF;
+}
+
+#reset-password-button:hover {
+    background-color: #85A0FF;
+}
+
+#login-button:hover {
+    background-color: #85A0FF;
+}
+
+#update-profile-button:hover {
+    background-color: #85A0FF;
 }
 
 #forgotEmail {
@@ -156,7 +161,12 @@ html, body, #main-page-content-row {
 }
 
 #forgot-email-upper {
-    color: #50a39a;
+    color: 	#7289da
+}
+
+#message-headline {
+    font-size: 20px;
+    color: red;
 }
 
 /* Profile Page CSS */
@@ -212,7 +222,7 @@ html, body, #main-page-content-row {
     height: 185px;
     background-color: lightgray;
     z-index: 12;
-    border: 8px solid #50a39a;
+    border: 8px solid 	#7289da;
     border-radius: 220px;
 }
 
@@ -226,7 +236,7 @@ html, body, #main-page-content-row {
     position: fixed;
     top: 95px;
     margin: 0 !important;
-    background-color: #50a39a;
+    background-color:	#7289da;
     height: 62px;
     z-index: 10;
 }
@@ -259,7 +269,7 @@ html, body, #main-page-content-row {
 }
 
 .nav-links:hover {
-    background-color: #3B7871;
+    background-color: #5567A3;
 }
 
 #profile-page-content {
@@ -308,7 +318,7 @@ html, body, #main-page-content-row {
 
 #post-button, #post-comment-button {
     height: 45px;
-    background-color: rgba(88,88,88,1);
+    background-color: #7289da;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 5px;
@@ -317,6 +327,28 @@ html, body, #main-page-content-row {
     margin-top: 0px;
     margin-bottom: 2px;
     width: 14%;
+}
+
+#logout-button {
+    background-color: #7289da;
+    float: right;
+    height: 45px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-top: 4px;
+    padding-top: 5px;
+} 
+
+#logout-button-col {
+    padding-right: 0 !important;
+}
+
+#logout-button:hover {
+    background-color: #5567A3;
+}
+
+#post-button:hover {
+    background-color: #5567A3;
 }
 
 #search-button {
@@ -360,12 +392,12 @@ html, body, #main-page-content-row {
 }
 
 #postername {
-    color: #50a39a;
+    color: 	#7289da;
     font-size: 18px
 }
 
 #postername:hover, .friendname:hover {
-    color: #40827B;
+    color: #5567A3;
 }
 
 #says {
@@ -375,11 +407,43 @@ html, body, #main-page-content-row {
 
 #reply {
     color: rgba(33, 33, 33, 0.9);
-    color: #50a39a;
+    color: 	#7289da;
+}
+#signin input:focus + label  {
+    color: #9e9e9e;
+}
+
+#signin input[type=text]:focus {
+    border-bottom: 1px solid #7289da !important;
+    box-shadow: 0 1px 0 0 #7289da !important;
+}
+
+#signin input[type=password]:focus {
+    border-bottom: 1px solid #7289da !important;
+    box-shadow: 0 1px 0 0 #7289da !important;
+}
+/* label focus color */
+.input-field input:focus + label {
+    color: #7289da !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #7289da !important;
+    box-shadow: 0 1px 0 0 #7289da !important;
+}
+
+.input-field input[type=email]:focus {
+    border-bottom: 1px solid #7289da !important;
+    box-shadow: 0 1px 0 0 #7289da !important;
+}
+
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid #7289da !important;
+    box-shadow: 0 1px 0 0 #7289da !important;
 }
 
 #reply:hover {
-    color: #40827B;
+    color: #5567A3;
 }
 
 #post {
@@ -403,7 +467,7 @@ html, body, #main-page-content-row {
 }
 
 .friendname {
-    color: #50a39a;
+    color: 	#7289da;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -414,7 +478,7 @@ html, body, #main-page-content-row {
 }
 
 #friends-count {
-    color: #50a39a;
+    color: 	#7289da;
 }
 
 #friends-card {
@@ -425,5 +489,94 @@ html, body, #main-page-content-row {
 }
 
 .highlighted {
-    background-color: #3B7871;
+    background-color: #5567A3;
+}
+
+#updateDisplayName, #updateUserEmail, #update-image-link {
+    line-height: 1em;
+    color: white;
+}
+
+@media only screen and (max-width: 1050px) {
+
+    #login-email-label, #login-password-label, #email, #password, #sign-in-button, #create-profile-button, #reset-password-button, #forgotEmail, #userEmailLabelForgot {
+        font-size: 25px;
+    } 
+
+    #sign-in-button, #create-profile-button, #reset-password-button {
+        height: 50px;
+    }
+
+    #register, #forgot-password {
+        font-size: 25px;
+    }
+    #main-page-title {
+        font-size: 18vw;
+        margin-top: 150px
+    }
+    #login-card {
+        margin-top: 100px;
+    }
+
+    #create-profile-card {
+        margin-top: 200px;
+    }
+
+    #form-title, #forgot-title, #update-form-title {
+        font-size: 40px;
+    }
+
+    #loginInfoTitle, #profilePicTitle, #interestsTitle, #forgot-instructions, #updateInterestsTitle {
+        font-size: 25px;
+    }
+
+    #displayName, #displayNameLabel, #userEmail, #userEmailLabel, #passwordInput, #userPasswordLabel, #passwordConfirmInput, #userPasswordConfirmLabel, #image-link, #imageLinkLabel {
+        font-size: 20px;
+    } 
+
+    #gamingCategoryTitle, #tvCategoryTitle, #movieCategoryTitle, #sportsCategoryTitle,  {
+        font-size: 20px;
+    }
+
+    #gamingLabel, #tvLabel, #movieLabel, #sportsLabel {
+        font-size: 16px;
+    }
+
+    #post-button {
+        width: 13%;
+        padding: 0 !important;
+        margin-bottom: 0;
+    }
+
+    #profile-img-container {
+        position: fixed;
+        top: 25px;
+        left: 90px;
+        width: 185px;
+        height: 185px;
+        background-color: lightgray;
+        z-index: 12;
+        border: 8px solid #50a39a;
+        border-radius: 220px;
+    }
+
+    #profile-logo {
+        margin-left: 20px;
+    }
+
+    #username-display {
+        position: absolute;
+        left: 280px;
+        font-size: 25px;
+        color: white;
+        z-index: 1;
+    }
+
+    #discord-widget {
+        width: 250px;
+    }
+
+    #profile-header-background-type {
+        margin-left: 50px;
+    }
 }

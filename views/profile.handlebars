@@ -5,12 +5,14 @@
         <div class="row" id="profile-page-header">
             <h1 id="profile-header-background-type">s0cial3r</h1>
         </div>
+
+
         <nav class="row" id="profile-nav">
                 <a href="/dashboard" id="profile-logo">0</a>
             <span id="username-display">{{displayName}}</span>
             <ul id="nav-mobile" class="right hide-on-med-and-down chat-nav-links">
                 <li><a href="/profile/{{id}}/general" class="nav-links highlighted" id="main-chat-link">Main Chat</a></li>
-                <li><a href="/profile/{{id}}/lfg" class="nav-links" id="gaming-chat-link">Gaming Chat</a></li>
+                <li><a href="/profile/{{id}}/gaming_chat" class="nav-links" id="gaming-chat-link">Gaming Chat</a></li>
                 <li><a href="/profile/{{id}}/tv_chat" class="nav-links" id-"tv-chat-link">TV Chat</a></li>
                 <li><a href="/profile/{{id}}/movie_chat" class="nav-links" id="movie-chat-link">Movie Chat</a></li>
                 <li><a href="/profile/{{id}}/super-bowl-xxx_giggity" class="nav-links" id="sports-chat-link">Sports Chat</a></li>
@@ -46,6 +48,8 @@
 
             </div>    
             </div>
+
+            <div id ="linky" style="display:none;">{{chan}}</div>
         <div class="row" id="profile-page-content">
             <div class="col m3" id="discord-app-col">
                 <iframe src="https://discordapp.com/widget?id=406842588239495168&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" id="discord-widget"></iframe>

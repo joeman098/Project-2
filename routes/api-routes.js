@@ -1,7 +1,7 @@
 
 
 var db = require("../models");
-
+userDB = db.user;
 
 module.exports = function(app) {
     var Discord = require("discord.js");
@@ -27,16 +27,39 @@ module.exports = function(app) {
 
 
 
- app.get("/api/feed/:channel", function(req, res) {
-    db.Feed.findAll({
-      limit:2,
-      where:{
-        channel: req.params.channel
-      }
-    }).then(function(dbFeed) {
-      res.json(dbFeed);
-    });
-  });
+//  app.get("/profile/:channel", function(req, res) {
+//     db.Feed.findAll({
+//       limit:2,
+//       where:{
+//         channel: req.params.channel
+//       }
+//     }).then(function (feed) {
+//       var feeddata = feed
+//       console.log(feeddata);
+     
+//     })
+//   });
+
+  // app.get("/profile/:id", function(req, res) {
+  //   var id = req.params.id;
+  //   db.Feed.findAll({
+  //     where:{
+  //       channel:"test"
+  //     }
+  //   }).then(function (feed) {
+  //     var feeddata = feed
+  //     console.log(feeddata);
+  //     userDB.findOne({ where: { id: id } }).then(function(data) {
+  //       res.render("profile", {
+  //         feed:feed,
+  //         id:data.id,
+  //         displayName: data.displayName,
+  //         profileImage: data.image,
+  //         aboutuser: data.about
+  //       });
+  //     });
+  //   })
+  // });
 
 
  

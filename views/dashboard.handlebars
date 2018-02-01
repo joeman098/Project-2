@@ -26,6 +26,7 @@
                 <a href="/logout" class="waves-effect waves-light btn" id="logout-button"><i class="material-icons left">cloud_off</i>Logout</a>
             </div>
         </div>
+
         <div class="row" id="feed-row">;
                 <div class="col m6 offset-m3" id="feed">
 
@@ -44,6 +45,7 @@
 
             </div>    
             </div>
+
         <div class="row" id="profile-page-content">
             <div class="col m3" id="discord-app-col">
                 <iframe src="https://discordapp.com/widget?id=406842588239495168&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" id="discord-widget"></iframe>
@@ -87,7 +89,30 @@
         </div>
     </div>
 
+<script id="feed-template" type="text/x-handlebars-template"></div>
+{{log this}}
+<p>{{data3}}</p>
 
+ {{#each feed}}
+ 
+<div class="card-panel" id="post">
+    <div class="card-content">
+        <h2>DICKS</h2>
+
+        <p>{{name}} </p>
+        <a href="#" id="postername">@blahblah</a>
+        <span id="says"> says:</span>
+        <br>
+        <br>
+        <span id="post-body">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</span>
+        <br>
+        <br>
+        <a href="#" id="reply">REPLY</a>
+
+    </div>
+</div>
+{{/each}}
+     </script>               
 
 
 

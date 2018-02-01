@@ -8,6 +8,7 @@ var generalChannel ={
 url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
 name: "general"
 } ;
+
 var gamingChannel = {
   url:"https://discordapp.com/api/webhooks/408282323222790146/JuT5qAW9607mvfqwyiVBauObKG7Mq6_3wH3zYZPmuPsepr0vnnMQmbkFWrdsYnqLWxj2",
   name: "gaming"
@@ -28,52 +29,37 @@ var movieChannel ={
 
 
 
-function getSports(data){
-  $.get("/api/feed/" + sportsChannel.name, function(data){
-    console.log(data);
-    feeder = data;
-        // initializeRows();
-        })
-          
-
-}
-function getTV(){
-  $.get("/api/tv/" + tvChannel.name, function(data){
-      console.log(data);
-      feeder = data;
-          initializeRows();
-          })
-
-}
-function getGaming(){
-  $.get("/api/gaming/" + gamingChannel.name, function(data){
-      console.log(data);
-      feeder = data;
-          initializeRows();
-          })
-
-}
-function getMovies(){
-  $.get("/api/movies/" + movieChannel.name, function(data){
-      console.log(data);
-      feeder = data;
-          initializeRows();
-          })
-
-}
-
-
-
 
 function feedSubmit(event){
+  var links;
+  console.log($("#linky").text());
+  if($("#linky").text() === "gaming_chat"){
+     links = gamingChannel.url;
+     console.log(links);
+  }else if($("#linky").text() === "tv_chat"){
+    links = tvChannel.url;
+    console.log(links);
+ }else if($("#linky").text() === "general"){
+  links = generalChannel.url;
+  console.log(links);
+}else if($("#linky").text() === "movie_chat"){
+  links = movieChannel.url;
+  console.log(links);
+}else if($("#linky").text() === "super-bowl-xxx_giggity"){
+  links = sportsChannel.url;
+  
+}
     var newPost ={
-        channel: generalChannel.name,//channel selection name
-        user: "Test",
+        channel: $("#linky").text(),//channel selection name
+        user: $("#username-display").text(),
         message: $("#post-input").val().trim()  //msgInput.val().trim()
     }
     postFeed(newPost);
 }
 function postFeed(data){
+
+
+
     $.ajax({
         method:"POST",
         url: "/api/feed",
@@ -81,7 +67,24 @@ function postFeed(data){
 
     }).then(console.log(data));
 
+    var links;
+    console.log($("#linky").text());
+    if($("#linky").text() === "gaming_chat"){
+       links = gamingChannel.url;
+       console.log(links);
+    }else if($("#linky").text() === "tv_chat"){
+      links = tvChannel.url;
+      console.log(links);
+   }else if($("#linky").text() === "general"){
+    links = generalChannel.url;
+    console.log(links);
+  }else if($("#linky").text() === "movie_chat"){
+    links = movieChannel.url;
+    console.log(links);
+  }else if($("#linky").text() === "super-bowl-xxx_giggity"){
+    links = sportsChannel.url;
     
+  }
     
     var newerData ={
         content: data.message,
@@ -92,7 +95,7 @@ function postFeed(data){
     console.log(newData + "Test"); 
     $.ajax({
         type: "POST",
-        url:generalChannel.url ,//channel selection
+        url:links,//channel selection
         data: newData,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -131,37 +134,16 @@ function initializeRows() {
 
 
   function getFeed(){
-    $.get("/api/feed/" + generalChannel.name, function(data){
-       
-
-        feeder = data;
-        console.log(feeder)
-        // initializeRows();
-        // for (var i = 0; i < feeder.length; i++) {
-        //   console.log(feeder[i].message);
-        //   var feeder2 = feeder[i];
-          var source = $("#feed-template").html();
-          var template = Handlebars.compile(source);
-          var html = template({dPost:feeder});
-          $('#feed').html(html);
-          // $('#feedResults').html(template({feeder2:feeder2}));
-
-        
-    // }
-
+    $.get("/profile/" + sportsChannel.name, function(data){
+  
         
       
             
-            }).done(function(data) {
+            }).done(function(data){
+              console.log("Done");
 
-              // console.log(data);
-            
-          
-              
-             
-            });
-
-}
+});
+  }
 
 
 
@@ -171,52 +153,6 @@ function initializeRows() {
 
 
 
-  function getAllPosts() {
-    var feed = $("#feed");
-    feed.empty();
-    $.ajax("api/allPosts", {
-      type: "GET"
-    }).then(function(data) {
-      for (var i = 0; i < data.length; i++) {
-        var post = $("<div>");
-        post.addClass("card-panel");
-        post.attr("id", "post");
-       
-        var postContent = $("<div>");
-        postContent.addClass("card-content");
-        
-        var postAuthor = $("<a>");
-        var currentUser = 
-        postAuthor.text = "@" + currentUser;
-        postAuthor.attr("href", "/profile/" + currentUser);
-        
-        var says = $("<span>");
-        says.attr("id", "says");
-        says.text(" says:");
-        
-        var doubleBreak = $("<br><br>");
-       
-        var postBody = $("<span>");
-        postBody.attr("id", "post-body");
-        postBody.text(data[i].post);
-        
-        var replyButton = $("<button>");
-        replyButton.attr("id", "reply");
-        replyButton.attr("type", "submit");
-        replyButton.text("REPLY");
-
-        postContent.append(postAuthor);
-        postContent.append(says);
-        postContent.append(doubleBreak);
-        postContent.append(postBody);
-        postContent.append(doubleBreak);
-        postContent.append(replyButton);
-        
-        post.append(postContent);
-        feed.append(post);
-      }
-    });
-  };
   var loginCardDegree = 1;
   function loginRotateY() {
     var timeoutId;

@@ -1,26 +1,26 @@
-    <div id="profile-body">
-    <div id="profile-img-container">
-            <img src={{profileImage}} id="profile-img">       
+<body id="profile-body">
+        <div id="profile-img-container">
+            <img src="{{profileImage}}" id="profile-img">       
         </div>
         <div class="row" id="profile-page-header">
             <h1 id="profile-header-background-type">s0cial3r</h1>
         </div>
         <nav class="row" id="profile-nav">
-                <a href="#" id="profile-logo">0</a>
+                <a href="#" id="profile-logo">{{id}}</a>
             <span id="username-display">{{displayName}}</span>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="nav-links">General Chat</a></li>
-                <li><a href="#" class="nav-links">Edit Profile</a></li>
+            <ul id="nav-mobile" class="right hide-on-med-and-down chat-nav-links">
+                 <li></li><a href="/logout" class="waves-effect waves-light btn"><i class="material-icons left">cloud_off</i>Logout</a></li>
+                <li><a href="#" class="nav-links highlighted" id="main-chat-link">Main Chat</a></li>
+                <li><a href="#" class="nav-links" id="gaming-chat-link">Gaming Chat</a></li>
+                <li><a href="#" class="nav-links" id-"tv-chat-link">TV Chat</a></li>
+                <li><a href="#" class="nav-links" id="movie-chat-link">Movie Chat</a></li>
+                <li><a href="#" class="nav-links" id="sports-chat-link">Sports Chat</a></li>
             </ul>
         </nav>
         <div class="row" id="search-bar-div-profile">
             <div class="input-field col m6 offset-m3" id="post-bar-col">
                 <input placeholder="Say Something" name="post" type="text" id="post-input"/>
                 <input class="btn" type="submit" value="POST" id="post-button"/>
-            </div>
-            <div class="input-field col m3" id="search-bar-col">
-                <input placeholder="Search" name="search" type="text" id="search-input"/>
-                <button type="submit" id="search-button"><i class="material-icons">search</i></button>
             </div>
         </div>
         <div class="row" id="feed-row">;
@@ -85,7 +85,7 @@
                                         <a href="#" id="reply">REPLY</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
             </div>
         <div class="row" id="profile-page-content">
             <div class="col m3" id="discord-app-col">
@@ -104,11 +104,6 @@
                                 <a href="#" class="friendname">@friendname</a>
                             </div>
                         </div>
-                            <form id="forgot" name="forgot" method="post" action="/sendFriend">
-        <label for="uid">Email Address</label>
-        <input class="text" name="uid" type="text" />
-        <input class="btn" type="submit" value="Send Reset" />
-    </form>
                         <div class="friend">
                              <img src="http://www.trickscity.com/wp-content/uploads/2016/07/Cool-And-Stylish-Profile-Pictures-For-Facebook-For-Girls-17-1024x993.jpg" id="friend-img"/>
                             <div class="friend-name">
@@ -134,4 +129,6 @@
             
         </div>
     </div>
-</div>
+
+
+

@@ -23,6 +23,7 @@ module.exports = function(app, db) {
 
     userDB.findOne({ where: { id: id } }).then(function(data) {
       res.render("profile", {
+        id:data.id,
         displayName: data.displayName,
         profileImage: data.image,
         aboutuser: data.about

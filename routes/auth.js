@@ -13,15 +13,15 @@ module.exports = function(app, passport) {
     passport.authenticate("local-signup", {
       successRedirect: "/dashboard",
 
-      failureRedirect: "/signup"
+      failureRedirect: "/"
     })
   );
   app.post(
     "/signin",
     passport.authenticate("local-signin", {
       successRedirect: "/dashboard",
-
-      failureRedirect: "/signin"
+      
+      failureRedirect: "/"
     })
   );
  

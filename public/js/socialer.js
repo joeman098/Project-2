@@ -644,6 +644,7 @@ $(document).ready(function() {
     }).then(function(data) {
       console.log("New User Created");
       console.log(data);
+      // location.reload();
     });
   })
 
@@ -656,7 +657,7 @@ $(document).ready(function() {
       displayName: $("#displayName").val().trim(),
       email: $("#userEmail").val().trim(),
       password: $("#passwordInput").val().trim(),
-      profileImage: $("#image-link").val().trim(),
+      ProfileImage: $("#image-link").val().trim(),
       interests: interests
     }
 
@@ -665,7 +666,7 @@ $(document).ready(function() {
       data: newUser
     }).then(function(data) {
       console.log("New User Created");
-      console.log(data);
+      location.reload();
     });
   })
 

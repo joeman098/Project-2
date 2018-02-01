@@ -68,7 +68,7 @@ function getMovies(){
 function feedSubmit(event){
     var newPost ={
         channel: generalChannel.name,//channel selection name
-        user: "Test",
+        user: "God",
         message: $("#post-input").val().trim()  //msgInput.val().trim()
     }
     postFeed(newPost);
@@ -131,37 +131,16 @@ getFeed();
 
 
   function getFeed(){
-    $.get("/api/feed/" + generalChannel.name, function(data){
-       
-
-        feeder = data;
-        console.log(feeder)
-        // initializeRows();
-        // for (var i = 0; i < feeder.length; i++) {
-        //   console.log(feeder[i].message);
-        //   var feeder2 = feeder[i];
-          var source = $("#feed-template").html();
-          var template = Handlebars.compile(source);
-          var html = template({dPost:feeder});
-          $('#feed').html(html);
-          // $('#feedResults').html(template({feeder2:feeder2}));
-
-        
-    // }
-
+    $.get("/profile/" + sportsChannel.name, function(data){
+  
         
       
             
-            }).done(function(data) {
+            }).done(function(data){
+              console.log("Done");
 
-              // console.log(data);
-            
-          
-              
-             
-            });
-
-}
+});
+  }
 
 
 
@@ -171,52 +150,52 @@ getFeed();
 
 
 
-  function getAllPosts() {
-    var feed = $("#feed");
-    feed.empty();
-    $.ajax("api/allPosts", {
-      type: "GET"
-    }).then(function(data) {
-      for (var i = 0; i < data.length; i++) {
-        var post = $("<div>");
-        post.addClass("card-panel");
-        post.attr("id", "post");
+  // function getAllPosts() {
+  //   var feed = $("#feed");
+  //   feed.empty();
+  //   $.ajax("api/allPosts", {
+  //     type: "GET"
+  //   }).then(function(data) {
+  //     for (var i = 0; i < data.length; i++) {
+  //       var post = $("<div>");
+  //       post.addClass("card-panel");
+  //       post.attr("id", "post");
        
-        var postContent = $("<div>");
-        postContent.addClass("card-content");
+  //       var postContent = $("<div>");
+  //       postContent.addClass("card-content");
         
-        var postAuthor = $("<a>");
-        var currentUser = 
-        postAuthor.text = "@" + currentUser;
-        postAuthor.attr("href", "/profile/" + currentUser);
+  //       var postAuthor = $("<a>");
+  //       var currentUser = 
+  //       postAuthor.text = "@" + currentUser;
+  //       postAuthor.attr("href", "/profile/" + currentUser);
         
-        var says = $("<span>");
-        says.attr("id", "says");
-        says.text(" says:");
+  //       var says = $("<span>");
+  //       says.attr("id", "says");
+  //       says.text(" says:");
         
-        var doubleBreak = $("<br><br>");
+  //       var doubleBreak = $("<br><br>");
        
-        var postBody = $("<span>");
-        postBody.attr("id", "post-body");
-        postBody.text(data[i].post);
+  //       var postBody = $("<span>");
+  //       postBody.attr("id", "post-body");
+  //       postBody.text(data[i].post);
         
-        var replyButton = $("<button>");
-        replyButton.attr("id", "reply");
-        replyButton.attr("type", "submit");
-        replyButton.text("REPLY");
+  //       var replyButton = $("<button>");
+  //       replyButton.attr("id", "reply");
+  //       replyButton.attr("type", "submit");
+  //       replyButton.text("REPLY");
 
-        postContent.append(postAuthor);
-        postContent.append(says);
-        postContent.append(doubleBreak);
-        postContent.append(postBody);
-        postContent.append(doubleBreak);
-        postContent.append(replyButton);
+  //       postContent.append(postAuthor);
+  //       postContent.append(says);
+  //       postContent.append(doubleBreak);
+  //       postContent.append(postBody);
+  //       postContent.append(doubleBreak);
+  //       postContent.append(replyButton);
         
-        post.append(postContent);
-        feed.append(post);
-      }
-    });
-  };
+  //       post.append(postContent);
+  //       feed.append(post);
+  //     }
+  //   });
+  // };
   var loginCardDegree = 1;
   function loginRotateY() {
     var timeoutId;

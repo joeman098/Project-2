@@ -18,18 +18,27 @@ module.exports = function(app, db) {
         res.redirect("/dashboard");
       });
   });
-  app.get("/profile/:id", function(req, res) {
+  app.get("/profile/:id/:channel?", function(req, res) {
     var id = req.params.id;
-
-    userDB.findOne({ where: { id: id } }).then(function(data) {
-      res.render("profile", {
-        id:data.id,
-        displayName: data.displayName,
-        profileImage: data.image,
-        aboutuser: data.about
+    db.Feed.findAll({
+      where:{
+        channel:req.params.channel
+      }
+    }).then(function (feed) {
+      var feeddata = feed
+      console.log(feeddata);
+      userDB.findOne({ where: { id: id } }).then(function(data) {
+        res.render("profile", {
+          feed:feed,
+          id:data.id,
+          displayName: data.displayName,
+          profileImage: data.image,
+          aboutuser: data.about
+        });
       });
-    });
+    })
   });
+
   app.get("/api/friends/:id", function(req, res) {
     var id = req.params.id;
     friendDB.findAll({ where: { User1: id } }).then(function(data) {

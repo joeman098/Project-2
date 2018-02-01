@@ -25,6 +25,37 @@
         </div>
         <div class="row" id="feed-row">;
         <div class="col m6 offset-m3" id="feed">
+            
+{{#each feed}}
+        <div class="card-panel" id="post">
+                    <div class="card-content">
+                       <a href="#" id="postername">{{username}}</a><span id="says"> says:</span>
+                       <br>
+                       <br>
+                       <span id="post-body">{{message}}</span>
+                       <br><br>
+                       <a href="#" id="reply">REPLY</a>
+                   </div>
+               </div>
+       {{/each}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="card-panel" id="post">
                      <div class="card-content">
                         <a href="#" id="postername">@johnlatona</a><span id="says"> says:</span>

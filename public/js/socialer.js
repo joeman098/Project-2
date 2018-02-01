@@ -166,6 +166,14 @@ function initializeRows() {
 
 getFeed();
 
+
+
+  
+
+
+
+
+
   function getFeed(){
     $.get("/api/feed/" + generalChannel.name, function(data){
         // console.log(data);
@@ -174,6 +182,14 @@ getFeed();
           // initializeRows();
             
             }).then(function(feeder) {
+
+
+              $(function() {
+                var source = $("#feed-template").html();
+                var template = Handlebars.compile(source);
+                var html = template(feeder);
+                $('#FeedResults').html(html);
+                });
               console.log(feeder);
               // for (var i = 0; i < feeder.length; i++) {
                 

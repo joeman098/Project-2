@@ -18,11 +18,20 @@ module.exports = function(app, db) {
         res.redirect("/dashboard");
       });
   });
+<<<<<<< HEAD
   app.get("/profile/:id/:channel?", function(req, res) {
     var id = req.params.id;
     db.Feed.findAll({
       where:{
         channel:req.params.channel
+=======
+  app.get("/profile/:id/:chan?", function(req, res) {
+    var id = req.params.id;
+    var chan = req.params.chan
+    db.Feed.findAll({
+      where:{
+        channel: chan
+>>>>>>> master
       }
     }).then(function (feed) {
       var feeddata = feed
@@ -117,4 +126,18 @@ module.exports = function(app, db) {
         }
       });
   });
+  function getFeed(){
+  
+      db.Feed.findAll({
+        limit:2,
+        where:{
+          channel:"test"
+        }
+      }).then(function(dbFeed) {
+        // console.log(dbFeed)
+        feed = dbFeed
+      });
+
+    };
+  
 };

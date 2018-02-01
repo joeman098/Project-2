@@ -126,7 +126,7 @@ function initializeRows() {
     $("#post-input").val('');
   });
 
-getFeed();
+// getFeed();
 
 
 

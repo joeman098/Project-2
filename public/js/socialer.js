@@ -849,6 +849,7 @@ getFeed();
     }).then(function(data) {
       console.log("New User Created");
       console.log(data);
+      // location.reload();
     });
   })
 
@@ -861,7 +862,7 @@ getFeed();
       displayName: $("#displayName").val().trim(),
       email: $("#userEmail").val().trim(),
       password: $("#passwordInput").val().trim(),
-      profileImage: $("#image-link").val().trim(),
+      ProfileImage: $("#image-link").val().trim(),
       interests: interests
     }
 
@@ -870,7 +871,7 @@ getFeed();
       data: newUser
     }).then(function(data) {
       console.log("New User Created");
-      console.log(data);
+      location.reload();
     });
   })
 

@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 var session = require("express-session");
 var db = require("./models/index.js");
 var discord = require("discord.js");
-
+var flash = require('express-flash');
 //========
 var PORT = process.env.PORT || 3000;
 
@@ -26,7 +26,7 @@ require('./config/passport/passport.js')(passport, db.user);
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );
-
+app.use(flash());
 app.use(passport.initialize());
 // persistent login sessions
 app.use(passport.session());

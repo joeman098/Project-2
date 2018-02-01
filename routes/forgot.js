@@ -23,7 +23,7 @@ app.post('/forgot', function(req, res, next) {
         User.findOne({where: {email: req.body.email } }).then (function(user) {
           if (!user) {
 
-          //   // req.flash('error', 'No account with that email address exists.');
+            req.flash('error', 'No account with that email address exists.');
             return res.redirect('/forgot');
           }
 
@@ -55,7 +55,7 @@ app.post('/forgot', function(req, res, next) {
             'If you did not request this, please ignore this email and your password will remain unchanged.\n'
         };
         client.sendMail(mailOptions, function(err,info) {
-        //   req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+          req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
           if(err){
             console.log(err)
           }
@@ -75,7 +75,7 @@ app.post('/forgot', function(req, res, next) {
     usertoken =req.params.token
     User.findOne({where:{ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() }} }).then(function(user) {
       if (!user) {
-        // req.flash('error', 'Password reset token is invalid or has expired.');
+        req.flash('error', 'Password reset token is invalid or has expired.');
         return res.redirect('/forgot');
       }
       res.render('reset', {
@@ -90,7 +90,7 @@ app.post('/forgot', function(req, res, next) {
       function(done) {
         User.findOne({where:{ resetPasswordToken: usertoken, resetPasswordExpires: { $gt: Date.now() }} }).then (function(user) {
           if (!user) {
-            // req.flash('error', 'Password reset token is invalid or has expired.');
+            req.flash('error', 'Password reset token is invalid or has expired.');
             return res.redirect('back');
           }
           console.log(req.body.password);
@@ -123,7 +123,7 @@ app.post('/forgot', function(req, res, next) {
           'This is a confirmation that the password for your account has just been changed.\n'
         };
         client.sendMail(mailOptions, function(err,info) {
-        //   req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+          req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
           if(err){
             console.log(err)
           }

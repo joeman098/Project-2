@@ -434,6 +434,7 @@ function initializeRows() {
     var gamingSwitch = $("<div>");
     gamingSwitch.addClass("switch");
     var gamingLabel = $("<label>");
+    gamingLabel.attr("id", "gamingLabel");
     var gamingInput = $("<input>");
     gamingInput.attr("type", "checkbox");
     gamingInput.attr("id", "gamingCheckbox");
@@ -451,6 +452,7 @@ function initializeRows() {
     var tvSwitch = $("<div>");
     tvSwitch.addClass("switch");
     var tvLabel = $("<label>");
+    tvLabel.attr("id", "tvLabel");
     var tvInput = $("<input>");
     tvInput.attr("type", "checkbox");
     tvInput.attr("id", "tvCheckbox");
@@ -468,6 +470,7 @@ function initializeRows() {
     var movieSwitch = $("<div>");
     movieSwitch.addClass("switch");
     var movieLabel = $("<label>");
+    movieLabel.attr("id", "movieLabel");
     var movieInput = $("<input>");
     movieInput.attr("type", "checkbox");
     movieInput.attr("id", "movieCheckbox");
@@ -485,6 +488,7 @@ function initializeRows() {
     var sportsSwitch = $("<div>");
     sportsSwitch.addClass("switch");
     var sportsLabel = $("<label>");
+    sportsLabel.attr("id", "sportsLabel");
     var sportsInput = $("<input>");
     sportsInput.attr("type", "checkbox");
     sportsInput.attr("id", "sportsCheckbox");
@@ -691,7 +695,7 @@ function initializeRows() {
 
     var forgotEmailLabel = $("<label>");
     forgotEmailLabel.attr("for", "user-email");
-    forgotEmailLabel.attr("id", "userEmailLabel");
+    forgotEmailLabel.attr("id", "userEmailLabelForgot");
     forgotEmailLabel.text("Email");
 
     forgotInputFieldOne.append(forgotEmailInput, forgotEmailLabel);
@@ -791,12 +795,6 @@ function initializeRows() {
 
 //############END MORE CHARLES#############################
 
-
-
-
-  $("#profile-logo").on("click", function() {
-    
-  })
 
   $(".chat-nav-links li").on("click", function() {
     $(".highlighted").removeClass("highlighted");

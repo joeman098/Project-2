@@ -24,6 +24,8 @@ module.exports = function(app, db) {
   app.get("/profile/:id/:chan?", function(req, res) {
     var id = req.params.id;
     var chan = req.params.chan
+
+    
     db.Feed.findAll({
       where:{
         channel: chan

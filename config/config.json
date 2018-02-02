@@ -1,8 +1,13 @@
 {
   "development": {
 
+<<<<<<< HEAD
     "username": "service1",
     "password": "Test123!!",
+=======
+    "username": "root",
+    "password": "",
+>>>>>>> master
     "database": "socialer",
     "host": "127.0.0.1",
     "port": 3307,

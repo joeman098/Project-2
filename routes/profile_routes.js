@@ -29,6 +29,46 @@ module.exports = function(app, db) {
     if (!chan){
       chan = "general"
     }
+    var class1;
+    var class2;
+    var class3;
+    var class4;
+    var class5;
+    if(chan === "general") {
+      class1 = "nav-links highlighted";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "gaming_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links highlighted";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "tv_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links highlighted";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "movie_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links highlighted";
+      class5 = "nav-links";
+    }
+    else if (chan === "super-bowl-xxx_giggity"){
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links highlighted";
+    }
 
     db.Feed.findAll({
       where:{
@@ -39,7 +79,7 @@ module.exports = function(app, db) {
       ]
     }).then(function (feed) {
       var feeddata = feed
-      console.log(feeddata);
+      //çconsole.log(feeddata);
       userDB.findOne({ where: { id: id } }).then(function(data) {
         res.render("profile", {
           feed:feed,
@@ -47,7 +87,12 @@ module.exports = function(app, db) {
           displayName: data.displayName,
           profileImage: data.image,
           aboutuser: data.about,
-          chan:chan
+          chan:chan,
+          class1: class1,
+          class2: class2,
+          class3: class3,
+          class4: class4,
+          class5: class5
         });
       });
     })
@@ -87,9 +132,9 @@ module.exports = function(app, db) {
     });
   });
 
-  app.post("/sendFriend", function(req, res) {
+  app.post("/sendFriend/:uid", function(req, res) {
     var reqid = req.user.id;
-    var fid = req.body.uid;
+    var fid = req.params.uid;
     var test = {
       User1: reqid,
       User2: fid
@@ -100,13 +145,16 @@ module.exports = function(app, db) {
       .then(function(data) {
         if (data) {
           console.log("your friends allready");
-          res.json(data);
+         req.flash('error', 'You are already friends');
+         res.redirect("/profile/"+fid).end()
+         
+          // res.json(data);
         } else {
           friendDB
             .create(test)
             .then(function(data) {
               holdId = data.id;
-              res.json(data);
+              // res.json(data);
             })
             .then(function() {
               friendDB
@@ -123,8 +171,15 @@ module.exports = function(app, db) {
                         friendDB.update(
                           { accepted: true },
                           { where: { User1: reqid, User2: fid } }
+                        
                         );
+                        req.flash("info","You are now BEST FRIENDS")
+                    res.redirect("/profile/"+fid).end()
                       });
+                  }
+                  else{
+                    req.flash("info","You are now friends gratz")
+                    res.redirect("/profile/"+fid).end()
                   }
                 });
             });

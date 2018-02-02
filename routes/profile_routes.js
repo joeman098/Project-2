@@ -7,7 +7,7 @@ module.exports = function(app, db) {
     id = req.user.id;
     var data = {
       displayName: req.body.displayName,
-      email: req.body.email,
+      // email: req.body.email,
       image: req.body.image,
       interests: JSON.stringify(req.body.interests)
     };
@@ -22,6 +22,23 @@ module.exports = function(app, db) {
         res.redirect("/dashboard");
       });
   });
+// app.get("/profilelist" ,function (req, res) {
+//   userDB.findAll().then(function(data) {
+//     profiles = [];
+//     for (let i = 0; i < data.length; i++) {
+//       var redacted = {
+//         id: data[i].id,
+//         displayName: data[i].displayName,
+//         image: data[i].image
+//       };
+//       profiles.push(redacted);
+//     }
+
+//     res.render("list", {profiles:profiles, profileImage:req.user.image, id: req.user.id});
+//   });
+  
+// });
+
   app.get("/profile/:id/:chan?", function(req, res) {
     
     var id = req.params.id;
@@ -208,6 +225,8 @@ module.exports = function(app, db) {
       res.json(redacted);
     });
   });
+
+
 
   app.post("/sendFriend/:uid", function(req, res) {
     var reqid = req.user.id;

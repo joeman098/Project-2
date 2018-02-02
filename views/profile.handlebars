@@ -15,8 +15,16 @@
 
         <nav class="row" id="profile-nav">
             <ul>
-                <li> <a href="/dashboard" id="profile-logo">0</a></li>
-                <li><span id="username-display">{{displayName}}</span></li>
+            <li> <a href="/dashboard" id="profile-logo">{{id}}</a></li>
+           <li><span id="username-display">{{displayName}}</span></li>
+           <div id= "why">
+            <li><form id ="friendhide"method="post" action="/sendfriend/{{id}}"  class="inline">
+  <input type="hidden" name="submit_param" value={{id}}>
+  <button type="submit" name="submit_param" value="submit_value" class="link-button">
+    Add friend
+  </button>
+</form></li></div>
+           
             </ul>
             <ul id="nav" class="right hide-on-med-and-down chat-nav-links">
                 <li><a href="/profile/{{id}}/general" class="{{class1}}" id="main-chat-link">MAIN CHAT</a></li>
@@ -92,6 +100,5 @@
             
         </div>
     </div>
-
 
 

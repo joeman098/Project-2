@@ -1089,7 +1089,7 @@ $(document).ready(function() {
         interests: JSON.stringify(updateInterests)
       }
       console.log(updateUser)
-      $.ajax("dashboard/edit", {
+      $.ajax("/dashboard/edit", {
         type: "POST",
         data: updateUser
       }).then(function(data){

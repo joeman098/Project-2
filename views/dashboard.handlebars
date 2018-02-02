@@ -1,4 +1,7 @@
 <body id="profile-body">
+     <video autoplay loop muted preload class="fullscreen-bg_video">
+        <source src="/assests/video/Circuit_Background.mp4" type="video/mp4">
+    </video>
         <div id="profile-img-container">
             <img src="{{profileImage}}" id="profile-img">     
           
@@ -11,29 +14,33 @@
 
 
         <nav class="row" id="profile-nav">
-            <ul>
-            <li> <a href="/dashboard" id="profile-logo">{{id}}</a></li>
-           <li><span id="username-display">{{displayName}}</span></li>
-</form></li>
+                <a href="/dashboard" id="profile-logo">0</a>
+            <span id="username-display-dashboard">{{displayName}}</span>
+            <ul id="nav-dashboard" class="right hide-on-small-only chat-nav-links">
+                <li><a href="/dashboard/general" class="{{class1}}" id="main-chat-link">MAIN CHAT</a></li>
+                <li><a href="/dashboard/gaming_chat" class="{{class2}}" id="gaming-chat-link">GAMING CHAT</a></li>
+                <li><a href="/dashboard/tv_chat" class="{{class3}}" id="tv-chat-link">TV CHAT</a></li>
+                <li><a href="/dashboard/movie_chat" class="{{class4}}"  id="movie-chat-link">MOVIE CHAT</a></li>
+                <li><a href="/dashboard/super-bowl-xxx_giggity" class="{{class5}}" id="sports-chat-link">SPORTS CHAT</a></li>
+                <li><a href="#" class="nav-links" id="edit-profile-link">EDIT PROFILE</a></li>
             </ul>
-            <ul id="nav-mobile" class="right hide-on-med-and-down chat-nav-links">
-                      <li><a href="/profilelist" class="{{class1}}" id="main-chat-link">Profile list</a></li>
-                <li><a href="/dashboard/{{id}}/general" class="{{class1}}" id="main-chat-link">Main Chat</a></li>
-                <li><a href="/dashboard/{{id}}/gaming_chat" class="{{class2}}" id="gaming-chat-link">Gaming Chat</a></li>
-                <li><a href="/dashboard/{{id}}/tv_chat" class="{{class3}}" id="tv-chat-link">TV Chat</a></li>
-                <li><a href="/dashboard/{{id}}/movie_chat" class="{{class4}}"  id="movie-chat-link">Movie Chat</a></li>
-                <li><a href="/dashboard/{{id}}/super-bowl-xxx_giggity" class="{{class5}}" id="sports-chat-link">Sports Chat</a></li>
-                <li><a href="#" class="nav-links" id="edit-profile-link">Edit Profile</a></li>
-         
-
+            <ul id="nav-dashboard-mobile" class="right hide-on-small-only chat-nav-links">
+                <li><a href="/dashboard/general" class="{{class1}}" id="main-chat-link">MAIN</a></li>
+                <li><a href="/dashboard/gaming_chat" class="{{class2}}" id="gaming-chat-link">GAMING</a></li>
+                <li><a href="/dashboard/tv_chat" class="{{class3}}" id="tv-chat-link">TV</a></li>
+                <li><a href="/dashboard/movie_chat" class="{{class4}}"  id="movie-chat-link">MOVIE</a></li>
+                <li><a href="/dashboard/super-bowl-xxx_giggity" class="{{class5}}" id="sports-chat-link">SPORTS</a></li>
+                <li><a href="#" class="nav-links" id="edit-profile-link">EDIT PROFILE</a></li>
+            </ul>
         </nav>
         <div class="row" id="search-bar-div-profile">
-            <div class="input-field col m6 offset-m3" id="post-bar-col">
+            <div class="input-field col m6 offset-m6 l6 offset-l3" id="post-bar-col">
                 <input placeholder="Say Something" name="post" type="text" id="post-input"/>
                 <input class="btn" type="submit" value="POST" id="post-button"/>
             </div>
             <div class="col m3" id="logout-button-col">
                 <a href="/logout" class="waves-effect waves-light btn" id="logout-button"><i class="material-icons left">cloud_off</i>Logout</a>
+                <a href="/logout" class="waves-effect waves-light btn" id="logout-button-mobile">Logout</a>
             </div>
         </div>
         <div class="row" id="feed-row">;
@@ -57,13 +64,13 @@
 
             <div id ="linky" style="display:none;">{{chan}}</div>
         <div class="row" id="profile-page-content">
-            <div class="col m3" id="discord-app-col">
+            <div class="col m6 l3" id="discord-app-col">
                 <iframe src="https://discordapp.com/widget?id=406842588239495168&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" id="discord-widget"></iframe>
             </div>
-            <div class="col m6" id="profile-feed-col">
+            <div class="col m6 l6" id="profile-feed-col">
 
             </div>
-            <div class="col m3" id="friends-col">
+            <div class="col m6 l3" id="friends-col">
                 <div class="card" id="friends-card">
                     <div class="card-content" id="friends-content">
                         <span class="card-title" id="friends-title">You have <a href="#" id="friends-count"></a> friends</span>

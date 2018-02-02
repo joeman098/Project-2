@@ -26,10 +26,18 @@ var movieChannel ={
   name: "movies"
 };
 
+var addFriendSuccess = $("#friend-add-message");
+var addFriendError = $("#friend-error-message");
+var successTimeoutId = setTimeout(function(){
+  addFriendSuccess.fadeOut("slow");
+  addFriendError.fadeOut("slow");
+  console.log("faded");
+}, 2000);
 
 
 
-
+var linky = $("#linky").text();
+console.log(linky);
 function feedSubmit(event){
   var links;
   console.log($("#linky").text());
@@ -788,13 +796,15 @@ function initializeRows() {
   })
 
   $("#edit-profile-link").on("click", function() {
+    $(".highlighted").removeClass("highlighted");
+    $(this).addClass("highlighted");
     $("#feed-row").hide();
     $("#discord-widget").hide();
     $("#friends-card").hide();
     $("#search-bar-div-profile").hide();
 
     var updateProfileCardCol = $("<div>");
-    updateProfileCardCol.addClass("col s8 offset-s2");
+    updateProfileCardCol.addClass("col m10 offset-m1 l10 offset-l1 xl8 offset-xl2");
 
     var updateProfileCard = $("<div>");
     updateProfileCard.addClass("card");
@@ -1011,7 +1021,7 @@ function initializeRows() {
     updateMainRow.append(updateFormTitle, updateForm);
     updateCardContent.append(updateMainRow);
     updateProfileCard.append(updateCardContent);
-    updateProfileCardCol.append(updateProfileCard)
+    updateProfileCardCol.append(updateProfileCard);
     $("#profile-page-content").append(updateProfileCardCol);
 
     $(function() {
@@ -1099,6 +1109,7 @@ function initializeRows() {
         }
       });
     });
+    $("#update-profile-card").fadeIn("slow");
 
     $(document).on("click", "#update-profile-button", function(event) {
       event.preventDefault();

@@ -2,6 +2,7 @@ var authController = require("../controllers/auth_controller.js");
 module.exports = function(app, db) {
   var userDB = db.user;
   var friendDB = db.Friendship;
+  
   app.post("/dashboard/edit", function(req, res) {
     id = req.user.id;
     var data = {
@@ -96,11 +97,87 @@ module.exports = function(app, db) {
       ]
     }).then(function (feed) {
       var feeddata = feed
-      //çconsole.log(feeddata);
+      //console.log(feeddata);
       userDB.findOne({ where: { id: id } }).then(function(data) {
         res.render("profile", {
           feed:feed,
           id:data.id,
+          displayName: data.displayName,
+          profileImage: data.image,
+          aboutuser: data.about,
+          chan:chan,
+          class1: class1,
+          class2: class2,
+          class3: class3,
+          class4: class4,
+          class5: class5
+        });
+      });
+    })
+  });
+
+  app.get("/dashboard/:chan?", function(req, res) {
+    var id = req.user.id;
+
+    var chan = req.params.chan;
+    if (!chan){
+      chan = "general"
+    }
+    var class1;
+    var class2;
+    var class3;
+    var class4;
+    var class5;
+    if(chan === "general") {
+      class1 = "nav-links highlighted";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "gaming_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links highlighted";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "tv_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links highlighted";
+      class4 = "nav-links";
+      class5 = "nav-links";
+    }
+    else if(chan === "movie_chat") {
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links highlighted";
+      class5 = "nav-links";
+    }
+    else if (chan === "super-bowl-xxx_giggity"){
+      class1 = "nav-links";
+      class2 = "nav-links";
+      class3 = "nav-links";
+      class4 = "nav-links";
+      class5 = "nav-links highlighted";
+    }
+
+    db.Feed.findAll({
+      where:{
+        channel: chan
+      },
+      order:[
+        ['id', 'DESC'],
+      ]
+    }).then(function (feed) {
+      var feeddata = feed
+      //console.log(feeddata);
+      userDB.findOne({ where: { id: id } }).then(function(data) {
+        res.render("dashboard", {
+          feed:feed,
+          id: id,
           displayName: data.displayName,
           profileImage: data.image,
           aboutuser: data.about,
@@ -163,8 +240,8 @@ module.exports = function(app, db) {
       .findOne({ where: { User1: reqid, User2: fid } })
       .then(function(data) {
         if (data) {
-          console.log("your friends allready");
-         req.flash('error', 'You are already friends');
+          console.log("You are friends already");
+         req.flash('error', 'You are already friends!');
          res.redirect("/profile/"+fid).end()
          
           // res.json(data);
@@ -192,12 +269,12 @@ module.exports = function(app, db) {
                           { where: { User1: reqid, User2: fid } }
                         
                         );
-                        req.flash("info","You are now BEST FRIENDS")
-                    res.redirect("/profile/"+fid).end()
+                        req.flash("info","You are now friends!");
+                        res.redirect("/profile/"+fid).end();
                       });
                   }
                   else{
-                    req.flash("info","You are now friends gratz")
+                    req.flash("info","You are now friends!");
                     res.redirect("/profile/"+fid).end()
                   }
                 });

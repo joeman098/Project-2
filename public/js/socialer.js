@@ -36,7 +36,8 @@ var successTimeoutId = setTimeout(function(){
 
 
 
-
+var linky = $("#linky").text();
+console.log(linky);
 function feedSubmit(event){
   var links;
   console.log($("#linky").text());

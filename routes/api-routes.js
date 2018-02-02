@@ -66,7 +66,7 @@ module.exports = function(app) {
 
 
 
-
+//Post to database
   app.post("/api/feed", function(req, res) {
     db.Feed.create({
       channel:req.body.channel,
@@ -84,9 +84,7 @@ module.exports = function(app) {
     bot.on('message', function(message) {
     //  console.log(message);
                 // console.log(`(${message.guild.name} / ${message.channel.name}) ${message.member.user.username}: ${message.content}`);
-               
-               
-                // app.post('/api/feed',urlencodedParser, function (req, res) {
+ 
                     try{ db.Feed.create({
                         guild: message.guild.name,
                         channel: message.channel.name,
@@ -98,7 +96,7 @@ module.exports = function(app) {
                        });}catch(err){
                         //   console.log(err);
                       }
-                // });
+               
                 
    
     

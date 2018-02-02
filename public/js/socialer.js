@@ -1,5 +1,8 @@
 
 $(document).ready(function() {
+  // setTimeout(function() {
+  //   location.reload();
+  // }, 5000);
 
   console.log("I AM LINKED");
 //########################CHARLES Fn' rocks###################################
@@ -29,7 +32,7 @@ var movieChannel ={
 
 
 
-
+//Main event handler for post to database and discord
 function feedSubmit(event){
   var links;
   console.log($("#linky").text());
@@ -108,15 +111,6 @@ function postFeed(data){
 
 
 
-function initializeRows() {
-    
-    
-    var postsToAdd = [];
-    for (var i = 0; i < feeder.length; i++) {
-      // console.log(feeder[i].message)
-    
-}
-}
 
 
 
@@ -124,29 +118,38 @@ function initializeRows() {
 
 //This is functional, posts to db and discord
   $("#post-button").click(function(event){
-    event.preventDefault();
+    // event.preventDefault();
     feedSubmit();
     $("#post-input").val('');
   });
 
-// getFeed();
 
 
 
-  function getFeed(){
-    $.get("/profile/" + sportsChannel.name, function(data){
+
+
+
+
+
+
+//   function getFeed(){
+//     $.get("/profile/" + sportsChannel.name, function(data){
   
         
       
             
-            }).done(function(data){
-              console.log("Done");
+//             }).done(function(data){
+//               console.log("Done");
 
-});
-  }
+// });
+//   }
 
-
-
+// function convert(){
+//   if ($("#post-body").text().indexOf("http") > -1) {
+//     $("#post-body").attr("href",$("#post-body").text());
+//   }
+// }
+// convert();
 
 
 

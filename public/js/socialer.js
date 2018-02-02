@@ -1,158 +1,138 @@
 
 $(document).ready(function() {
+  // setTimeout(function() {
+  //   location.reload();
+  // }, 5000);
 
   console.log("I AM LINKED");
-//########################CHARLES###################################
-var feeder;
-var generalChannel ={
-url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
-name: "general"
-} ;
+  //########################CHARLES Fn' rocks###################################
+  var feeder;
+  //Objects for Posts to db and app
+  var generalChannel = {
+    url: "https://discordapp.com/api/webhooks/407562838324936719/WlmvjQV11V_JhMK5wQhbibIWcw6EDjbwVehzCc-UREmpJnQZwzy8iLELjOsouTNDDrx3",
+    name: "general"
+  };
 
-var gamingChannel = {
-  url:"https://discordapp.com/api/webhooks/408282323222790146/JuT5qAW9607mvfqwyiVBauObKG7Mq6_3wH3zYZPmuPsepr0vnnMQmbkFWrdsYnqLWxj2",
-  name: "gaming"
-};
-var tvChannel ={
-  url:"https://discordapp.com/api/webhooks/408277081642893332/Q7EwsWNZJgsdFwXIvvqM57d0pLPQwIOx_tcbogpq3er5hJRCDVs6ZT7d3xNwpzkeFCmR",
-  name: "tv"
-};
-var sportsChannel  = {
-    url:"https://discordapp.com/api/webhooks/408290833171742720/ePL88vKgyqiGkgDNWcQwBPGHOpEFFoJmpfr1RRR88sTZhRGkfJ7QGrUUDeEEEW3NYCrZ",
+  var gamingChannel = {
+    url: "https://discordapp.com/api/webhooks/408282323222790146/JuT5qAW9607mvfqwyiVBauObKG7Mq6_3wH3zYZPmuPsepr0vnnMQmbkFWrdsYnqLWxj2",
+    name: "gaming"
+  };
+  var tvChannel = {
+    url: "https://discordapp.com/api/webhooks/408277081642893332/Q7EwsWNZJgsdFwXIvvqM57d0pLPQwIOx_tcbogpq3er5hJRCDVs6ZT7d3xNwpzkeFCmR",
+    name: "tv"
+  };
+  var sportsChannel = {
+    url: "https://discordapp.com/api/webhooks/408290833171742720/ePL88vKgyqiGkgDNWcQwBPGHOpEFFoJmpfr1RRR88sTZhRGkfJ7QGrUUDeEEEW3NYCrZ",
     name: "sports"
   };
-var movieChannel ={
-  url: "https://discordapp.com/api/webhooks/408334142338629632/J-uIxfGDMXSF8U9ZCBMjJ4HQ6Dx7Lkv5BQMSd0ysIaKZlj4HZtHSVpkCsdfF53wN7-An",
-  name: "movies"
-};
-
-var addFriendSuccess = $("#friend-add-message");
-var addFriendError = $("#friend-error-message");
-var successTimeoutId = setTimeout(function(){
-  addFriendSuccess.fadeOut("slow");
-  addFriendError.fadeOut("slow");
-  console.log("faded");
-}, 2000);
+  var movieChannel = {
+    url: "https://discordapp.com/api/webhooks/408334142338629632/J-uIxfGDMXSF8U9ZCBMjJ4HQ6Dx7Lkv5BQMSd0ysIaKZlj4HZtHSVpkCsdfF53wN7-An",
+    name: "movies"
+  };
 
 
 
-var linky = $("#linky").text();
-console.log(linky);
-function feedSubmit(event){
-  var links;
-  console.log($("#linky").text());
-  if($("#linky").text() === "gaming_chat"){
-     links = gamingChannel.url;
-     console.log(links);
-  }else if($("#linky").text() === "tv_chat"){
-    links = tvChannel.url;
-    console.log(links);
- }else if($("#linky").text() === "general"){
-  links = generalChannel.url;
-  console.log(links);
-}else if($("#linky").text() === "movie_chat"){
-  links = movieChannel.url;
-  console.log(links);
-}else if($("#linky").text() === "super-bowl-xxx_giggity"){
-  links = sportsChannel.url;
-  
-}
-    var newPost ={
-        channel: $("#linky").text(),//channel selection name
-        user: $("#username-display").text(),
-        message: $("#post-input").val().trim()  //msgInput.val().trim()
+
+  //Main event handler for post to database and discord
+  function feedSubmit(event) {
+    var links;
+    console.log($("#linky").text());
+    if ($("#linky").text() === "gaming_chat") {
+      links = gamingChannel.url;
+      console.log(links);
+    } else if ($("#linky").text() === "tv_chat") {
+      links = tvChannel.url;
+      console.log(links);
+    } else if ($("#linky").text() === "general") {
+      links = generalChannel.url;
+      console.log(links);
+    } else if ($("#linky").text() === "movie_chat") {
+      links = movieChannel.url;
+      console.log(links);
+    } else if ($("#linky").text() === "super-bowl-xxx_giggity") {
+      links = sportsChannel.url;
+
+    }
+    var newPost = {
+      channel: $("#linky").text(), //channel selection name
+      user: $("#username-display").text(),
+      message: $("#post-input").val().trim() //msgInput.val().trim()
     }
     postFeed(newPost);
-}
-function postFeed(data){
+  }
 
+
+  //Post cont...
+  function postFeed(data) {
 
 
     $.ajax({
-        method:"POST",
-        url: "/api/feed",
-        data:data
+      method: "POST",
+      url: "/api/feed",
+      data: data
 
     }).then(console.log(data));
 
     var links;
     console.log($("#linky").text());
-    if($("#linky").text() === "gaming_chat"){
-       links = gamingChannel.url;
-       console.log(links);
-    }else if($("#linky").text() === "tv_chat"){
+    if ($("#linky").text() === "gaming_chat") {
+      links = gamingChannel.url;
+      console.log(links);
+    } else if ($("#linky").text() === "tv_chat") {
       links = tvChannel.url;
       console.log(links);
-   }else if($("#linky").text() === "general"){
-    links = generalChannel.url;
-    console.log(links);
-  }else if($("#linky").text() === "movie_chat"){
-    links = movieChannel.url;
-    console.log(links);
-  }else if($("#linky").text() === "super-bowl-xxx_giggity"){
-    links = sportsChannel.url;
-    
-  }
-    
-    var newerData ={
-        content: data.message,
-        username:data.user
+    } else if ($("#linky").text() === "general") {
+      links = generalChannel.url;
+      console.log(links);
+    } else if ($("#linky").text() === "movie_chat") {
+      links = movieChannel.url;
+      console.log(links);
+    } else if ($("#linky").text() === "super-bowl-xxx_giggity") {
+      links = sportsChannel.url;
+
+    }
+
+    var newerData = {
+      content: data.message,
+      username: data.user
     };
 
     var newData = JSON.stringify(newerData);
-    console.log(newData + "Test"); 
+    console.log(newData + "Test");
     $.ajax({
-        type: "POST",
-        url:links,//channel selection
-        data: newData,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function(msg) {
+      type: "POST",
+      url: links, //channel selection
+      data: newData,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (msg) {
         console.log('In Ajax');
-        }
+      }
     });
-}
+  }
 
 
 
-
-function initializeRows() {
-    
-    
-    var postsToAdd = [];
-    for (var i = 0; i < feeder.length; i++) {
-      // console.log(feeder[i].message)
-    
-}
-}
-
-
-
-
-
-//This is functional, posts to db and discord
-  $("#post-button").click(function(event){
-    event.preventDefault();
+  //This is functional, posts to db and discord
+  $("#post-button").click(function (event) {
+    // event.preventDefault();
     feedSubmit();
     $("#post-input").val('');
   });
 
-// getFeed();
 
-
-
-  function getFeed(){
-    $.get("/profile/" + sportsChannel.name, function(data){
-  
-        
-      
-            
-            }).done(function(data){
-              console.log("Done");
-
-});
+  // Convert to hyperlink
+  function convert(){
+    if ($("#post-body").text().indexOf("http") > -1) {
+      $("#hyp0r").attr("href",$("#post-body").html());
+      var val = $("#hyp0r").html("Click Here To Join Discord Chat");
+    }
   }
+  convert();
 
+
+
+//###############ALL THE WAY TO HERE##############################
 
 
 
@@ -734,18 +714,7 @@ function initializeRows() {
     });
   })
 
-//#########MORE CHARLES###################
 
-
-
-
-
-
-
-
-
-
-//############END MORE CHARLES#############################
 
 
   /*$(".chat-nav-links li").on("click", function() {

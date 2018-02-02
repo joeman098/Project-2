@@ -830,19 +830,19 @@ function initializeRows() {
     var updateInputFieldTwo = $("<div>");
     updateInputFieldTwo.addClass("input-field col s12 m6");
 
-    var updateUserEmailInput = $("<input>");
-    updateUserEmailInput.addClass("validate");
-    updateUserEmailInput.attr("id", "updateUserEmail");
-    updateUserEmailInput.attr("name", "updateUserEmail");
-    updateUserEmailInput.attr("type", "email");
+    // var updateUserEmailInput = $("<input>");
+    // updateUserEmailInput.addClass("validate");
+    // updateUserEmailInput.attr("id", "updateUserEmail");
+    // updateUserEmailInput.attr("name", "updateUserEmail");
+    // updateUserEmailInput.attr("type", "email");
 
-    var updateUserEmailLabel = $("<label>");
-    updateUserEmailLabel.attr("for", "updateUserEmail");
-    updateUserEmailLabel.attr("id", "updateUserEmailLabel");
-    updateUserEmailLabel.text("Email");
+    // var updateUserEmailLabel = $("<label>");
+    // updateUserEmailLabel.attr("for", "updateUserEmail");
+    // updateUserEmailLabel.attr("id", "updateUserEmailLabel");
+    // updateUserEmailLabel.text("Email");
 
     updateInputFieldOne.append(updateDisplayNameInput, updateDisplayNameLabel);
-    updateInputFieldTwo.append(updateUserEmailInput, updateUserEmailLabel);
+    // updateInputFieldTwo.append(updateUserEmailInput, updateUserEmailLabel);
     updateRowOne.append(updateInputFieldOne, updateInputFieldTwo);
 
     var updateRowTwo = $('<div class="row">');
@@ -1100,6 +1100,7 @@ function initializeRows() {
         image: $("#update-image-link").val(),
         interests: JSON.stringify(updateInterests)
       }
+      console.log(updateUser)
       $.ajax("dashboard/edit", {
         type: "POST",
         data: updateUser

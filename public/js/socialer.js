@@ -55,7 +55,7 @@ $(document).ready(function() {
     }
     var newPost = {
       channel: $("#linky").text(), //channel selection name
-      user: $("#username-display").text(),
+      user: $("#username-display-dashboard").text(),
       message: $("#post-input").val().trim() //msgInput.val().trim()
     }
     postFeed(newPost);
@@ -174,6 +174,11 @@ $(document).ready(function() {
       return;
     }
   }
+  
+  var friendTimeoutId = setTimeout(function() {
+    $("#friend-error-message").fadeOut("slow");
+    $("#friend-add-message").fadeOut("slow");
+  }, 3000);
 
   var interests = [];
   var updateInterests = [];
@@ -455,42 +460,6 @@ $(document).ready(function() {
     var timeoutId = setTimeout(function(){
       createProfileCard.fadeIn("slow");
     }, 575);
-/*
-    $("#register-form").validate({
-      rules: {
-        displayName: {
-          required: true,
-          minlength: 2
-        },
-        userEmail: {
-          required: true,
-          email: true
-        },
-        password: {
-          required: true,
-          minlength: 6
-        },
-        confirmPassword: {
-          required: true,
-          minlength: 6,
-          equalTo: "#password"
-        },
-        imageLink: {
-          url: true
-        },
-        errorElement : "div",
-        errorPlacement : function(error, element) {
-          var placement = $(element).data('error');
-          alert(placement);
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        }
-      }
-    });
-    */
 
     $(function() {
       $(".categoryCheckbox").click(function() {
@@ -714,17 +683,6 @@ $(document).ready(function() {
     });
   })
 
-
-
-
-  /*$(".chat-nav-links li").on("click", function() {
-    $(".highlighted").removeClass("highlighted");
-    $(this).addClass("highlighted");
-  })
-
-  var chatSelected = $("#linky").val();
-  console.log("chat: " + chatSelected);*/
-
   $("#main-chat-link").on("click", function() {
     $("#feed-row").show();
     $("#discord-widget").show();
@@ -789,8 +747,6 @@ $(document).ready(function() {
     updateForm.addClass("col s12");
     updateForm.attr("id", "update-form");
     updateForm.attr("name", "update-form");
-    //updateForm.attr("method", "post");
-    //updateForm.attr("action", "/dashboard/edit");
 
     var updateFormTitle = $("<h5>");
     updateFormTitle.attr("id", "update-form-title");
@@ -801,7 +757,7 @@ $(document).ready(function() {
     var updateRowOne = $('<div class="row">');
 
     var updateInputFieldOne = $("<div>");
-    updateInputFieldOne.addClass("input-field col s12 m6");
+    updateInputFieldOne.addClass("input-field col s12");
 
     var updateDisplayNameInput = $("<input>");
     updateDisplayNameInput.addClass("validate");
@@ -815,22 +771,10 @@ $(document).ready(function() {
     updateDisplayNameLabel.text("Display Name");
 
     var updateInputFieldTwo = $("<div>");
-    updateInputFieldTwo.addClass("input-field col s12 m6");
-
-    // var updateUserEmailInput = $("<input>");
-    // updateUserEmailInput.addClass("validate");
-    // updateUserEmailInput.attr("id", "updateUserEmail");
-    // updateUserEmailInput.attr("name", "updateUserEmail");
-    // updateUserEmailInput.attr("type", "email");
-
-    // var updateUserEmailLabel = $("<label>");
-    // updateUserEmailLabel.attr("for", "updateUserEmail");
-    // updateUserEmailLabel.attr("id", "updateUserEmailLabel");
-    // updateUserEmailLabel.text("Email");
+    updateInputFieldTwo.addClass("input-field col s12");
 
     updateInputFieldOne.append(updateDisplayNameInput, updateDisplayNameLabel);
-    // updateInputFieldTwo.append(updateUserEmailInput, updateUserEmailLabel);
-    updateRowOne.append(updateInputFieldOne, updateInputFieldTwo);
+    updateRowOne.append(updateInputFieldOne);
 
     var updateRowTwo = $('<div class="row">');
 

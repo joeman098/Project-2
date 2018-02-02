@@ -2,6 +2,7 @@ var authController = require("../controllers/auth_controller.js");
 module.exports = function(app, db) {
   var userDB = db.user;
   var friendDB = db.Friendship;
+  
   app.post("/dashboard/edit", function(req, res) {
     id = req.user.id;
     var data = {

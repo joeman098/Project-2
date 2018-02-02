@@ -20,6 +20,14 @@ html, body, #main-page-content-row {
     text-shadow: .05em .05em .1em white;
 }
 
+#nav-mobile {
+    display: none;
+}
+
+#nav {
+    display: block;
+}
+
 #main-page-container {
 	width: 100%;
 	height: 100%;
@@ -263,7 +271,22 @@ html, body, #main-page-content-row {
     border-radius: 5px;
     height: 45px;
     width: 150px;
-    border: 1px solid #5567A3;
+    border: 1px solid #4F4F4F;
+}
+
+#add-friend-mobile {
+    display: none;
+    color: white;
+    background-color: #4F4F4F;
+    margin-top: 4px;
+    float: left; 
+    padding: 0;
+    text-align: center;
+
+    border-radius: 5px;
+    height: 45px;
+    width: 75px;
+    border: 1px solid #4F4F4F;
 }
 
 #friend-add-message {
@@ -285,6 +308,10 @@ html, body, #main-page-content-row {
     background-color: #6E6E6E;
 }
 
+#add-friend-mobile:hover {
+    background-color: #6E6E6E;
+}
+
 #add-friend-icon {
     margin-right: 10px;
     margin-bottom: 0;
@@ -296,7 +323,7 @@ html, body, #main-page-content-row {
     background: none;
 }
 
-#username-display {
+#username-display, #username-display-dashboard{
     position: absolute;
     left: 360px;
     font-size: 20px;
@@ -310,6 +337,10 @@ html, body, #main-page-content-row {
 
 .nav-links:hover {
     background-color: #657AC2;
+}
+
+#nav-dashboard-mobile {
+    display: none;
 }
 
 #profile-page-content {
@@ -379,11 +410,19 @@ html, body, #main-page-content-row {
     padding-top: 5px;
 } 
 
+#logout-button-mobile {
+    display: none;
+}
+
 #logout-button-col {
     padding-right: 0 !important;
 }
 
 #logout-button:hover {
+    background-color: #6E6E6E;
+}
+
+#logout-button-mobile:hover {
     background-color: #6E6E6E;
 }
 
@@ -580,7 +619,6 @@ html, body, #main-page-content-row {
         height: 185px;
         background-color: lightgray;
         z-index: 12;
-        border: 8px solid #50a39a;
         border-radius: 220px;
     }
 
@@ -594,5 +632,222 @@ html, body, #main-page-content-row {
 
     #profile-header-background-type {
         margin-left: 50px;
+    }
+
+    #add-friend {
+        display: none;
+    }
+
+    #add-friend-mobile {
+        display: inline-block;
+    }
+
+    #friend-add-message {
+        position: fixed;
+        top: 155px;
+        left: 400px;
+        color: green;
+    
+    }
+    
+    #friend-error-message {
+        position: fixed;
+        top: 155px;
+        left: 400px;
+        color: red;
+    }
+
+    #nav {
+        display: none;
+    }
+
+    #nav-mobile {
+        display: block;
+    }
+
+    #username-display {
+        left: 300px;
+    }
+    #username-display-dashboard {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+
+    #login-email-label, #login-password-label, #email, #password, #sign-in-button, #create-profile-button, #reset-password-button, #forgotEmail, #userEmailLabelForgot {
+        font-size: 20px;
+    } 
+
+    #sign-in-button, #create-profile-button, #reset-password-button {
+        height: 50px;
+    }
+
+    #register, #forgot-password {
+        font-size: 20px;
+    }
+    #main-page-title {
+        font-size: 18vw;
+        margin-top: 150px
+    }
+    #login-card {
+        margin-top: 100px;
+    }
+
+    #create-profile-card {
+        margin-top: 100px;
+    }
+
+    #form-title, #forgot-title, #update-form-title {
+        font-size: 30px;
+    }
+
+    #loginInfoTitle, #profilePicTitle, #interestsTitle, #forgot-instructions, #updateInterestsTitle {
+        font-size: 20px;
+    }
+
+    #displayName, #displayNameLabel, #userEmail, #userEmailLabel, #passwordInput, #userPasswordLabel, #passwordConfirmInput, #userPasswordConfirmLabel, #image-link, #imageLinkLabel {
+        font-size: 18px;
+    } 
+    
+
+    #gamingCategoryTitle, #tvCategoryTitle, #movieCategoryTitle, #sportsCategoryTitle,  {
+        font-size: 20px;
+    }
+
+    #gamingLabel, #tvLabel, #movieLabel, #sportsLabel {
+        font-size: 14px;
+    }
+
+    #post-button {
+        width: 13%;
+        padding: 0 !important;
+        margin-bottom: 0;
+    }
+
+    #profile-img-container {
+        position: fixed;
+        top: 25px;
+        left: 90px;
+        width: 185px;
+        height: 185px;
+        background-color: lightgray;
+        z-index: 12;
+        border-radius: 220px;
+    }
+
+    #profile-logo {
+        margin-left: 20px;
+    }
+
+    #discord-widget {
+        width: 48%;
+        top: 210px;
+        left: 5px;
+    }
+
+    #profile-header-background-type {
+        margin-left: 50px;
+    }
+
+    #add-friend {
+        display: none;
+    }
+
+    #add-friend-mobile {
+        display: inline-block;
+    }
+
+    #friend-add-message {
+        position: fixed;
+        top: 155px;
+        left: 400px;
+        color: green;
+    
+    }
+    
+    #friend-error-message {
+        position: fixed;
+        top: 155px;
+        left: 400px;
+        color: red;
+    }
+
+    #nav {
+        display: none;
+    }
+
+    #nav-mobile {
+        display: block;
+    }
+
+    #username-display {
+        left: 300px;
+    }
+    #username-display-dashboard {
+        display: none;
+    }
+
+    #friends-card {
+        position: fixed;
+        width: 48%;
+        left: 5px;
+        top: 630px;
+        z-index: 11;
+        border-radius: 5px;
+    }
+
+    #feed {
+        margin-left: 50%;
+        margin-top: 193px;
+    }
+
+    #post-input {
+        width: 82%;
+    }
+
+    #nav-mobile {
+        display: block;
+    }
+
+    #nav-dashboard {
+        display: none;
+    }
+
+    #nav-dashboard-mobile {
+        display: block;
+    }
+
+    #username-display {
+        display: none;
+    }
+
+    #logout-button {
+        display: none;
+    }
+
+    #logout-button-mobile {
+        display: block;
+        position: fixed;
+        top: 154px;
+        left: 280px;
+        width: 100px;
+        background-color: #4F4F4F;
+        float: right;
+        height: 45px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        margin-top: 4px;
+        padding-top: 5px;
+    }
+    
+    #add-friend-mobile {
+        position: fixed;
+        left: 5px;
+        top: 155px;
+    }
+
+    #friend-add-message, #friend-error-message {
+        left: 450px;
     }
 }

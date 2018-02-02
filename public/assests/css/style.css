@@ -252,14 +252,54 @@ html, body, #main-page-content-row {
     margin-left: 40px;
 }
 
+#add-friend {
+    color: white;
+    background-color: #4F4F4F;
+    margin-top: 4px;
+    float: left; 
+    padding: 0;
+    text-align: center;
+
+    border-radius: 5px;
+    height: 45px;
+    width: 150px;
+    border: 1px solid #5567A3;
+}
+
+#friend-add-message {
+    position: fixed;
+    top: 155px;
+    left: 600px;
+    color: green;
+
+}
+
+#friend-error-message {
+    position: fixed;
+    top: 155px;
+    left: 600px;
+    color: red;
+}
+
+#add-friend:hover {
+    background-color: #6E6E6E;
+}
+
+#add-friend-icon {
+    margin-right: 10px;
+    margin-bottom: 0;
+
+}
+
 #profile-logo:hover {
     color: lightgray;
+    background: none;
 }
 
 #username-display {
     position: absolute;
     left: 360px;
-    font-size: 25px;
+    font-size: 20px;
     color: white;
     z-index: 1;
 }
@@ -269,7 +309,7 @@ html, body, #main-page-content-row {
 }
 
 .nav-links:hover {
-    background-color: #5567A3;
+    background-color: #657AC2;
 }
 
 #profile-page-content {
@@ -316,9 +356,9 @@ html, body, #main-page-content-row {
     padding-left: 10px;
 }
 
-#post-button, #post-comment-button {
+#post-button {
     height: 45px;
-    background-color: #7289da;
+    background-color: #4F4F4F;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 5px;
@@ -330,7 +370,7 @@ html, body, #main-page-content-row {
 }
 
 #logout-button {
-    background-color: #7289da;
+    background-color: #4F4F4F;
     float: right;
     height: 45px;
     border-top-left-radius: 5px;
@@ -344,28 +384,11 @@ html, body, #main-page-content-row {
 }
 
 #logout-button:hover {
-    background-color: #5567A3;
+    background-color: #6E6E6E;
 }
 
 #post-button:hover {
-    background-color: #5567A3;
-}
-
-#search-button {
-    height: 45px;
-    background-color: rgba(88,88,88,1);
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin-left: 0px;
-    margin-bottom: 2px;
-    width: 13%;
-    color: white;
-}
-
-#search-input {
-    margin-bottom: 20px;
+    background-color: #6E6E6E;
 }
 
 ::-webkit-input-placeholder {
@@ -533,6 +556,7 @@ html, body, #main-page-content-row {
     #displayName, #displayNameLabel, #userEmail, #userEmailLabel, #passwordInput, #userPasswordLabel, #passwordConfirmInput, #userPasswordConfirmLabel, #image-link, #imageLinkLabel {
         font-size: 20px;
     } 
+    
 
     #gamingCategoryTitle, #tvCategoryTitle, #movieCategoryTitle, #sportsCategoryTitle,  {
         font-size: 20px;
@@ -562,14 +586,6 @@ html, body, #main-page-content-row {
 
     #profile-logo {
         margin-left: 20px;
-    }
-
-    #username-display {
-        position: absolute;
-        left: 280px;
-        font-size: 25px;
-        color: white;
-        z-index: 1;
     }
 
     #discord-widget {

@@ -144,8 +144,8 @@ module.exports = function(app, db) {
       .findOne({ where: { User1: reqid, User2: fid } })
       .then(function(data) {
         if (data) {
-          console.log("your friends allready");
-         req.flash('error', 'You are already friends');
+          console.log("You are friends already");
+         req.flash('error', 'You are already friends!');
          res.redirect("/profile/"+fid).end()
          
           // res.json(data);
@@ -173,12 +173,12 @@ module.exports = function(app, db) {
                           { where: { User1: reqid, User2: fid } }
                         
                         );
-                        req.flash("info","You are now BEST FRIENDS")
-                    res.redirect("/profile/"+fid).end()
+                        req.flash("info","You are now friends!");
+                        res.redirect("/profile/"+fid).end();
                       });
                   }
                   else{
-                    req.flash("info","You are now friends gratz")
+                    req.flash("info","You are now friends!");
                     res.redirect("/profile/"+fid).end()
                   }
                 });

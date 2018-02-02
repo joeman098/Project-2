@@ -26,6 +26,13 @@ var movieChannel ={
   name: "movies"
 };
 
+var addFriendSuccess = $("#friend-add-message");
+var addFriendError = $("#friend-error-message");
+var successTimeoutId = setTimeout(function(){
+  addFriendSuccess.fadeOut("slow");
+  addFriendError.fadeOut("slow");
+  console.log("faded");
+}, 2000);
 
 
 

@@ -654,7 +654,15 @@ $(document).ready(function() {
     resetMessageRow.attr("id", "reset-message-row");
 
     var forgotEmailInputUpper = forgotEmailInput.val().toUpperCase();
-
+    var email = forgotEmailInputUpper;
+    $.ajax("/forgot", {
+      type: "POST",
+      email: email
+    }).then(function(email) {
+      console.log("New User Created");
+      location.reload();
+    });
+ 
     var resetInstructions1 = $("<h6>");
     resetInstructions1.addClass("reset-instructions");
     resetInstructions1.html('AN EMAIL HAS BEEN SENT TO: <span id="forgot-email-upper">' + forgotEmailInputUpper + "</span>.");
@@ -757,13 +765,15 @@ $(document).ready(function() {
   })
 
   $("#edit-profile-link").on("click", function() {
+    $(".highlighted").removeClass("highlighted");
+    $(this).addClass("highlighted");
     $("#feed-row").hide();
     $("#discord-widget").hide();
     $("#friends-card").hide();
     $("#search-bar-div-profile").hide();
 
     var updateProfileCardCol = $("<div>");
-    updateProfileCardCol.addClass("col s8 offset-s2");
+    updateProfileCardCol.addClass("col m10 offset-m1 l10 offset-l1 xl8 offset-xl2");
 
     var updateProfileCard = $("<div>");
     updateProfileCard.addClass("card");
@@ -807,19 +817,19 @@ $(document).ready(function() {
     var updateInputFieldTwo = $("<div>");
     updateInputFieldTwo.addClass("input-field col s12 m6");
 
-    var updateUserEmailInput = $("<input>");
-    updateUserEmailInput.addClass("validate");
-    updateUserEmailInput.attr("id", "updateUserEmail");
-    updateUserEmailInput.attr("name", "updateUserEmail");
-    updateUserEmailInput.attr("type", "email");
+    // var updateUserEmailInput = $("<input>");
+    // updateUserEmailInput.addClass("validate");
+    // updateUserEmailInput.attr("id", "updateUserEmail");
+    // updateUserEmailInput.attr("name", "updateUserEmail");
+    // updateUserEmailInput.attr("type", "email");
 
-    var updateUserEmailLabel = $("<label>");
-    updateUserEmailLabel.attr("for", "updateUserEmail");
-    updateUserEmailLabel.attr("id", "updateUserEmailLabel");
-    updateUserEmailLabel.text("Email");
+    // var updateUserEmailLabel = $("<label>");
+    // updateUserEmailLabel.attr("for", "updateUserEmail");
+    // updateUserEmailLabel.attr("id", "updateUserEmailLabel");
+    // updateUserEmailLabel.text("Email");
 
     updateInputFieldOne.append(updateDisplayNameInput, updateDisplayNameLabel);
-    updateInputFieldTwo.append(updateUserEmailInput, updateUserEmailLabel);
+    // updateInputFieldTwo.append(updateUserEmailInput, updateUserEmailLabel);
     updateRowOne.append(updateInputFieldOne, updateInputFieldTwo);
 
     var updateRowTwo = $('<div class="row">');
@@ -980,7 +990,7 @@ $(document).ready(function() {
     updateMainRow.append(updateFormTitle, updateForm);
     updateCardContent.append(updateMainRow);
     updateProfileCard.append(updateCardContent);
-    updateProfileCardCol.append(updateProfileCard)
+    updateProfileCardCol.append(updateProfileCard);
     $("#profile-page-content").append(updateProfileCardCol);
 
     $(function() {
@@ -1068,6 +1078,7 @@ $(document).ready(function() {
         }
       });
     });
+    $("#update-profile-card").fadeIn("slow");
 
     $(document).on("click", "#update-profile-button", function(event) {
       event.preventDefault();
@@ -1077,6 +1088,7 @@ $(document).ready(function() {
         image: $("#update-image-link").val(),
         interests: JSON.stringify(updateInterests)
       }
+      console.log(updateUser)
       $.ajax("dashboard/edit", {
         type: "POST",
         data: updateUser

@@ -22,7 +22,7 @@ module.exports = function (app) {
 
   });
 
-  //New Member Msg
+  //New Member Msg on join
   bot.on("GuildMemberAdd", (member) => {
     message.member.send("Welcome!");
   })
@@ -88,6 +88,7 @@ module.exports = function (app) {
 
 
     if (message.content.indexOf("invite") > -1) {
+      if (message.author.bot) return;
       message.channel.createInvite()
 
         .then(invite =>

@@ -550,50 +550,6 @@ $(document).ready(function() {
     });
   });
 
-  $(document).on("click", "#reset-password-button", function(event) {
-    event.preventDefault();
-    $("#forgot-password-row").hide();
-
-    console.log("button working");
-
-    var resetMessageRow = $('<div class="row">');
-    resetMessageRow.attr("id", "reset-message-row");
-
-    var forgotEmailInputUpper = forgotEmailInput.val().toUpperCase();
-    var email = forgotEmailInputUpper;
-    $.ajax("/forgot", {
-      type: "POST",
-      email: email
-    }).then(function(email) {
-      console.log("New User Created");
-      location.reload();
-    });
- 
-    var resetInstructions1 = $("<h6>");
-    resetInstructions1.addClass("reset-instructions");
-    resetInstructions1.html('AN EMAIL HAS BEEN SENT TO: <span id="forgot-email-upper">' + forgotEmailInputUpper + "</span>.");
-
-    var resetInstructions2 = $("<h6>");
-    resetInstructions2.addClass("reset-instructions");
-    resetInstructions2.html("<br>PLEASE FOLLOW THE INSTRUCTIONS TO RESET YOUR PASSWORD.");
-
-    var resetBreak = $("<br>");
-
-    var loginButtonRow = $('<div class="row">');
-
-    var loginButton = $("<input>");
-    loginButton.addClass("btn");
-    loginButton.attr("type", "submit");
-    loginButton.attr("value", "LOG IN");
-    loginButton.attr("id", "login-button");
-
-    loginButtonRow.append(loginButton);
-
-    resetMessageRow.append(resetInstructions1, resetInstructions2, resetBreak, loginButtonRow);
-
-    $("#card-content").append(resetMessageRow);
-  });
-
   //creates new profile by sending info to database
   $(document).on("click", "#create-profile-button", function(event){
     event.preventDefault();

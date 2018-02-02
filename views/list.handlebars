@@ -14,21 +14,15 @@
             <ul>
             <li> <a href="/dashboard" id="profile-logo">{{id}}</a></li>
            <li><span id="username-display">{{displayName}}</span></li>
-           <div id= "why">
-            <li><form id ="friendhide"method="post" action="/sendfriend/{{id}}"  class="inline">
-  <input type="hidden" name="submit_param" value={{id}}>
-  <button type="submit" name="submit_param" value="submit_value" class="link-button">
-    Add friend
-  </button>
-</form></li></div>
-           
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down chat-nav-links">
-                <li><a href="/profile/{{id}}/general" class="{{class1}}" id="main-chat-link">Main Chat</a></li>
-                <li><a href="/profile/{{id}}/gaming_chat" class="{{class2}}" id="gaming-chat-link">Gaming Chat</a></li>
-                <li><a href="/profile/{{id}}/tv_chat" class="{{class3}}" id="tv-chat-link">TV Chat</a></li>
-                <li><a href="/profile/{{id}}/movie_chat" class="{{class4}}"  id="movie-chat-link">Movie Chat</a></li>
-                <li><a href="/profile/{{id}}/super-bowl-xxx_giggity" class="{{class5}}" id="sports-chat-link">Sports Chat</a></li>
+                      <li><a href="/profilelist" class="{{class1}}" id="main-chat-link">Profile list</a></li>
+                <li><a href="/dashboard/{{id}}/general" class="{{class1}}" id="main-chat-link">Main Chat</a></li>
+                <li><a href="/dashboard/{{id}}/gaming_chat" class="{{class2}}" id="gaming-chat-link">Gaming Chat</a></li>
+                <li><a href="/dashboard/{{id}}/tv_chat" class="{{class3}}" id="tv-chat-link">TV Chat</a></li>
+                <li><a href="/dashboard/{{id}}/movie_chat" class="{{class4}}"  id="movie-chat-link">Movie Chat</a></li>
+                <li><a href="/dashboard/{{id}}/super-bowl-xxx_giggity" class="{{class5}}" id="sports-chat-link">Sports Chat</a></li>
+                <li><a href="#" class="nav-links" id="edit-profile-link">Edit Profile</a></li>
             </ul>
            
 
@@ -43,15 +37,16 @@
         <div class="row" id="feed-row">;
         <div class="col m6 offset-m3" id="feed">
 
-        {{#each feed}}
+        {{#each profiles}}
          <div class="card-panel" id="post">
                      <div class="card-content">
-                        <a href="#" id="postername">{{username}}</a><span id="says"> says:</span>
+                        <a href="#" id="postername">{{displayName}}</a><span id="says"> says:</span>
                         <br>
                         <br>
+                        <img src="{{image}}" id="friend-img" alt="">
                         <span id="post-body">{{message}}</span>
                         <br><br>
-                        <a href="#" id="reply">REPLY</a>
+                        <a href="/profile/{{id}}" id="reply">Profile</a>
                     </div>
                 </div>
         {{/each}}
@@ -67,18 +62,5 @@
             <div class="col m6" id="profile-feed-col">
 
             </div>
-            <div class="col m3" id="friends-col">
-                <div class="card" id="friends-card">
-                    <div class="card-content" id="friends-content">
-                        <span class="card-title" id="friends-title">You have <a href="#" id="friends-count"></a> friends</span>
-                        <div id="frendo">
-                  
-                    </div>
-                </div>
-                
-            </div>
-            
-        </div>
+
     </div>
-
-

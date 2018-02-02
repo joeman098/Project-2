@@ -168,6 +168,10 @@ html, body, #main-page-content-row {
     font-size: 20px;
     color: red;
 }
+#message-headlinegood {
+    font-size: 20px;
+    color: rgb(15, 240, 53);
+}
 
 /* Profile Page CSS */
 

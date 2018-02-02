@@ -666,7 +666,15 @@ function initializeRows() {
     resetMessageRow.attr("id", "reset-message-row");
 
     var forgotEmailInputUpper = forgotEmailInput.val().toUpperCase();
-
+    var email = forgotEmailInputUpper;
+    $.ajax("/forgot", {
+      type: "POST",
+      email: email
+    }).then(function(email) {
+      console.log("New User Created");
+      location.reload();
+    });
+ 
     var resetInstructions1 = $("<h6>");
     resetInstructions1.addClass("reset-instructions");
     resetInstructions1.html('AN EMAIL HAS BEEN SENT TO: <span id="forgot-email-upper">' + forgotEmailInputUpper + "</span>.");

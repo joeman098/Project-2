@@ -121,13 +121,14 @@ $(document).ready(function() {
   });
 
 
-  //Convert to hyperlink
-  // function convert(){
-  //   if ($("#post-body").text().indexOf("http") > -1) {
-  //     $("#post-body").attr("href",$("#post-body").text());
-  //   }
-  // }
-  // convert();
+  // Convert to hyperlink
+  function convert(){
+    if ($("#post-body").text().indexOf("http") > -1) {
+      $("#hyp0r").attr("href",$("#post-body").html());
+      var val = $("#hyp0r").html("Click Here To Join Discord Chat");
+    }
+  }
+  convert();
 
 
 
@@ -705,18 +706,7 @@ $(document).ready(function() {
     });
   })
 
-//#########MORE CHARLES###################
 
-
-
-
-
-
-
-
-
-
-//############END MORE CHARLES#############################
 
 
   /*$(".chat-nav-links li").on("click", function() {

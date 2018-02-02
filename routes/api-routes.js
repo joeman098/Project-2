@@ -29,9 +29,6 @@ module.exports = function (app) {
 
 
 
-
-
-
   //Post to database
   app.post("/api/feed", function (req, res) {
     db.Feed.create({

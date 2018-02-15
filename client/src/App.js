@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import UpdateDashboard from "./pages/UpdateDashboard";
@@ -11,7 +10,6 @@ import NoMatch from "./pages/NoMatch";
 const App = () =>
 <Router>
   <div>
-    <Nav />
     <Switch>
         <Route exact path="/" component = {Login} />
         <Route exact path="/dashboard" component = {Dashboard} />

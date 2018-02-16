@@ -2,9 +2,15 @@
   "name": "s0cial3r",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "seed": "node scripts/seedDB.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installDeps": "yarn && cd client && yarn"
   },
   "repository": {
     "type": "git",
@@ -12,6 +18,10 @@
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
   "bugs": {
     "url": "https://github.com/joeman098/s0cial3r/issues"
   },
@@ -28,12 +38,14 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "jquery": "^3.3.1",
+    "mongoose": "^5.0.6",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.1",
     "nodemailer": "^4.4.2",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "passport-twitch": "^1.0.3",
     "sequelize": "^4.32.2"
   }
 }

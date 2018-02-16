@@ -25,6 +25,7 @@ class Login extends Component {
         });
     };
     //check with Joe on routing and authentication redirects?
+
     // handleFormSubmit = event => {
     //     event.preventDefault();
     //     API.signin({
@@ -34,6 +35,7 @@ class Login extends Component {
     //     .then(res => console.log(res))
     //     .catch(err => console.log(err));
     // }
+
 
     render() {
         return (

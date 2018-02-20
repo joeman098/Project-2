@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import ProfileList from "./pages/ProfileList";
 import NoMatch from "./pages/NoMatch";
-import Feed from "./pages/Feed";
+// import Feed from "./pages/Feed";
 
 const App = () =>
 <Router>
@@ -13,7 +13,7 @@ const App = () =>
     <Switch>
         <Route exact path="/" component = {Login} />
         {/* <Route exact path="/dashboard" component = {Dashboard} /> */}
-        <Route exact path="/feedPage" component={Feed} />
+        {/* <Route exact path="/feedPage" component={Feed} /> */}
         {/* <Route exact path="dashboard/update" component={UpdateDashboard} /> */}
         <Route exact path="/profile/:id" component={Profile} />
         <Route exact path="profilelist" component={ProfileList} />

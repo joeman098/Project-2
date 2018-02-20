@@ -39,7 +39,7 @@ class Login extends Component {
     render() {
         return (
             <div id="main-page-container">
-                <video autoPlay loop muted preload className="fullscreen-bg_video">
+                <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
                 <div className="row" id="main-page-content-row">
@@ -72,7 +72,7 @@ class Login extends Component {
 
                                             <SubmitButton className="btn" type="submit" value="Sign In" id="sign-in-button"/>
                                         </form>
-                                        <a href="http://127.0.0.1:3001/auth/twitch/callback"><button>Login with Twitch</button></a>
+                                        <a href="http://localhost:3001/auth/twitch/callback"><button>Login with Twitch</button></a>
                                     </div>
                                 </div>
                             </div>

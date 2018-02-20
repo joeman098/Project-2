@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
-import Dashboard from "../Dashboard";
 import Input from "../../components/Form/Input";
 import SubmitButton from "../../components/Form/SubmitButton";
+import "./Login.css";
 
 class Login extends Component {
     state = {
@@ -40,8 +39,8 @@ class Login extends Component {
     render() {
         return (
             <div id="main-page-container">
-                <video autoplay loop muted preload className="fullscreen-bg_video">
-                    <source src="../../../video/Circuit_Background.mp4"/>
+                <video autoPlay loop muted preload className="fullscreen-bg_video">
+                    <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
                 <div className="row" id="main-page-content-row">
                     <div className="col s1 m1 l1 xl2" id="left-bar-main">
@@ -61,7 +60,6 @@ class Login extends Component {
                                                 value={this.state.email}
                                                 onChange={this.handleInputChange}
                                                 name="email"
-                                                placeholder="Email"
                                             />
                                             <label for="password" id="login-password-label">Password</label>
                                             <Input
@@ -70,7 +68,6 @@ class Login extends Component {
                                                 value={this.state.password}
                                                 onChange={this.handleInputChange}
                                                 name="password"
-                                                placeholder="Password"
                                             />
 
                                             <SubmitButton className="btn" type="submit" value="Sign In" id="sign-in-button"/>

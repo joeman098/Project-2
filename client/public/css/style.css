@@ -3,10 +3,6 @@
     box-sizing: border-box;
 }
 
-html, body, #main-page-content-row {
-    height: 100%;
-}
-
 #main-page-title {
     font-family: 'Audiowide', cursive;
     font-size: 12vw;
@@ -277,14 +273,15 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
     color: white;
 }
 #profile-logo {
+    position: fixed;
+    left: 20px;
     font-family: 'Audiowide', cursive;
     font-size: 60px;
     color: white;
     text-shadow: .05em .05em .1em black;
     margin: 0;
     padding: 0;
-    display: inline;
-    margin-left: 40px;
+    margin-left: 0px;
 }
 
 #add-friend {
@@ -414,7 +411,7 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
     padding-left: 10px;
 }
 
-#post-button {
+#search-button {
     height: 45px;
     background-color: #4F4F4F;
     border-top-left-radius: 0px;
@@ -424,6 +421,7 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
     margin-left: 0px;
     margin-top: 0px;
     margin-bottom: 2px;
+    padding: 0;
     width: 14%;
 }
 
@@ -666,14 +664,7 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
     }
 
     #profile-logo {
-        margin-left: 20px;
-    }
-
-    #discord-widget {
-        width: 250px;
-    }
-
-    #profile-header-background-type {
+        position: fixed;
         margin-left: 50px;
     }
 

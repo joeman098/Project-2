@@ -33,12 +33,18 @@ router.post("api/user/getFriends", async function (req, res) {
     });
   });
 
-  router.post("api/user/getFeed", async function (req, res) {
+
+  router.post("api/user/getMemes", async function (req, res) {
     const userId = req.session.user._id;
-    db.FeedMessage.find({ 
-      sender: userId
+    db.User.find({ // find user
+      _id: userId
     }).then(function (result) {
-      res.json(result);
+      var memes = result.memes;
+      db.Meme.findAll({
+        _id: { $in: memes }
+      }).then(function (result) { // find memes
+        res.json(result);
+      });
     });
   });
 

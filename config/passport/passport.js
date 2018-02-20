@@ -24,6 +24,7 @@ module.exports = function (passport) {
         scope: process.env.TWITCH_SCOPE
       },
       function (accessToken, refreshToken, profile, done) {
+        console.log(profile);
         User.find({ twitchId: profile.id }, function (err, result) {
           if (result.length === 0) {
             User.create({

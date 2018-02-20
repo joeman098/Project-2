@@ -8,19 +8,23 @@ var db = require("./models/index.js");
 var discord = require("discord.js");
 var flash = require('express-flash');
 const mongoose = require("mongoose");
+const routes = require("./routes");
 //========
 
 process.on('unhandledRejection', function (reason, p) { // moar reasons for unhandled rejections promises plz gibz me stack trace!
   console.log("Possibly Unhandled Rejection at: Promise ", p, " reason: ", reason);
 });
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 5000;
 
 var app = express();
 
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("client/build"));
+
+// Add routes, both API and view
+app.use(routes);
 
 // Routers
 app.use(require("./controllers/auth_controller"));
@@ -71,5 +75,8 @@ app.listen(PORT, function() {
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/Socialer"
+  process.env.MONGODB_URI || "mongodb://localhost/socialFeed",
+  {
+    useMongoClient: true
+  }
 );

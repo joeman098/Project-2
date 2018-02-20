@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
 import Dashboard from "../Dashboard";
-import Input from "../../components/Form/Input";
+import Input from "../../components/Form/Input.js";
 import SubmitButton from "../../components/Form/SubmitButton";
 
 class Login extends Component {

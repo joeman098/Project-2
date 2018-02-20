@@ -3,6 +3,7 @@ import { Link, Route } from "react-router-dom";
 import Dashboard from "../Dashboard";
 import Input from "../../components/Form/Input";
 import SubmitButton from "../../components/Form/SubmitButton";
+import "./Login.css";
 
 class Login extends Component {
     state = {

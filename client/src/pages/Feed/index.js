@@ -1,1 +1,1 @@
-// export { default } from "./feedPage.js";
+export { default } from "./feedPage.js";

@@ -10,6 +10,8 @@ var discord = require("discord.js");
 var db = require("./models");
 var flash = require('express-flash');
 const mongoose = require("mongoose");
+const routes = require("./routes");
+require('dotenv').config();
 
 //========
 
@@ -24,6 +26,9 @@ var app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("client/build"));
+
+// Add routes, both API and view
+app.use(routes);
 
 // Routers
 app.use(require("./controllers/AuthController"));
@@ -89,5 +94,8 @@ app.listen(PORT, function() {
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/Socialer"
+  process.env.MONGODB_URI || "mongodb://localhost/socialFeed",
+  {
+    useMongoClient: true
+  }
 );

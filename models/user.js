@@ -43,7 +43,7 @@ var UserSchema = new Schema({
         required: false
     },
     bio: {
-        type: Text,
+        type: String,
         required: false
     },
     interests: {
@@ -54,7 +54,7 @@ var UserSchema = new Schema({
         type: Date,
         required: false
     },
-    meme: {
+    memes: {
         type: Schema.Types.ObjectId,
         ref: "Meme"
     },
@@ -78,4 +78,4 @@ var UserSchema = new Schema({
 
 var User = mongoose.model("User", UserSchema);
 
-module.exports = Meme;
+module.exports = User;

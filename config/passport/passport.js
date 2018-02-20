@@ -126,10 +126,10 @@ module.exports = function(passport, user) {
   passport.use(
     new twitchStrategy(
       {
-        clientID: "qb7j7t7t5tx4faioanh084713yztiz",
-        clientSecret: "ao2xog8wqlq2ivh1lyi88lpo0tn74n",
-        callbackURL: "http://127.0.0.1:3000/auth/twitch/callback",
-        scope: "user_read"
+        clientID: process.env.TWITCH_CLIENT_ID,
+        clientSecret: process.env.TWITCH_CLIENT_SECRET,
+        callbackURL: process.env.TWITCH_CALLBACK_URL,
+        scope: process.env.TWITCH_SCOPE
       },
       function(accessToken, refreshToken, profile, done) {
         User.findOrCreate({ twitchId: profile.id }, function(err, user) {

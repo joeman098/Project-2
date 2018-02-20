@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import UpdateDashboard from "./pages/UpdateDashboard";
 import Profile from "./pages/Profile";
 import ProfileList from "./pages/ProfileList";
 import NoMatch from "./pages/NoMatch";

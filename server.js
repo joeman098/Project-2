@@ -3,19 +3,21 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var passport = require("passport");
 var nodemailer = require('nodemailer');
-var session = require("express-session");
-var db = require("./models/index.js");
+var cookieSession = require('cookie-session');
 var discord = require("discord.js");
+var db = require("./models");
 var flash = require('express-flash');
 const mongoose = require("mongoose");
 const routes = require("./routes");
+require('dotenv').config();
+
 //========
 
 process.on('unhandledRejection', function (reason, p) { // moar reasons for unhandled rejections promises plz gibz me stack trace!
   console.log("Possibly Unhandled Rejection at: Promise ", p, " reason: ", reason);
 });
 
-var PORT = process.env.PORT || 5000;
+var PORT = process.env.PORT || 3001;
 
 var app = express();
 
@@ -27,8 +29,8 @@ app.use(express.static("client/build"));
 app.use(routes);
 
 // Routers
-app.use(require("./controllers/auth_controller"));
-app.use(require("./controllers/userController"));
+app.use(require("./controllers/AuthController"));
+app.use(require("./controllers/UserController"));
 
 //Body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,10 +39,15 @@ app.use(bodyParser.json());
 // ==========For Passport=============
 //load passport strategies
 require('./config/passport/passport.js')(passport, db.User);
-// session secret
-app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-);
+
+app.use(cookieSession({
+  httpOnly: true,
+  maxAge: 30 * 60 * 1000,
+  secure: false,
+  overwrite: false,
+  secret: 'keyboard cat'
+}));
+
 app.use(flash());
 app.use(passport.initialize());
 // persistent login sessions

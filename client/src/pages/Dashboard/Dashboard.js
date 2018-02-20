@@ -28,3 +28,5 @@ class Dashboard extends Component {
 render() {
     
 }
+
+export default Dashboard;

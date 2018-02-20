@@ -25,8 +25,8 @@ class Dashboard extends Component {
 
 }
 
-render() {
+//render() {
     
-}
+//}
 
 export default Dashboard;

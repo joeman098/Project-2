@@ -12,11 +12,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "installDeps": "yarn && cd client && yarn"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joeman098/s0cial3r.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/joeman098/s0cial3r.git",
+  "author": "joeman098 <Jlogue908@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",

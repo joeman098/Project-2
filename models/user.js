@@ -1,75 +1,81 @@
+var mongoose = require("mongoose");
 
-module.exports = function(sequelize, Sequelize) {
-  var User = sequelize.define("user", {
-    id: {
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER
+var Schema = mongoose.Schema;
+
+var validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+};
+
+var UserSchema = new Schema({
+    TwitchId: {
+        type: String,
+        required: true
     },
-
-    displayName: {
-      type: Sequelize.TEXT
+    first_name: {
+        type: String,
+        required: true
     },
-
-    about: {
-      type: Sequelize.TEXT
+    last_name: {
+        type: String,
+        required: true
     },
-
-    email: {
-      type: Sequelize.STRING,
-      validate: {
-        isEmail: true
-      }
+    username: {
+        type: String,
+        required: true
     },
-
-    password: {
-      type: Sequelize.STRING,
-      allowNull: false
+    lastLogin: {
+        type: Date,
+        required: false
     },
-
-    last_login: {
-      type: Sequelize.DATE
-    },
-
     status: {
-      type: Sequelize.ENUM("active", "inactive"),
-      defaultValue: "active"
+        type: String,
+        enum: ['active', 'inactive']
     },
-    resetPasswordToken: {
-      type: Sequelize.STRING
+    email: {
+        type: String,
+        required: true,
+        validate: [validateEmail, 'Please fill a valid email address'],
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
-    resetPasswordExpires: {
-      type: Sequelize.DATE
+    avatar: {
+        type: String,
+        required: false
     },
-    image: {
-      type: Sequelize.STRING,
-      allowNull:false,
-      validate: {
-        isUrl: true
-      }
+    bio: {
+        type: Text,
+        required: false
     },
     interests: {
-        type: Sequelize.TEXT
-      },
-
-    friendsList: {
-      type: Sequelize.TEXT
+        type: String,
+        required: false
     },
-
-
-    });
-    User.associate = function (models) {
-        User.belongsToMany(models.Friendship, {as:"friends",through: "friendship", foreignKey:"FID" })
+    dob: {
+        type: Date,
+        required: false
+    },
+    meme: {
+        type: Schema.Types.ObjectId,
+        ref: "Meme"
+    },
+    blocked: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
+    friends: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
+    messages: {
+        type: Schema.Types.ObjectId,
+        ref: "Message"
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
+});
 
-    return User;};
+var User = mongoose.model("User", UserSchema);
 
-    // Post.associate = function(models) {
-    //     // We're saying that a Post should belong to an Author
-    //     // A Post can't be created without an Author due to the foreign key constraint
-    //     Post.belongsTo(models.Author, {rs
-    //       foreignKey: {
-    //         allowNull: false
-    //       }
-    //     });
-    //   };
+module.exports = Meme;

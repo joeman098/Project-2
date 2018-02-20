@@ -8,12 +8,22 @@ var db = require("./models/index.js");
 var discord = require("discord.js");
 var flash = require('express-flash');
 //========
+
+process.on('unhandledRejection', function (reason, p) { // moar reasons for unhandled rejections promises plz gibz me stack trace!
+  console.log("Possibly Unhandled Rejection at: Promise ", p, " reason: ", reason);
+});
+
 var PORT = process.env.PORT || 3000;
 
 var app = express();
 
+
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
+
+// Routers
+app.use(require("./controllers/auth_controller"));
+app.use(require("./controllers/userController"));
 
 //Body parser
 app.use(bodyParser.urlencoded({ extended: true }));

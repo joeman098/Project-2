@@ -5,13 +5,12 @@ var router = express.Router();
 
 router.get("api/auth/login", function (req, res) {
   // TO-DO implement Twitch API
+
 });
 
 router.get("api/auth/logout", function (req, res) {
-  // TO-DO switch cookie sessions
-  req.session.destroy(function (err) {
-    res.redirect('/');
-  });
+  req.session = null; // destroys cookie session
+  res.redirect('/');
 });
 
 

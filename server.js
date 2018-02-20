@@ -3,7 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var passport = require("passport");
 var nodemailer = require('nodemailer');
-var session = require("express-session");
+var cookieSession = require('cookie-session');
 var db = require("./models/index.js");
 var discord = require("discord.js");
 var flash = require('express-flash');
@@ -33,10 +33,15 @@ app.use(bodyParser.json());
 // ==========For Passport=============
 //load passport strategies
 require('./config/passport/passport.js')(passport, db.User);
-// session secret
-app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-);
+
+app.use(cookieSession({
+  httpOnly: true,
+  maxAge: 30 * 60 * 1000,
+  secure: false,
+  overwrite: false,
+  secret: 'keyboard cat'
+}));
+
 app.use(flash());
 app.use(passport.initialize());
 // persistent login sessions

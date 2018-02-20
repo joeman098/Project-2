@@ -24,3 +24,7 @@ class Dashboard extends Component {
     }
 
 }
+
+render() {
+    
+}

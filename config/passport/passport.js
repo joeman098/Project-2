@@ -1,9 +1,10 @@
 //load bcrypt
 var bCrypt = require("bcrypt-nodejs");
 var twitchStrategy = require("passport-twitch").Strategy;
+var db = require("../../models");
 
-module.exports = function(passport, user) {
-  var User = user;
+module.exports = function (passport) {
+  var User = db.User;
   // var LocalStrategy = require("passport-local").Strategy;
 
   // passport.use(
@@ -61,18 +62,12 @@ module.exports = function(passport, user) {
   //   )
   // );
   //serialize
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
+  passport.serializeUser(function (user, done) {
+    done(null, user);
   });
   // deserialize user
-  passport.deserializeUser(function(id, done) {
-    User.findById(id).then(function(user) {
-      if (user) {
-        done(null, user.get());
-      } else {
-        done(user.errors, null);
-      }
-    });
+  passport.deserializeUser(function (user, done) {
+    done(null, user);
   });
 
   //LOCAL SIGNIN
@@ -131,9 +126,19 @@ module.exports = function(passport, user) {
         callbackURL: process.env.TWITCH_CALLBACK_URL,
         scope: process.env.TWITCH_SCOPE
       },
-      function(accessToken, refreshToken, profile, done) {
-        User.findOrCreate({ twitchId: profile.id }, function(err, user) {
-          return done(err, user);
+      function (accessToken, refreshToken, profile, done) {
+        User.find({ twitchId: profile.id }, function (err, result) {
+          if (result.length === 0) {
+            User.create({
+              TwitchId: profile.id,
+              username: profile.username,
+              email: profile.email
+            }, function (err, result) {
+              return done(err, result);
+            });
+          } else {
+            return done(err, result);
+          }
         });
       }
     )

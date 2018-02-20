@@ -69,8 +69,10 @@ class Login extends Component {
                                                 onChange={this.handleInputChange}
                                                 name="password"
                                             />
+
                                             <SubmitButton className="btn" type="submit" value="Sign In" id="sign-in-button"/>
                                         </form>
+                                        <a href="http://127.0.0.1:3001/auth/twitch/callback"><button>Login with Twitch</button></a>
                                     </div>
                                 </div>
                             </div>

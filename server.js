@@ -1,4 +1,6 @@
 //======
+require('dotenv').config();
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var passport = require("passport");
@@ -38,7 +40,7 @@ app.use(bodyParser.json());
 
 // ==========For Passport=============
 //load passport strategies
-require('./config/passport/passport.js')(passport, db.User);
+// app.use(require('./config/passport/passport.js')(passport, db.User));
 
 app.use(cookieSession({
   httpOnly: true,
@@ -52,6 +54,9 @@ app.use(flash());
 app.use(passport.initialize());
 // persistent login sessions
 app.use(passport.session());
+
+require('./config/passport/passport.js')(passport);
+
 //===============================
 // Set Handlebars.
 // var exphbs = require("express-handlebars");
@@ -67,6 +72,13 @@ app.use(passport.session());
 // require("./routes/html-routes.js")(app);
 //==============================================
 //Listen with no sync
+
+app.get("/auth/twitch",  passport.authenticate("twitch"));
+
+app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedirect: "/" }), function (req, res) {
+  return res.redirect("http://localhost:3000");
+});
+
 app.listen(PORT, function() {
   console.log("App now listening at localhost:" + PORT);
 });

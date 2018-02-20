@@ -8,6 +8,8 @@ var db = require("./models/index.js");
 var discord = require("discord.js");
 var flash = require('express-flash');
 const mongoose = require("mongoose");
+require('dotenv').config();
+
 //========
 
 process.on('unhandledRejection', function (reason, p) { // moar reasons for unhandled rejections promises plz gibz me stack trace!

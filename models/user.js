@@ -54,7 +54,7 @@ var UserSchema = new Schema({
         type: Date,
         required: false
     },
-    meme: {
+    memes: {
         type: Schema.Types.ObjectId,
         ref: "Meme"
     },

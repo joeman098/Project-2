@@ -1,14 +1,16 @@
 var express = require("express");
 var router = express.Router();
+var passport = require("passport");
+var db = require("../models");
 
 
 
-router.get("api/auth/login", function (req, res) {
-  // TO-DO implement Twitch API
+
+router.get("/", function(req, res) {
 
 });
 
-router.get("api/auth/logout", function (req, res) {
+router.get("/api/auth/logout", function (req, res) {
   req.session = null; // destroys cookie session
   res.redirect('/');
 });

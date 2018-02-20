@@ -1,100 +1,81 @@
 var mongoose = require("mongoose");
 
-
 var Schema = mongoose.Schema;
 
+var validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+};
 
 var UserSchema = new Schema({
-
-  name: {
-    type: String,
-    unique: true
-  },
-
-  notes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Note"
+    TwitchId: {
+        type: String,
+        required: true
+    },
+    first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    lastLogin: {
+        type: Date,
+        required: false
+    },
+    status: {
+        type: String,
+        enum: ['active', 'inactive']
+    },
+    email: {
+        type: String,
+        required: true,
+        validate: [validateEmail, 'Please fill a valid email address'],
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+    },
+    avatar: {
+        type: String,
+        required: false
+    },
+    bio: {
+        type: Text,
+        required: false
+    },
+    interests: {
+        type: String,
+        required: false
+    },
+    dob: {
+        type: Date,
+        required: false
+    },
+    meme: {
+        type: Schema.Types.ObjectId,
+        ref: "Meme"
+    },
+    blocked: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
+    friends: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
+    messages: {
+        type: Schema.Types.ObjectId,
+        ref: "Message"
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
-  ]
 });
 
 var User = mongoose.model("User", UserSchema);
 
-
-module.exports = User;
-
-// module.exports = function(sequelize, Sequelize) {
-  // var User = sequelize.define("user", {
-  //   id: {
-  //     autoIncrement: true,
-  //     primaryKey: true,
-  //     type: Sequelize.INTEGER
-  //   },
-
-  //   displayName: {
-  //     type: Sequelize.TEXT
-  //   },
-
-  //   about: {
-  //     type: Sequelize.TEXT
-  //   },
-
-  //   email: {
-  //     type: Sequelize.STRING,
-  //     validate: {
-  //       isEmail: true
-  //     }
-  //   },
-
-  //   password: {
-  //     type: Sequelize.STRING,
-  //     allowNull: false
-  //   },
-
-  //   last_login: {
-  //     type: Sequelize.DATE
-  //   },
-
-  //   status: {
-  //     type: Sequelize.ENUM("active", "inactive"),
-  //     defaultValue: "active"
-  //   },
-  //   resetPasswordToken: {
-  //     type: Sequelize.STRING
-  //   },
-  //   resetPasswordExpires: {
-  //     type: Sequelize.DATE
-  //   },
-  //   image: {
-  //     type: Sequelize.STRING,
-  //     allowNull:false,
-  //     validate: {
-  //       isUrl: true
-  //     }
-  //   },
-  //   interests: {
-  //       type: Sequelize.TEXT
-  //     },
-
-  //   friendsList: {
-  //     type: Sequelize.TEXT
-  //   },
-
-
-  //   });
-  //   User.associate = function (models) {
-  //       User.belongsToMany(models.Friendship, {as:"friends",through: "friendship", foreignKey:"FID" })
-  //   }
-
-    // return User;};
-
-    // Post.associate = function(models) {
-    //     // We're saying that a Post should belong to an Author
-    //     // A Post can't be created without an Author due to the foreign key constraint
-    //     Post.belongsTo(models.Author, {rs
-    //       foreignKey: {
-    //         allowNull: false
-    //       }
-    //     });
-    //   };
+module.exports = Meme;

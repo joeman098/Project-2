@@ -23,8 +23,8 @@ var app = express();
 app.use(express.static("client/build"));
 
 // Routers
-app.use(require("./controllers/auth_controller"));
-app.use(require("./controllers/userController"));
+app.use(require("./controllers/AuthController"));
+app.use(require("./controllers/UserController"));
 
 //Body parser
 app.use(bodyParser.urlencoded({ extended: true }));

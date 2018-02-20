@@ -1,27 +1,13 @@
 var express = require("express");
 var router = express.Router();
 
-router.get("/signup", function (req, res) {
-  res.render("signup");
+
+
+router.get("api/auth/login", function (req, res) {
+  // TO-DO implement Twitch API
 });
 
-router.get("/signin", function (req, res) {
-  res.render("signin");
-});
-
-router.get("/forgot", function (req, res) {
-  res.render("forgot");
-});
-
-router.get("/reset", function (req, res) {
-  res.render("reset");
-});
-
-router.get("/home", function (req, res) {
-  res.render("index");
-});
-
-router.get("/logout", function (req, res) {
+router.get("api/auth/logout", function (req, res) {
   // TO-DO switch cookie sessions
   req.session.destroy(function (err) {
     res.redirect('/');

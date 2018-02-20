@@ -556,6 +556,10 @@ cookie-session@^2.0.0-beta.3:
     on-headers "~1.0.1"
     safe-buffer "5.1.1"
 
+cookie-sessions@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/cookie-sessions/-/cookie-sessions-0.0.2.tgz#abe16f519d48a64a5c706332a482068c2371aed0"
+
 cookie-signature@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"

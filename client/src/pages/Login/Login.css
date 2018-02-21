@@ -12,6 +12,7 @@
 .welcomeMessage {
     color: white;
     font-family: 'Helvetica', sans-serif;
+    text-shadow: .05em .05em .1em black;
 }
 #login-card {
     position: relative;

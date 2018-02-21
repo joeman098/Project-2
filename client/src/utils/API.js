@@ -14,5 +14,8 @@ export default {
     // Saves memes to the database
     saveFeed: function(feedData) {
         return axios.post("/api/feeds", feedData);
-      }
+      },
+      getSessionData: function() {
+        return axios.get('/api/user/session');
+    }
 }

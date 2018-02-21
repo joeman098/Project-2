@@ -11,6 +11,8 @@ var db = require("./models");
 var flash = require('express-flash');
 const mongoose = require("mongoose");
 require('dotenv').config();
+const routes = require("./routes");
+
 
 //========
 
@@ -81,7 +83,7 @@ app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedire
 app.listen(PORT, function() {
   console.log("App now listening at localhost:" + PORT);
 });
-
+app.use(routes);
 //Syncing our sequelize models and then starting our Express app
 //=============================================================
 // db.sequelize.sync({ force: false }).then(function() {
@@ -93,5 +95,5 @@ app.listen(PORT, function() {
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/socialFeed"
+  process.env.MONGODB_URI || "mongodb://localhost/Socialer"
 );

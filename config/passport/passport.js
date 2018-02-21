@@ -24,13 +24,15 @@ module.exports = function (passport) {
         scope: process.env.TWITCH_SCOPE
       },
       function (accessToken, refreshToken, profile, done) {
-        console.log(profile);
-        User.find({ twitchId: profile.id }, function (err, result) {
+        const json = profile._json;
+        User.find({ TwitchId: profile.id }, function (err, result) {
           if (result.length === 0) {
             User.create({
               TwitchId: profile.id,
               username: profile.username,
-              email: profile.email
+              email: profile.email,
+              avatar: json.logo,
+              bio: json.bio
             }, function (err, result) {
               return done(err, result);
             });

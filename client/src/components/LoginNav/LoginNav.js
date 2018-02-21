@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Input from "../../components/Form/Input";
+import "./LoginNav.css";
 
-const Nav = props =>
-    <nav className="row" id="profile-nav">
-        <Link to={"/dashboard"} id="profile-logo">
-            0
-        </Link> 
-        <span id="username-display-dashboard">{props.username}Hi</span>
+const LoginNav = props =>
+    <nav className="row" id="login-nav">
+        <h3 id="login-logo">0</h3>
         <span className="input-field col m6 offset-m6 l6 offset-l3" id="post-bar-col">
             <Input 
                 placeholder="Search"
@@ -17,7 +15,7 @@ const Nav = props =>
                 onChange={props.handleInputChange}
             />
             <Input 
-                className="btn link-button" 
+                className="btn" 
                 type="submit" 
                 value="SEARCH" 
                 id="search-button" 
@@ -29,4 +27,4 @@ const Nav = props =>
         </ul>
     </nav>
 
-export default Nav;
+export default LoginNav;

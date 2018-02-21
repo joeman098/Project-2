@@ -39,7 +39,8 @@ var UserSchema = new Schema({
     },
     bio: {
         type: String,
-        required: false
+        required: false,
+        default: null
     },
     interests: {
         type: String,

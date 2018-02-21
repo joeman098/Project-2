@@ -79,6 +79,8 @@ app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedire
 app.listen(PORT, function() {
   console.log("App now listening at localhost:" + PORT);
 });
+// Add routes, both API and view
+app.use(routes);
 
 //Syncing our sequelize models and then starting our Express app
 //=============================================================

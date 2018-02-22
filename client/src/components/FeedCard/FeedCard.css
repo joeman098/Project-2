@@ -1,5 +1,5 @@
 .card {
-    background:#000;
+    background: #ffffff;
     border-radius: 2px;
     height: 325px;
     margin: 1rem;
@@ -55,4 +55,13 @@ li, strong{
 
 .slick-slide{
   width: 100px;
+}
+strong{
+  color: white;
+}
+.row .col.s12 {
+  width: 94%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
 }

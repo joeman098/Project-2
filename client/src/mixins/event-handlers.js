@@ -1,6 +1,6 @@
 
 import {getTrackCSS, getTrackLeft, getTrackAnimateCSS} from './trackHelper';
-import helpers from './helpers';
+// import helpers from './helpers';
 import assign from 'object-assign';
 import ReactDOM from 'react-dom';
 
@@ -63,26 +63,26 @@ var EventHandlers = {
     this.changeSlide(options)
   },
   // invoked when swiping/dragging starts (just once)
-  swipeStart: function (e) {
-    var touches, posX, posY;
+  // swipeStart: function (e) {
+  //   var touches, posX, posY;
 
-    if ((this.props.swipe === false) || ('ontouchend' in document && this.props.swipe === false)) {
-      return;
-    } else if (this.props.draggable === false && e.type.indexOf('mouse') !== -1) {
-      return;
-    }
-    posX = (e.touches !== undefined) ? e.touches[0].pageX : e.clientX;
-    posY = (e.touches !== undefined) ? e.touches[0].pageY : e.clientY;
-    this.setState({
-      dragging: true,
-      touchObject: {
-        startX: posX,
-        startY: posY,
-        curX: posX,
-        curY: posY
-      }
-    });
-  },
+  //   if ((this.props.swipe === false) || ('ontouchend' in document && this.props.swipe === false)) {
+  //     return;
+  //   } else if (this.props.draggable === false && e.type.indexOf('mouse') !== -1) {
+  //     return;
+  //   }
+  //   posX = (e.touches !== undefined) ? e.touches[0].pageX : e.clientX;
+  //   posY = (e.touches !== undefined) ? e.touches[0].pageY : e.clientY;
+  //   this.setState({
+  //     dragging: true,
+  //     touchObject: {
+  //       startX: posX,
+  //       startY: posY,
+  //       curX: posX,
+  //       curY: posY
+  //     }
+  //   });
+  // },
   // continuous invokation while swiping/dragging is going on
   swipeMove: function (e) {
     if (!this.state.dragging) {

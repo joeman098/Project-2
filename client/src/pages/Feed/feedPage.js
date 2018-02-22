@@ -5,15 +5,17 @@ import FeedCard from "../../components/FeedCard";
 // import FeedModal from "../../components/FeedModal";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
+// import { Col, Row, Container } from "../../components/Grid";
 // import { List, ListItem } from "../../components/List";
 import { Input2,  FormBtn } from "../../components/Form";
 // import { Carousel } from 'react-responsive-carousel';
 // import {Slider} from 'react-slick';
 import Slider from '../../slider';
 // import Modal from 'react-modal';
-import {Button, Icon, Modal} from 'react-materialize'
-
+import {Button, Icon, Modal, Row, Col, Container, Card} from 'react-materialize'
+import LoginNav from "../../components/LoginNav";
+import "./FeedStyles.css";
+// import ImageGallery from 'react-image-gallery';
 
 
 
@@ -76,7 +78,7 @@ class Feed extends Component {
       showArrows:true,
       dots: true,
       infinite: true,
-      slidesToShow: 3,
+      slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
@@ -88,26 +90,29 @@ class Feed extends Component {
 
     
     return (
+      
       <Container fluid>
+      <LoginNav />
         <Row>
-        <Col size="md-3 sm-3" >
-        <div id="twitch-embed"></div>
+        <Col s={6} >
+        {/* <div id="twitch-embed"></div> */}
         <iframe
+        className ="player"
     src="http://player.twitch.tv/?channel=spreeezy&muted=true"
-    height="500px"
-    width="1000px"
+    // height="500px"
+    // width="750px"
     frameBorder="<frameborder>"
     scrolling="<scrolling>"
     allowFullScreen="<allowfullscreen>">
 </iframe>
         </Col>
-        <Col size="md-9 sm-9" >
+        <Col s={2} > 
         <iframe frameBorder="0" 
         scrolling="no" 
         id="chat_embed" 
         src="http://www.twitch.tv/embed/spreeezy/chat" 
-        height="500" 
-        width="350">
+        height="500px" 
+        width="500px">
 </iframe>
         </Col>
 </Row>
@@ -138,9 +143,9 @@ class Feed extends Component {
           </Col>
          </Row>
          <Row>
-          <Col size="md-12 sm-12" >
+          <Col s={12}  >
           <Slider {...settings}>
-         {this.state.feedz.map(feed => (
+         {this.state.feedz.map(feed  => (
           <div key={feed._id}>
            <FeedCard 
             
@@ -148,13 +153,15 @@ class Feed extends Component {
             poster ={feed.poster} 
             link= {feed.link}
             openModal={this.openModal}
+            sesame={this.sesame}
    
           />
 
                   <Modal
+                  sesame={this.sesame}
                     header='s0cial3r shared!'
-                    trigger={<Button waves='light'>Click ME!<Icon right>insert_chart</Icon></Button>}>
-     
+                    trigger={<Button className="sesame" waves='light'>Click ME!<Icon right>insert_chart</Icon></Button>}>
+                    
                     <div className='card '>
                       <img alt={feed.link} src={feed.link} className="imagez card-img openModal" />
                       <div className="card-img-overlay h-100 d-flex flex-column justify-content-end" >

@@ -12,10 +12,10 @@ import { Input2,  FormBtn } from "../../components/Form";
 // import {Slider} from 'react-slick';
 import Slider from '../../slider';
 // import Modal from 'react-modal';
-import {Button, Icon, Modal, Row, Col, Container, Card} from 'react-materialize'
+import {Button, Icon, Modal, Row, Col, Container} from 'react-materialize'
 import LoginNav from "../../components/LoginNav";
 import "./FeedStyles.css";
-// import ImageGallery from 'react-image-gallery';
+
 
 
 
@@ -78,7 +78,7 @@ class Feed extends Component {
       showArrows:true,
       dots: true,
       infinite: true,
-      slidesToShow: 4,
+      slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
@@ -98,7 +98,7 @@ class Feed extends Component {
         {/* <div id="twitch-embed"></div> */}
         <iframe
         className ="player"
-    src="http://player.twitch.tv/?channel=spreeezy&muted=true"
+    src="http://player.twitch.tv/?channel=drdisrespectlive&muted=true"
     // height="500px"
     // width="750px"
     frameBorder="<frameborder>"
@@ -110,7 +110,7 @@ class Feed extends Component {
         <iframe frameBorder="0" 
         scrolling="no" 
         id="chat_embed" 
-        src="http://www.twitch.tv/embed/spreeezy/chat" 
+        src="http://www.twitch.tv/embed/drdisrespectlive/chat" 
         height="500px" 
         width="500px">
 </iframe>
@@ -145,7 +145,7 @@ class Feed extends Component {
          <Row>
           <Col s={12}  >
           <Slider {...settings}>
-         {this.state.feedz.map(feed  => (
+         {this.state.feedz.map(feed => (
           <div key={feed._id}>
            <FeedCard 
             
@@ -153,15 +153,13 @@ class Feed extends Component {
             poster ={feed.poster} 
             link= {feed.link}
             openModal={this.openModal}
-            sesame={this.sesame}
    
           />
 
                   <Modal
-                  sesame={this.sesame}
                     header='s0cial3r shared!'
-                    trigger={<Button className="sesame" waves='light'>Click ME!<Icon right>insert_chart</Icon></Button>}>
-                    
+                    trigger={<Button waves='light'>Click ME!<Icon right>insert_chart</Icon></Button>}>
+     
                     <div className='card '>
                       <img alt={feed.link} src={feed.link} className="imagez card-img openModal" />
                       <div className="card-img-overlay h-100 d-flex flex-column justify-content-end" >

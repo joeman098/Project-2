@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+import LoginNav from "../../components/LoginNav";
 import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/socialitAPI";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
+import { Col, Row,  } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form2";
+import {Container,CardTitle,Card } from 'react-materialize'
+import SocialitPost from "../../components/SocialitPost/SocialitPost";
 
+import "./socialit.css";
 class socialit extends Component {
   state = {
     books: [],
@@ -55,12 +59,17 @@ class socialit extends Component {
 
   render() {
     return (
-      <Container fluid>
+   
+
+      <div>
+
+       <LoginNav />
+
+       <Container className="MainC">
         <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
+          
+          <Col size="md-6"> 
+              <h1>Make a Post </h1>
             <form>
               <Input
                 value={this.state.title}
@@ -89,28 +98,27 @@ class socialit extends Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {this.state.books.length ? (
-              <List>
+      
+              <h1>Posts</h1>
+              {this.state.books.length ? (
+                <div>
                 {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <SocialitPost
+                  key= {book._id}
+                  link ={"/socialit/" + book._id}
+                  title ={book.title} 
+                  author = {book.author}
+                  // delete ={this.deleteBook(book._id)}
+               /> ))}
+               </div>
+              ) : (
+                <h3>No Results to Display</h3>
+              )}
+          
           </Col>
         </Row>
       </Container>
+      </div>
     );
   }
 }

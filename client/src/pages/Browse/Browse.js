@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import SearchNav from "../../components/SearchNav";
-import "./Browse.css";
 import twitch from "../../utils/twitchAPI";
 import SearchRes from "../../components/SearchRes";
-import { Container, Row } from "../../components/Grid/";
+//import { Container, Row } from "../../components/Grid/";
+import { Container, Row } from "react-materialize";
+import "./Browse.css";;
 
 
 class Browse extends Component {

@@ -5,14 +5,16 @@ import FeedCard from "../../components/FeedCard";
 // import FeedModal from "../../components/FeedModal";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
+// import { Col, Row, Container } from "../../components/Grid";
 // import { List, ListItem } from "../../components/List";
 import { Input2,  FormBtn } from "../../components/Form";
 // import { Carousel } from 'react-responsive-carousel';
 // import {Slider} from 'react-slick';
 import Slider from '../../slider';
 // import Modal from 'react-modal';
-import {Button, Icon, Modal, Carousel} from 'react-materialize'
+import {Button, Icon, Modal, Row, Col, Container} from 'react-materialize'
+import LoginNav from "../../components/LoginNav";
+import "./FeedStyles.css";
 
 
 
@@ -91,26 +93,29 @@ class Feed extends Component {
     
     
     return (
+      
       <Container fluid>
+      <LoginNav />
         <Row>
-        <Col size="md-3 sm-3" >
-        <div id="twitch-embed"></div>
+        <Col s={6} >
+        {/* <div id="twitch-embed"></div> */}
         <iframe
-    src="http://player.twitch.tv/?channel=spreeezy&muted=true"
-    height="500px"
-    width="1000px"
+        className ="player"
+    src="http://player.twitch.tv/?channel=deadmau5&muted=true"
+    // height="500px"
+    // width="750px"
     frameBorder="<frameborder>"
     scrolling="<scrolling>"
     allowFullScreen="<allowfullscreen>">
 </iframe>
         </Col>
-        <Col size="md-9 sm-9" >
+        <Col s={2} > 
         <iframe frameBorder="0" 
         scrolling="no" 
         id="chat_embed" 
-        src="http://www.twitch.tv/embed/spreeezy/chat" 
-        height="500" 
-        width="350">
+        src="http://www.twitch.tv/embed/deadmau5/chat" 
+        height="500px" 
+        width="500px">
 </iframe>
         </Col>
 </Row>
@@ -142,8 +147,7 @@ class Feed extends Component {
          </Row>
         
          <Row>
-          <Col size="md-12 sm-12" >
-      
+          <Col s={12}  >
           <Slider {...settings}>
          {this.state.feedz.map(feed => (
            

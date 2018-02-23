@@ -13,6 +13,7 @@ class Profile extends React.Component {
     }
 
     uploadMeme = () => {
+        
         API.uploadMeme({link: this.state.meme, upvotes: 0}).then(res => console.log(res));
     }
 

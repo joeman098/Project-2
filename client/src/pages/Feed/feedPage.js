@@ -31,6 +31,7 @@ class Feed extends Component {
 
   componentDidMount() {
     this.loadFeed();
+   
   }
 
   loadFeed = () => {
@@ -41,6 +42,7 @@ class Feed extends Component {
         
       )
       .catch(err => console.log(err));
+     
   };
 
   // deleteBook = id => {
@@ -88,6 +90,7 @@ class Feed extends Component {
     };
 
 
+    
     
     return (
       
@@ -142,10 +145,12 @@ class Feed extends Component {
             </form>
           </Col>
          </Row>
+        
          <Row>
           <Col s={12}  >
           <Slider {...settings}>
          {this.state.feedz.map(feed => (
+           
           <div key={feed._id}>
            <FeedCard 
             

@@ -17,6 +17,12 @@ export default {
   },
   getSessionData: function () {
     return axios.get('/api/user/session');
+  },
+  getMemesByUser: function (user) {
+    return axios.post('/api/user/getMemesByUser', user);
+  },
+  uploadMeme: function (meme) {
+    console.log(meme);
+    return axios.post('/api/user/uploadMeme', meme);
   }
-  
 }

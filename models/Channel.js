@@ -15,10 +15,6 @@ var ChannelSchema = new Schema({
         type: String,
         required: true
     },
-    meme: {
-        type: Schema.Types.ObjectId,
-        ref: "Meme"
-    },
     date: {
         type: Date,
         default: Date.now

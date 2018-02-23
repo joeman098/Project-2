@@ -29,14 +29,6 @@ var app = express();
 app.use(express.static("client/build"));
 
 
-// Routers
-app.use(require("./controllers/AuthController"));
-app.use(require("./controllers/UserController"));
-
-//Body parser
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
 // ==========For Passport=============
 //load passport strategies
 // app.use(require('./config/passport/passport.js')(passport, db.User));
@@ -48,6 +40,13 @@ app.use(cookieSession({
   overwrite: false,
   secret: 'keyboard cat'
 }));
+
+
+//Body parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
 
 app.use(flash());
 app.use(passport.initialize());
@@ -91,6 +90,11 @@ app.use(routes);
 //     console.log("App listening on PORT " + PORT);
 //   });
 // });
+
+// Routers
+// app.use(require("./controllers/AuthController"));
+// app.use(require("./controllers/userController"));
+
 
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB

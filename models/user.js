@@ -50,22 +50,22 @@ var UserSchema = new Schema({
         type: Date,
         required: false
     },
-    memes: {
+    memes:[ {
         type: Schema.Types.ObjectId,
         ref: "Meme"
-    },
-    blocked: {
+    } ],
+    blocked: [{
         type: Schema.Types.ObjectId,
         ref: "User"
-    },
-    friends: {
+    }],
+    friends: [{
         type: Schema.Types.ObjectId,
         ref: "User"
-    },
-    messages: {
+    }],
+    messages: [{
         type: Schema.Types.ObjectId,
         ref: "Message"
-    },
+    }],
     date: {
         type: Date,
         default: Date.now
@@ -73,5 +73,4 @@ var UserSchema = new Schema({
 });
 
 var User = mongoose.model("User", UserSchema);
-
 module.exports = User;

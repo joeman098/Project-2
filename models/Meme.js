@@ -8,7 +8,7 @@ var MemeSchema = new Schema({
         type: String,
         required: true
     },
-    upvote: {
+    upvotes: {
         type: Number,
         required: true,
         default: 0
@@ -16,9 +16,11 @@ var MemeSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
-
-
+    },
+    channel: {
+        type: Schema.Types.ObjectId,
+        ref: "Channel"
+    },
 });
 
 var Meme = mongoose.model("Meme", MemeSchema);

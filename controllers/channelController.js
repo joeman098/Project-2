@@ -19,6 +19,7 @@ module.exports = {
             .catch(err => console.log(err));;
     },
     getMemesByChannelTwitchId: function (req, res) {
+        console.log(1);
         const TwitchId = req.body.TwitchId;
         db.Channel.find({
             TwitchId: TwitchId

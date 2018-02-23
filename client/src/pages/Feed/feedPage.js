@@ -98,7 +98,7 @@ class Feed extends Component {
         {/* <div id="twitch-embed"></div> */}
         <iframe
         className ="player"
-    src="http://player.twitch.tv/?channel=drdisrespectlive&muted=true"
+    src="http://player.twitch.tv/?channel=deadmau5&muted=true"
     // height="500px"
     // width="750px"
     frameBorder="<frameborder>"
@@ -110,7 +110,7 @@ class Feed extends Component {
         <iframe frameBorder="0" 
         scrolling="no" 
         id="chat_embed" 
-        src="http://www.twitch.tv/embed/drdisrespectlive/chat" 
+        src="http://www.twitch.tv/embed/deadmau5/chat" 
         height="500px" 
         width="500px">
 </iframe>

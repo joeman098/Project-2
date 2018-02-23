@@ -12,7 +12,7 @@ import { Input2,  FormBtn } from "../../components/Form";
 // import {Slider} from 'react-slick';
 import Slider from '../../slider';
 // import Modal from 'react-modal';
-import {Button, Icon, Modal} from 'react-materialize'
+import {Button, Icon, Modal, Carousel} from 'react-materialize'
 
 
 
@@ -29,6 +29,7 @@ class Feed extends Component {
 
   componentDidMount() {
     this.loadFeed();
+   
   }
 
   loadFeed = () => {
@@ -39,6 +40,7 @@ class Feed extends Component {
         
       )
       .catch(err => console.log(err));
+     
   };
 
   // deleteBook = id => {
@@ -86,6 +88,7 @@ class Feed extends Component {
     };
 
 
+    
     
     return (
       <Container fluid>
@@ -137,10 +140,13 @@ class Feed extends Component {
             </form>
           </Col>
          </Row>
+        
          <Row>
           <Col size="md-12 sm-12" >
+      
           <Slider {...settings}>
          {this.state.feedz.map(feed => (
+           
           <div key={feed._id}>
            <FeedCard 
             

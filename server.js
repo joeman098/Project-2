@@ -76,7 +76,7 @@ app.get("/auth/twitch",  passport.authenticate("twitch"));
 app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedirect: "/" }), function (req, res) {
   req.session.user = req.session.passport.user[0];
   console.log(req.session.user)
-  return res.redirect("http://localhost:3000");
+  return res.redirect("http://localhost:3000/browse");
 });
 
 app.listen(PORT, function() {

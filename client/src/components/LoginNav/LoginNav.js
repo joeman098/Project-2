@@ -6,24 +6,10 @@ import "./LoginNav.css";
 const LoginNav = props =>
     <nav className="row" id="login-nav">
         <h3 id="login-logo">0</h3>
-        <span className="input-field col m6 offset-m6 l6 offset-l3" id="post-bar-col">
-            <Input 
-                placeholder="Search"
-                name="search"
-                type="text"
-                id="search-input"
-                onChange={props.handleInputChange}
-            />
-            <Input 
-                className="btn" 
-                type="submit" 
-                value="SEARCH" 
-                id="search-button" 
-                onClick={props.handleSearchSubmit}
-            />
-        </span>
         <ul id="nav-dashboard" className="right hide-on-small-only chat-nav-links">
-            <li><Link to={"/profilelist"} className="" id="main-chat-link">PROFILE LIST</Link></li>
+            <li><Link to={"/Browse"} className="main-chat-link">BROWSE</Link></li>
+            <li><Link to={"/profilelist"} className="main-chat-link">PROFILE LIST</Link></li>
+            <li><Link to={"/"} className="main-chat-link">LOG IN</Link></li>
         </ul>
     </nav>
 

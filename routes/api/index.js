@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const feedRoute = require("./feeds");
-const userRoute = require("./user");
+const socialitRoute = require("./socialit");
 
 // Book routes
+router.use("/socialit",socialitRoute, )
 router.use("/feeds", feedRoute);
 router.use("/user", userRoute);
 

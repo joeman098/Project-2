@@ -140,8 +140,8 @@ module.exports = {
 
 // });
 
-// router.get("/api/user/session", function (req, res) {
-//   res.json(req.session.user);
-// });
+router.get("/api/user/session", function(req, res) {
+  res.json(req.session.user);
+});
 
-// module.exports = router;
+module.exports = router;

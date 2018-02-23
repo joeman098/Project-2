@@ -4,6 +4,7 @@ module.exports = {
     Channel: require("./Channel"),
     Meme: require("./Meme"),
     FeedMessage: require("./FeedMessage"),
-    Message: require("./Message")
+    Message: require("./Message"),
+    Socialit: require("./socialit")
   };
   

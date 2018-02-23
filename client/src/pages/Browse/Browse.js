@@ -2,17 +2,15 @@ import React, { Component } from "react";
 import SearchNav from "../../components/SearchNav";
 import twitch from "../../utils/twitchAPI";
 import SearchRes from "../../components/SearchRes";
-//import { Container, Row } from "../../components/Grid/";
 import { Container, Row } from "react-materialize";
-import "./Browse.css";;
+import "./Browse.css";
 
 
 class Browse extends Component {
     state = {
         results:[],
         search: "",
-        isUserChecked: false,
-        isGameChecked: false
+        selected: "users"
     }
     
     componentDidMount(){
@@ -35,16 +33,16 @@ class Browse extends Component {
         });
     }
 
-    GameStreams = () => {
-        twitch.GameStreams()
+    GameStreams = (search) => {
+        twitch.GameStreams(search)
         .then(res => {
             this.setState({ results: res.data.data })
             console.log(res.data.data);
         });
     }
 
-    UserSearch = () => {
-        twitch.UserSearch()
+    UserSearch = (search) => {
+        twitch.UserSearch(search)
         .then(res => {
             this.setState({ results: res.data.data })
             console.log(res.data.data);
@@ -59,11 +57,21 @@ class Browse extends Component {
         });
     };
 
-    handleSearchSubmit = event => {
-        event.preventDefault();
-        this.Top();
+    handleSelectChange = event => {
+        this.setState({selected: event.target.value})
     }
 
+    handleSearchSubmit = (event) => {
+        event.preventDefault();
+        const selected = this.state.selected;
+        if(selected === "users") {
+            this.GameStreams(this.state.search);
+        }
+        else if(selected === "games") {
+            this.UserSearch(this.state.search);
+        }
+        console.log(this.state.selected);
+    }
 
     render() {
         return(
@@ -71,7 +79,7 @@ class Browse extends Component {
                 <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
-                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} isUserChecked={this.state.isUserChecked} isGameChecked={this.state.isGameChecked}/>
+                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} handleSelectChange={this.handleSelectChange}/>
                 <Container>
                     <Row>
                     <div className="search-results">

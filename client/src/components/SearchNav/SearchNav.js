@@ -4,7 +4,9 @@ import CustomInput from "../../components/Form/Input";
 import { Input } from "react-materialize";
 import "./SearchNav.css";
 
-const SearchNav = props =>
+const SearchNav = props => {
+
+    return (
     <nav className="row" id="search-nav">
         <Link to={"/dashboard"} id="profile-logo">
             0
@@ -17,8 +19,12 @@ const SearchNav = props =>
                 id="search-input"
                 onChange={props.handleInputChange}
             />
-            <Input name='search-type' type='radio' value='users' label='Users' />
-            <Input name='search-type' type='radio' value='games' label='Games' />
+            <div id="select-wrapper">
+            <Input s={4} type='select' label="Search For" defaultValue='users' name="search-dropdown" onChange={props.handleSelectChange}>
+                <option value='users'>Users</option>
+                <option value='games'>Games</option>
+	        </Input>
+            </div>
             <CustomInput 
                 className="btn" 
                 type="submit" 
@@ -34,5 +40,7 @@ const SearchNav = props =>
             <li><Link to={"/"} className="main-chat-link">LOG IN</Link></li>
         </ul>
     </nav>
+    )
+}
 
 export default SearchNav;

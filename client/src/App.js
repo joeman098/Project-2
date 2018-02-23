@@ -7,6 +7,7 @@ import ProfileList from "./pages/ProfileList";
 import NoMatch from "./pages/NoMatch";
 import Feed from "./pages/Feed";
 import Browse from "./pages/Browse";
+import socialit from "./pages/socialit"
 
 const App = () =>
 <Router>
@@ -19,6 +20,7 @@ const App = () =>
         <Route exact path="/profile/:id" component={Profile} />
         <Route exact path="profilelist" component={ProfileList} />
         <Route exact path="/Browse" component={Browse} />
+        <Route exact path="/socialit" component={socialit} />
         <Route component={NoMatch} />
     </Switch>
   </div>

@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const feedController = require("../../controllers/feedController");
-
 // Matches with "/api/feeds"
-router.route("/")
+router
+  .route("/")
   .get(feedController.findAll)
   .post(feedController.create);
 
@@ -12,5 +12,5 @@ router
   .get(feedController.findById)
   .put(feedController.update)
   .delete(feedController.remove);
-
+ 
 module.exports = router;

@@ -96,8 +96,8 @@ class Feed extends Component {
       
       <Container fluid>
       <LoginNav />
-        <Row>
-        <Col s={6} >
+        <Row className="feedRow">
+        <Col s={6} className="feedCol">
         {/* <div id="twitch-embed"></div> */}
         <iframe
         className ="player"
@@ -109,7 +109,7 @@ class Feed extends Component {
     allowFullScreen="<allowfullscreen>">
 </iframe>
         </Col>
-        <Col s={2} > 
+        <Col s={2} className="feedCol"> 
         <iframe frameBorder="0" 
         scrolling="no" 
         id="chat_embed" 
@@ -119,8 +119,8 @@ class Feed extends Component {
 </iframe>
         </Col>
 </Row>
-<Row>
-          <Col size="md-12 sm-12" >
+<Row className="feedRow">
+          <Col size="md-12 sm-12" className="feedCol" >
            
             <form>
               <Input2
@@ -146,8 +146,8 @@ class Feed extends Component {
           </Col>
          </Row>
         
-         <Row>
-          <Col s={12}  >
+         <Row className="feedRow">
+          <Col s={12}  className="feedCol">
           <Slider {...settings}>
          {this.state.feedz.map(feed => (
            

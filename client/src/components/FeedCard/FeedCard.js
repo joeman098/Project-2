@@ -13,10 +13,10 @@ const FeedCard = props => (
  <Card
  key={props.sesame}
 
-className='small' 
-header={<CardTitle  image={props.link} ><strong>Posted By:</strong>
- <strong>{props.poster}</strong>
- </CardTitle>}
+    className='small carousel-card' 
+    header={<CardTitle className="carousel-card-title"  image={props.link} ><strong>Posted By:</strong>
+    <strong>{props.poster}</strong>
+    </CardTitle>}
 >
 
 

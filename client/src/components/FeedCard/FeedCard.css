@@ -1,5 +1,5 @@
 
-.card {
+.carousel-card {
     background: #ffffff;
     border-radius: 2px;
     height: 325px;
@@ -10,31 +10,31 @@
     text-align: left;
   }
   
-  .card > .img-container {
+  .carousel-card > .img-container {
     height: 85%;
     overflow: hidden;
     text-align: center;
     background:#6CADDC;
   }
-  .card > .img-container > img {
+  .carousel-card > .img-container > img {
     width: 60%
   }
   
-  .card > .content {
+  .carousel-card > .content {
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 15px;
   }
   
-  .card > .content > ul {
+  .carousel-card > .content > ul {
     list-style-type: none;
   }
   
-  .card > .content > ul > li {
+  .carousel-card > .content > ul > li {
     margin-top: 18px;
   }
   
-  .card > .remove {
+  .carousel-card > .remove {
     color: #ff1744;
     font-size: 48px;
     position: absolute;
@@ -43,7 +43,7 @@
     cursor: pointer;
   }
   
-  .card > .remove:hover {
+  .carousel-card > .remove:hover {
     color: #d50000;
   }
   

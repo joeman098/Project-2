@@ -10,7 +10,8 @@ const FeedCard = props => (
   
 
 <div className='card' >
- <Card key={props.sesame}
+ <Card
+ key={props.sesame}
 
 className='small' 
 header={<CardTitle  image={props.link} ><strong>Posted By:</strong>

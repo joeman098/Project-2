@@ -11,10 +11,10 @@ import { Input2,  FormBtn } from "../../components/Form";
 // import { Carousel } from 'react-responsive-carousel';
 // import {Slider} from 'react-slick';
 import Slider from '../../slider';
-// import Modal from 'react-modal';
+// import Modal from 'react-myarn sodal';
 import {Button, Icon, Modal, Row, Col, Container} from 'react-materialize'
 import LoginNav from "../../components/LoginNav";
-import "./FeedStyles.css";
+import feedStyles from "./FeedStyles.css";
 
 
 

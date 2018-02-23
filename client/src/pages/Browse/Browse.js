@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LoginNav from "../../components/LoginNav";
+import SearchNav from "../../components/SearchNav";
 import "./Browse.css";
 import twitch from "../../utils/twitchAPI";
 import SearchRes from "../../components/SearchRes";
@@ -9,7 +9,9 @@ import { Container, Row } from "../../components/Grid/";
 class Browse extends Component {
     state = {
         results:[],
-        search: ""
+        search: "",
+        isUserChecked: false,
+        isGameChecked: false
     }
     
     componentDidMount(){
@@ -22,7 +24,30 @@ class Browse extends Component {
             this.setState({ results: res.data.data })
             console.log(res.data.data);
         });
+    }
 
+    TopGames = () => {
+        twitch.TopGames()
+        .then(res => {
+            this.setState({ results: res.data.data })
+            console.log(res.data.data);
+        });
+    }
+
+    GameStreams = () => {
+        twitch.GameStreams()
+        .then(res => {
+            this.setState({ results: res.data.data })
+            console.log(res.data.data);
+        });
+    }
+
+    UserSearch = () => {
+        twitch.UserSearch()
+        .then(res => {
+            this.setState({ results: res.data.data })
+            console.log(res.data.data);
+        });
     }
 
     handleInputChange = event => {
@@ -45,14 +70,14 @@ class Browse extends Component {
                 <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
-                <LoginNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit}/>
+                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} isUserChecked={this.state.isUserChecked} isGameChecked={this.state.isGameChecked}/>
                 <Container>
                     <Row>
                     <div className="search-results">
                     {this.state.results.map(res => (
                     <SearchRes 
-                        pic ={res.thumbnail_url} 
-                        title={res.title}
+                        pic ={res.thumbnail_url ? res.thumbnail_url : res.box_art_url} 
+                        title={res.title ? res.title : res.name}
                         className="browse-results"
                     />))}
                     </div>

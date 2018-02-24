@@ -20,4 +20,7 @@
 .feed-cardz{
   background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
   background-color: #6441a5;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 250px;
 }

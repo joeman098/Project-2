@@ -43,28 +43,62 @@
 } */
 
 .fullscreen-bg_video {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-object-fit: cover;
-z-index: -100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -100;
 }
 
 #main-page-container {
-width: 100%;
-height: 100vh;
-padding: 0;
-top: 0;
-right: 0;
-bottom: 0;
-left: 0;
-overflow: hidden;
-z-index: -100;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
 }
 
+#post-container {
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#twitch-container {
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.input-field input[type=text]:focus + label {
+  color: #6441a5;
+}
 
   .tv-player{
     margin-top: 75px;
+    margin-bottom: 0;
+    padding-bottom : 0 !important;
+  }
+
+  #tv-player-col {
+    padding-left: 0 !important;
+  }
+
+  #chat-col {
+    padding-right: 0 !important;
+  }
+
+  #stream-embed {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
   }

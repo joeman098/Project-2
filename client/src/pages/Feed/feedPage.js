@@ -22,14 +22,22 @@ class Feed extends Component {
     poster: "",
     link: "",
     modalIsOpen: false,
-    channel: {}
+    channel: {},
+    User:{}
   };
 
   componentDidMount() {
     this.loadFeed();
-
+    this.SessionData();
+    console.log(this.state)
 
   }
+
+SessionData = () =>{
+  API.getSessionData()
+  .then(res => this.setState({User: res}))
+  .catch(err => console.log(err)) 
+};
 
   loadFeed = () => {
     API.getMemesByChannelName(this.props.match.params.channel)

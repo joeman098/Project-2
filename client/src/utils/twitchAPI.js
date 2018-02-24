@@ -19,11 +19,16 @@ export default {
     return twitch.get();
   },
   UserSearch: (userName) => {
-    twitch.defaults.baseURL = `https://api.twitch.tv/helix/streams?user_login=${userName}`
+    twitch.defaults.baseURL = `https://api.twitch.tv/helix/users?login=${userName}`
     return twitch.get();
   },
   GetUserById:(id) =>{
     twitch.defaults.baseURL = ` https://api.twitch.tv/helix/users?id=${id}`
     return twitch.get();
+  },
+  GameByName: (name) =>{
+    twitch.defaults.baseURL = `https://api.twitch.tv/helix/games?name=${name}`
+    return twitch.get();
   }
+
 };

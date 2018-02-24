@@ -1,6 +1,6 @@
 
 
-.feed-car, .model-card {
+.feed-card, .model-card {
   text-align: center;
   color: white;
   width: 100%;
@@ -12,7 +12,7 @@
  font-size: large;
  color:white;
 }
-.card-content{
+.feed-card{
     background-color: #6441a5;
     overflow:hidden;
 }

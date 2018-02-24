@@ -8,7 +8,7 @@ const FeedModal = props => (
     <Modal
       header={props.poster}
       trigger={
-         <div class="valign-wrapper">
+         <div className="valign-wrapper">
            <Button className="center-align modal-button" waves='purple'>Expand<Icon right>image</Icon></Button></div>
           }>
      

@@ -48,10 +48,10 @@ class Feed extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if ( this.state.link) {
-      API.uploadMeme({
+      API.postMeme({
         // poster: this.state.poster,
         link: this.state.link,
-        channel:this.state.channel
+        channel:this.props.match.params.channel
       })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));

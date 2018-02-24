@@ -5,7 +5,7 @@ import {Card, CardTitle, Button} from 'react-materialize';
 
 
 const FeedCard = props => (
-  <div className="feed-card">
+  <div className="feed-cardz">
     {/* <img class="responsive-img" src={props.link} />
     <div className="card-img-overlay h-100 d-flex flex-column justify-content-end">
       <strong>Posted By:</strong> {props.poster}

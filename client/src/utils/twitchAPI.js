@@ -15,7 +15,7 @@ export default {
     return twitch.get();
   },
   GameStreams: function (gameID) {  
-    twitch.defaults.baseURL = `https://api.twitch.tv/helix/streams?first=50?game_id=${gameID}`;  
+    twitch.defaults.baseURL = `https://api.twitch.tv/helix/streams?game_id=${gameID}`;  
     return twitch.get();
   },
   UserSearch: (userName) => {

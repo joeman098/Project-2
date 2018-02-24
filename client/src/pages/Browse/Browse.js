@@ -41,6 +41,7 @@ class Browse extends Component {
         .then(res => {
             this.setState({ results: res.data.data })
             console.log(res.data.data);
+            this.UserIdFix();
         });
     }
 
@@ -61,9 +62,11 @@ class Browse extends Component {
                 for (let i = 0; i < stream.length; i++) {
                     let thing = stream[i]
                   thing["user_login"] = hairy[i];
+                  thing["kind"] = "stream";
                     
                 }                
                 this.setState({results:stream})
+                console.log(this.state.results)
             })};
             getUserById(ass)
     }
@@ -124,9 +127,12 @@ class Browse extends Component {
                     {this.state.results.map(res => (
                     <SearchRes 
                         userName={res.user_login}
+                        id={res.id}
                         pic ={res.thumbnail_url ? res.thumbnail_url : res.box_art_url} 
                         title={res.title ? res.title : res.name}
                         className="browse-results"
+                        GameStreams ={this.GameStreams}
+                        kind ={res.kind}
                     />))}
                     </div>
                     </Row>

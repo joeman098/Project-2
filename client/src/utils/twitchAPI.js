@@ -21,5 +21,9 @@ export default {
   UserSearch: (userName) => {
     twitch.defaults.baseURL = `https://api.twitch.tv/helix/streams?user_login=${userName}`
     return twitch.get();
+  },
+  GetUserById:(id) =>{
+    twitch.defaults.baseURL = ` https://api.twitch.tv/helix/users?id=${id}`
+    return twitch.get();
   }
 };

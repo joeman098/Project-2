@@ -11,6 +11,10 @@ var ChannelSchema = new Schema({
         type: Number,
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
     link: {
         type: String,
         required: true

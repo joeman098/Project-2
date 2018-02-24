@@ -22,7 +22,19 @@ export default {
     return axios.post('/api/user/getMemesByUser', user);
   },
   uploadMeme: function (meme) {
-    console.log(meme);
     return axios.post('/api/user/uploadMeme', meme);
+  },
+  getMemesByChannelName: function (channelName) {
+    return axios.post('/api/channel/getMemesByChannelName', channelName);
+  },
+  // getMemesByChannelTwitchId: function () {
+  //   return axios.post('/api/channel/getMemesByChannelTwitchId', channelTwitchId);
+  // },
+  getMemesByChannelId: function (channelId) {
+    return axios.post('/api/channel/getMemesByChannelId', channelId);
+  },
+  createChannel: function (channel) {
+    return axios.post('/api/channel/createChannel', channel);
   }
+
 }

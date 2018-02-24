@@ -2,54 +2,39 @@ import React, { Component } from "react";
 // import DeleteBtn from "../../components/DeleteBtn";
 // import Jumbotron from "../../components/Jumbotron";
 import FeedCard from "../../components/FeedCard";
-// import FeedModal from "../../components/FeedModal";
+import FeedModal from "../../components/FeedModal";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
-// import { Col, Row, Container } from "../../components/Grid";
+import { Container } from "../../components/Grid";
 // import { List, ListItem } from "../../components/List";
-import { Input2,  FormBtn } from "../../components/Form";
+import { Input2, FormBtn } from "../../components/Form";
 // import { Carousel } from 'react-responsive-carousel';
 // import {Slider} from 'react-slick';
-import Slider from '../../slider';
+import Slider from "../../slider";
 // import Modal from 'react-modal';
-import {Button, Icon, Modal, Row, Col, Container} from 'react-materialize'
+import { Button, Icon, Modal, Row, Col } from "react-materialize";
 import LoginNav from "../../components/LoginNav";
 import "./FeedStyles.css";
-
-
-
 
 class Feed extends Component {
   state = {
     feedz: [],
     poster: "",
     link: "",
-    modalIsOpen: false
+    modalIsOpen: false,
+    channel: "deadmau5"
   };
-
-
 
   componentDidMount() {
     this.loadFeed();
-   
   }
 
   loadFeed = () => {
     API.getFeeds()
-      .then(res =>
-        
-        this.setState({ feedz: res.data, poster: "", link: "" })
-        
-      )
+      .then(res => this.setState({ feedz: res.data, poster: "", link: "" }))
       .catch(err => console.log(err));
-     
   };
 
-  // deleteBook = id => {
-  //   API.deleteBook(id)
-  //     .then(res => this.loadFeed())
-  //     .catch(err => console.log(err));
-  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -64,20 +49,15 @@ class Feed extends Component {
       API.saveFeed({
         poster: this.state.poster,
         link: this.state.link
-      
       })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));
     }
   };
 
-
-
-
-
   render() {
     const settings = {
-      showArrows:true,
+      showArrows: true,
       dots: true,
       infinite: true,
       slidesToShow: 3,
@@ -85,111 +65,90 @@ class Feed extends Component {
       autoplay: true,
       autoplaySpeed: 2000,
       pauseOnHover: true,
-      mobileFirst: true,
-     
+      mobileFirst: true
     };
 
-
-    
-    
     return (
-      
-      <Container fluid>
-      <LoginNav />
-        <Row>
-        <Col s={6} >
-        {/* <div id="twitch-embed"></div> */}
-        <iframe
-        className ="player"
-    src="http://player.twitch.tv/?channel=deadmau5&muted=true"
-    // height="500px"
-    // width="750px"
-    frameBorder="<frameborder>"
-    scrolling="<scrolling>"
-    allowFullScreen="<allowfullscreen>">
-</iframe>
-        </Col>
-        <Col s={2} > 
-        <iframe frameBorder="0" 
-        scrolling="no" 
-        id="chat_embed" 
-        src="http://www.twitch.tv/embed/deadmau5/chat" 
-        height="500px" 
-        width="500px">
-</iframe>
-        </Col>
-</Row>
-<Row>
-          <Col size="md-12 sm-12" >
-           
-            <form>
-              <Input2
-                value={this.state.poster}
-                onChange={this.handleInputChange}
-                name="poster"
-                placeholder="poster (required)"
+      <div>
+        <LoginNav />
+        <Container>
+          <Row className="tv-player">
+            <Col s={6}>
+              {/* <div id="twitch-embed"></div> */}
+              <iframe
+                className="player"
+                src={`http://player.twitch.tv/?channel=${
+                  this.state.channel
+                }&muted=true   `}
+                frameBorder="<frameborder>"
+                scrolling="<scrolling>"
+                allowFullScreen="<allowfullscreen>"
               />
-              <Input2
-                value={this.state.link}
-                onChange={this.handleInputChange}
-                name="link"
-                placeholder="link (required)"
+            </Col>
+            <Col s={2}>
+              <iframe
+                frameBorder="0"
+                scrolling="no"
+                id="chat_embed"
+                src={`http://www.twitch.tv/embed/${this.state.channel}/chat`}
+                height="500px"
+                width="500px"
               />
-              
-              <FormBtn
-                disabled={!(this.state.link && this.state.poster)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Link
-              </FormBtn>
-            </form>
-          </Col>
-         </Row>
-        
-         <Row>
-          <Col s={12}  >
-          <Slider {...settings}>
-         {this.state.feedz.map(feed => (
-           
-          <div key={feed._id}>
-           <FeedCard 
-            
-            id={feed._id}
-            poster ={feed.poster} 
-            link= {feed.link}
-            openModal={this.openModal}
-   
-          />
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12 sm-12">
+              <form>
+                <Input2
+                  value={this.state.poster}
+                  onChange={this.handleInputChange}
+                  name="poster"
+                  placeholder="poster (required)"
+                />
+                <Input2
+                  value={this.state.link}
+                  onChange={this.handleInputChange}
+                  name="link"
+                  placeholder="link (required)"
+                />
 
-                  <Modal
-                    header='s0cial3r shared!'
-                    trigger={<Button waves='light'>Click ME!<Icon right>insert_chart</Icon></Button>}>
-     
-                    <div className='card '>
-                      <img alt={feed.link} src={feed.link} className="imagez card-img openModal" />
-                      <div className="card-img-overlay h-100 d-flex flex-column justify-content-end" >
-                        <ul>
-                          <li>
-                            <strong>Posted By:</strong> {feed.poster}
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </Modal>
+                <FormBtn
+                  disabled={!(this.state.link && this.state.poster)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit Link
+                </FormBtn>
+              </form>
+            </Col>
+          </Row>
 
-            </div>
+          <Row>
+            <Col s={12}>
+              <Slider {...settings}>
+                {this.state.feedz.map(feed => (
+                  <div key={feed._id}>
+                    <FeedModal
+                      id={feed._id}
+                      poster={feed.poster}
+                      link={feed.link}
+                      openModal={this.openModal}
+                    />
 
-        ))}
-
- 
-  </Slider>
-      
-          </Col>
+                    <FeedCard
+                      id={feed._id}
+                      poster={feed.poster}
+                      link={feed.link}
+                      // openModal={this.openModal}
+                    />
+                  </div>
+                ))}
+              </Slider>
+            </Col>
+          </Row>
           
-        
-        </Row>
-      </Container>
-    )
+        </Container>
+      </div>
+    );
   }
 }
 

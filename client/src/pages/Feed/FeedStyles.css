@@ -37,9 +37,10 @@
     height: inherit;
     overflow: hidden;
 }
-.search-results {
+/* why dis here -joe */
+/* .search-results {
   margin-top: 75px;
-}
+} */
 
 .fullscreen-bg_video {
 position: fixed;

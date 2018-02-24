@@ -15,7 +15,7 @@ const App = () =>
     <Switch>
         <Route exact path="/" component = {Login} />
         {/* <Route exact path="/dashboard" component = {Dashboard} /> */}
-        <Route exact path="/feedPage" component={Feed} />
+        <Route exact path="/stream/:channel" component={Feed} />
         {/* <Route exact path="dashboard/update" component={UpdateDashboard} /> */}
         <Route exact path="/profile/:id" component={Profile} />
         {/* <Route exact path="profilelist" component={ProfileList} /> */}

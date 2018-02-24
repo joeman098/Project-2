@@ -3,7 +3,7 @@ const channelController = require("../../controllers/channelController");
 
 
 router.route("/getMemesByChannelName")
-    .post(channelController.getMemesByChannelName);
+    .get(channelController.getMemesByChannelName);
 router.route("/getMemesByChannelId")
     .post(channelController.getMemesByChannelId);
 router.route("/getMemesByChannelTwitchId")

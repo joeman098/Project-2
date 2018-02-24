@@ -3,17 +3,17 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ChannelSchema = new Schema({
-    title: {
+    channel: {
         type: String,
-        required: true
+        required: false
     },
     TwitchId: {
         type: Number,
-        required: true
+        required: false
     },
     name: {
         type: String,
-        required: true
+        required: false
     },
     link: {
         type: String,

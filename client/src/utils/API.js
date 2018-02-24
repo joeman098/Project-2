@@ -25,7 +25,7 @@ export default {
     return axios.post('/api/user/uploadMeme', meme);
   },
   getMemesByChannelName: function (channelName) {
-    return axios.post('/api/channel/getMemesByChannelName', channelName);
+    return axios.get('/api/channel/getMemesByChannelName', channelName);
   },
   // getMemesByChannelTwitchId: function () {
   //   return axios.post('/api/channel/getMemesByChannelTwitchId', channelTwitchId);

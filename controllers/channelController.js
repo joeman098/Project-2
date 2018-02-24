@@ -2,22 +2,35 @@ const db = require("../models");
 
 // Defining methods for the channelController
 module.exports = {
-    getMemesByChannelName: function (req, res) {
-        const channelName = req.body.channelName;
-        db.Channel.find({
-            name: channelName
-        }).then(function (result) {
-            const channelId = result[0]._id
-            db.Meme.find({ // find Memes for channel by name
-                channel: channelId
-            })
-                .then(function (result) {
-                    res.json(result);
-                })
-                .catch(err => console.log(err));;
-        })
-            .catch(err => console.log(err));;
-    },
+    getMemesByChannelName: function(req, res) {
+        db.Channel
+          .find(req.params.channel)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
+
+
+
+
+
+
+
+    // getMemesByChannelName: function (req, res) {
+    //     const channelName = req.body.channelName;
+    //     db.Channel.find({
+    //         channel: channelName
+    //     }).then(function (result) {
+    //         const channelId = result[0]._id
+    //         db.Meme.find({ // find Memes for channel by name
+    //             channel: channelId
+    //         })
+    //             .then(function (result) {
+    //                 res.json(result);
+    //             })
+    //             .catch(err => console.log(err));;
+    //     })
+    //         .catch(err => console.log(err));;
+    // },
     getMemesByChannelTwitchId: function (req, res) {
         console.log(1);
         const TwitchId = req.body.TwitchId;

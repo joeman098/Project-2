@@ -22,16 +22,18 @@ class Feed extends Component {
     poster: "",
     link: "",
     modalIsOpen: false,
-    channel: "deadmau5"
+    channel: {}
   };
 
   componentDidMount() {
     this.loadFeed();
+
+
   }
 
   loadFeed = () => {
-    API.getFeeds()
-      .then(res => this.setState({ feedz: res.data, poster: "", link: "" }))
+    API.getMemesByChannelName(this.props.match.params.channel)
+      .then(res => this.setState({ feedz: res.data, link: "" }))
       .catch(err => console.log(err));
   };
 
@@ -45,10 +47,11 @@ class Feed extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.poster && this.state.link) {
-      API.saveFeed({
-        poster: this.state.poster,
-        link: this.state.link
+    if ( this.state.link) {
+      API.uploadMeme({
+        // poster: this.state.poster,
+        link: this.state.link,
+        channel:this.state.channel
       })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));
@@ -78,7 +81,7 @@ class Feed extends Component {
               <iframe
                 className="player"
                 src={`http://player.twitch.tv/?channel=${
-                  this.state.channel
+                  this.props.match.params.channel
                 }&muted=true   `}
                 frameBorder="<frameborder>"
                 scrolling="<scrolling>"
@@ -90,7 +93,7 @@ class Feed extends Component {
                 frameBorder="0"
                 scrolling="no"
                 id="chat_embed"
-                src={`http://www.twitch.tv/embed/${this.state.channel}/chat`}
+                src={`http://www.twitch.tv/embed/${this.props.match.params.channel}/chat`}
                 height="500px"
                 width="500px"
               />
@@ -99,12 +102,12 @@ class Feed extends Component {
           <Row>
             <Col size="md-12 sm-12">
               <form>
-                <Input2
+                {/* <Input2
                   value={this.state.poster}
                   onChange={this.handleInputChange}
                   name="poster"
                   placeholder="poster (required)"
-                />
+                /> */}
                 <Input2
                   value={this.state.link}
                   onChange={this.handleInputChange}
@@ -113,7 +116,7 @@ class Feed extends Component {
                 />
 
                 <FormBtn
-                  disabled={!(this.state.link && this.state.poster)}
+                  disabled={!(this.state.link)}
                   onClick={this.handleFormSubmit}
                 >
                   Submit Link
@@ -129,14 +132,14 @@ class Feed extends Component {
                   <div key={feed._id}>
                     <FeedModal
                       id={feed._id}
-                      poster={feed.poster}
+                      // poster={feed.poster}
                       link={feed.link}
                       openModal={this.openModal}
                     />
 
                     <FeedCard
                       id={feed._id}
-                      poster={feed.poster}
+                      // poster={feed.poster}
                       link={feed.link}
                       // openModal={this.openModal}
                     />

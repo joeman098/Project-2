@@ -14,7 +14,7 @@ import Slider from "../../slider";
 // import Modal from 'react-modal';
 import { Button, Icon, Modal, Row, Col } from "react-materialize";
 import LoginNav from "../../components/LoginNav";
-import "./FeedStyles.css";
+import feedStyles from "./FeedStyles.css";
 
 class Feed extends Component {
   state = {

@@ -124,35 +124,7 @@ class Feed extends Component {
               </form>
             </Col>
           </Row>
-          <Row>
-            <Col s={12}>
-              <Slider {...settings}>
-                {this.state.feedz.map(feed => (
-                  <div key={feed._id}>
-                    <FeedModal
-                      id={feed._id}
-                      // poster={feed.poster}
-                      link={feed.link}
-                      openModal={this.openModal}
-                    />
-
-                    <FeedCard
-                      id={feed._id}
-                      // poster={feed.poster}
-                      link={feed.link}
-                      // openModal={this.openModal}
-                    />
-                  </Col>
-                  <Col s={2}>
-                    <FormBtn
-                      disabled={!(this.state.link && this.state.poster)}
-                      onClick={this.handleFormSubmit}
-                    >
-                      Submit Link
-                    </FormBtn>
-                  </Col>
-                </form>
-              </Row>
+    
               <Row>
                 <Col s={12}>
                   <Slider {...settings}>
@@ -175,8 +147,7 @@ class Feed extends Component {
                     ))}
                   </Slider>
                 </Col>
-              </Row>
-            </Col>
+             
           </Row>
         </Container>
       </div>

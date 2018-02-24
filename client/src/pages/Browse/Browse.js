@@ -76,7 +76,14 @@ class Browse extends Component {
 
 
 
-
+    Gamesearch = (search) => {
+        twitch.GameByName(search)
+        .then(res => {
+            this.setState({ results: res.data.data })
+            console.log(res.data.data);
+            
+        });
+    }
 
 
 
@@ -87,8 +94,10 @@ class Browse extends Component {
         .then(res => {
             this.setState({ results: res.data.data })
             console.log(res.data.data);
+            this.UserIdFix();
         });
     }
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -106,10 +115,10 @@ class Browse extends Component {
         event.preventDefault();
         const selected = this.state.selected;
         if(selected === "users") {
-            this.GameStreams(this.state.search);
+            this.UserSearch(this.state.search);
         }
         else if(selected === "games") {
-            this.UserSearch(this.state.search);
+            this.Gamesearch(this.state.search);
         }
         console.log(this.state.selected);
     }
@@ -128,7 +137,7 @@ class Browse extends Component {
                     <SearchRes 
                         userName={res.user_login}
                         id={res.id}
-                        pic ={res.thumbnail_url ? res.thumbnail_url : res.box_art_url} 
+                        pic ={res.thumbnail_url ? res.thumbnail_url : res.box_art_url ? res.box_art_url :res.profile_image_url } 
                         title={res.title ? res.title : res.name}
                         className="browse-results"
                         GameStreams ={this.GameStreams}

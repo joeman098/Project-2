@@ -23,7 +23,7 @@ const SearchRes = props => {
         >
           <Row>
             <Col m={12} s={12}>
-              <a href={`/:${props.channel}`}>
+              <a href={`stream/${props.userName}`}>
                 <img alt={"h"} src={fixed(props.pic)} className="" />
               </a>
             </Col>

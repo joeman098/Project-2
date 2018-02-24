@@ -15,6 +15,7 @@ class Browse extends Component {
     
     componentDidMount(){
         this.setState({search: ""})
+     
     }
     
     Top = () => {
@@ -22,6 +23,7 @@ class Browse extends Component {
         .then(res => {
             this.setState({ results: res.data.data })
             console.log(res.data.data);
+            this.UserIdFix();
         });
     }
 
@@ -30,6 +32,7 @@ class Browse extends Component {
         .then(res => {
             this.setState({ results: res.data.data })
             console.log(res.data.data);
+            
         });
     }
 
@@ -40,6 +43,41 @@ class Browse extends Component {
             console.log(res.data.data);
         });
     }
+
+    UserIdFix = () => {
+        const stream =[...this.state.results]
+        const streams = stream
+        const fixer = streams => streams.user_id
+        let fixedarray = streams.map(fixer)
+        const ass= fixedarray.join("&id=")
+ 
+        
+         const getUserById = id =>{
+     
+            twitch.GetUserById(id).then(res => {
+              const balls = res.data.data
+              const dicks = balls => balls.login
+                let hairy = balls.map(dicks)
+                for (let i = 0; i < stream.length; i++) {
+                    let thing = stream[i]
+                  thing["user_login"] = hairy[i];
+                    
+                }                
+                this.setState({results:stream})
+            })};
+            getUserById(ass)
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     UserSearch = (search) => {
         twitch.UserSearch(search)
@@ -85,6 +123,7 @@ class Browse extends Component {
                     <div className="search-results">
                     {this.state.results.map(res => (
                     <SearchRes 
+                        userName={res.user_login}
                         pic ={res.thumbnail_url ? res.thumbnail_url : res.box_art_url} 
                         title={res.title ? res.title : res.name}
                         className="browse-results"

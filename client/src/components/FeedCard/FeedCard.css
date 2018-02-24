@@ -7,13 +7,20 @@
   border-radius: 10px;
   position: relative;
   z-index: 0;
+  padding: 20px !important;
 } 
 #posterName{
  font-size: large;
  color:white;
-}
-.feed-card{
-    background-color: #6441a5;
-    overflow:hidden;
+
+ padding: 20px !important;
 }
 
+
+.feed-cardz{
+  background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+  background-color: #6441a5;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 250px;
+}

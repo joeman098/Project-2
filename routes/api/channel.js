@@ -2,8 +2,11 @@ const router = require("express").Router();
 const channelController = require("../../controllers/channelController");
 
 
-router.route("/getMemesByChannelName")
+router.route("/:channel")
     .get(channelController.getMemesByChannelName);
+
+    router.route("/")
+    .post(channelController.postMeme);
 router.route("/getMemesByChannelId")
     .post(channelController.getMemesByChannelId);
 router.route("/getMemesByChannelTwitchId")

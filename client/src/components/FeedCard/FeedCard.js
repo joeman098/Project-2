@@ -12,7 +12,7 @@ const FeedCard = props => (
     </div> */}
     <Card
       key={props.sesame}
-      className="small"
+      className="small feed-cardz"
       header={<CardTitle image={props.link} />}
     >
       <p id="posterName">Posted By:

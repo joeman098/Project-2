@@ -9,7 +9,10 @@ const FeedModal = props => (
 
 <Modal
                     header='s0cial3r shared!'
-                    trigger={<Button waves='purple'>Click ME!<Icon right>insert_chart</Icon></Button>}>
+                    trigger={
+                      <div class="valign-wrapper">
+                    <Button className="center-align" waves='purple'>Click ME!<Icon right>image</Icon></Button></div>
+                    }>
      
                     <div className='model-card'>
                       <img alt={props.link} src={props.link} className="model-card" />

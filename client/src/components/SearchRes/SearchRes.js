@@ -23,8 +23,8 @@ const SearchRes = props => {
         >
           <Row>
             <Col m={12} s={12}>
-              <a href="#">
-                <img alt={"h"} src={fixed(props.pic)} className="search-result-img" />
+              <a href="/feedPage">
+                <img alt={"h"} src={fixed(props.pic)} className="" />
               </a>
             </Col>
             <Col m={12} s={12}>

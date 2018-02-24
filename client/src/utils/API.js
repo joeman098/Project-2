@@ -27,9 +27,9 @@ export default {
   getMemesByChannelName: function (channelName) {
     return axios.post('/api/channel/getMemesByChannelName', channelName);
   },
-  getMemesByChannelTwitchId: function () {
-    return axios.post('/api/channel/getMemesByChannelTwitchId', channelTwitchId);
-  },
+  // getMemesByChannelTwitchId: function () {
+  //   return axios.post('/api/channel/getMemesByChannelTwitchId', channelTwitchId);
+  // },
   getMemesByChannelId: function (channelId) {
     return axios.post('/api/channel/getMemesByChannelId', channelId);
   },

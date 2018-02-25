@@ -97,57 +97,64 @@ class Feed extends Component {
     return (
       <div>
         <LoginNav />
-        <Container>
-          <Row className="tv-player">
-            <Col s={6}>
-              {/* <div id="twitch-embed"></div> */}
-              <iframe
-                className="player"
-                src={`http://player.twitch.tv/?channel=${
-                  this.props.match.params.channel
-                }&muted=true   `}
-                frameBorder="<frameborder>"
-                scrolling="<scrolling>"
-                allowFullScreen="<allowfullscreen>"
-              />
-            </Col>
-            <Col s={2}>
-              <iframe
-                frameBorder="0"
-                scrolling="no"
-                id="chat_embed"
-                src={`http://www.twitch.tv/embed/${this.props.match.params.channel}/chat`}
-                height="500px"
-                width="500px"
-              />
+        <Container fluid>
+          <Row>
+            <Col s={10} className="offset-s1" id="twitch-container">
+              <Row className="tv-player">
+                <Col s={8} id="tv-player-col"> 
+                  {/* <div id="twitch-embed"></div> */}
+                  <iframe
+                    className="player"
+                    src={`http://player.twitch.tv/?channel=${
+                      this.props.match.params.channel
+                    }&muted=true   `}
+                    frameBorder="<frameborder>"
+                    scrolling="<scrolling>"
+                    allowFullScreen="<allowfullscreen>"
+                    id="stream-embed"
+                  />
+                </Col>
+                <Col s={4} id="chat-col">
+                  <iframe
+                    frameBorder="0"
+                    scrolling="no"
+                    id="chat_embed"
+                    src={`http://www.twitch.tv/embed/${this.props.match.params.channel}/chat`}
+                    height="500px"
+                    width="100%"
+                  />
+                </Col>
+              </Row>
             </Col>
           </Row>
           <Row>
-            <Col size="md-12 sm-12">
-              <form>
-                {/* <Input2
-                  value={this.state.poster}
-                  onChange={this.handleInputChange}
-                  name="poster"
-                  placeholder="poster (required)"
-                /> */}
-                <Input2
-                  value={this.state.link}
-                  onChange={this.handleInputChange}
-                  name="link"
-                  placeholder="link (required)"
-                />
-
-                <FormBtn
-                  disabled={!(this.state.link)}
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit Link
-                </FormBtn>
-              </form>
-            </Col>
-          </Row>
-    
+            <Col s={10} className="offset-s1" id="post-container">
+              <Row>
+                <form>
+                  <Col s={10}>
+                    {/* <Input2
+                      value={this.state.poster}
+                      onChange={this.handleInputChange}
+                      name="poster"
+                      placeholder="poster (required)"
+                    /> */}
+                    <Input2
+                      value={this.state.link}
+                      onChange={this.handleInputChange}
+                      name="link"
+                      placeholder="link (required)"
+                    />
+                  </Col>
+                  <Col s={2}>
+                    <FormBtn
+                      disabled={!(this.state.link)}
+                      onClick={this.handleFormSubmit}
+                    >
+                      Submit Link
+                    </FormBtn>
+                  </Col>
+                </form>
+              </Row>
               <Row>
                 <Col s={12}>
                   <Slider {...settings}>
@@ -159,7 +166,6 @@ class Feed extends Component {
                           link={feed.link}
                           openModal={this.openModal}
                         />
-
                         <FeedCard
                           id={feed._id}
                           poster={feed.poster}
@@ -170,7 +176,8 @@ class Feed extends Component {
                     ))}
                   </Slider>
                 </Col>
-             
+              </Row>
+            </Col>
           </Row>
         </Container>
       </div>

@@ -8,9 +8,7 @@ const SearchNav = props => {
 
     return (
     <nav className="row" id="search-nav">
-        <Link to={"/dashboard"} id="profile-logo">
-            0
-        </Link> 
+        <h3 id="profile-logo">0</h3>
         <span className="input-field col m5 offset-m1 l5 offset-l1" id="post-bar-col">
             <CustomInput 
                 placeholder="Search"

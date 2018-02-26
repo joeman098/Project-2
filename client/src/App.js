@@ -11,16 +11,16 @@ import socialit from "./pages/socialit"
 
 const App = () =>
 <Router>
-  <div>
+  <div id="app">
     <Switch>
         <Route exact path="/" component = {Login} />
         {/* <Route exact path="/dashboard" component = {Dashboard} /> */}
-        <Route exact path="/stream/:channel" component={Feed} />
         {/* <Route exact path="dashboard/update" component={UpdateDashboard} /> */}
         <Route exact path="/profile/:id" component={Profile} />
         {/* <Route exact path="profilelist" component={ProfileList} /> */}
         <Route exact path="/Browse" component={Browse} />
-        <Route exact path="/socialit" component={socialit} />
+        <Route exact path="/socialit/:channel" component={socialit} />
+        <Route exact path="/:channel" component={Feed} />
         <Route component={NoMatch} />
     </Switch>
   </div>

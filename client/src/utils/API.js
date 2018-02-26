@@ -16,7 +16,10 @@ export default {
     return axios.post("/api/feeds", feedData);
   },
   getSessionData: function () {
-    return axios.get('/api/user/session');
+    return axios.get('/api/user/getSession');
+  },
+  destroySession: function() {
+    return axios.get('/api/auth/logout');
   },
   getMemesByUser: function (user) {
     return axios.post('/api/user/getMemesByUser', user);

@@ -12,7 +12,7 @@ router.route("/getMemes")
 router.route("/getMemesByUser")
     .post(userController.getMemesByUser);
 router.route("/getSession")
-    .get(userController.getMemes);
+    .get(userController.getSession);
 
 
 

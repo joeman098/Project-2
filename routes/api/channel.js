@@ -7,6 +7,8 @@ router.route("/:channel")
 
     router.route("/")
     .post(channelController.postMeme);
+    router.route("/addMeme")
+    .post(channelController.addMeme);
 router.route("/getMemesByChannelId")
     .post(channelController.getMemesByChannelId);
 router.route("/getMemesByChannelTwitchId")

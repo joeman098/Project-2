@@ -28,26 +28,25 @@ class Feed extends Component {
 
   componentDidMount() {
     this.loadFeed();
-    this.checkSession();
-
+    this.getSessionData();
   }
-
-  checkSession = () => {
-    API.getSessionData()
-    .then(res => {
-        console.log(res);
-        if(res.data) {
-            this.setState({sessionStatus: "LOG OUT"});
-        }
-        else {
-            this.setState({sessionStatus: "LOG IN"});
-        }
-    })
-}
 
 killSession() {
   API.destroySession()
   .then(res => console.log(res));
+    this.getSessionData();
+  }
+
+getSessionData = () => {
+  API.getSessionData().then(res => {
+    this.setState({User: res.data});
+    if(res.data) {
+      this.setState({sessionStatus: "LOG OUT"});
+    }
+    else {
+      this.setState({sessionStatus: "LOG IN"});
+    }
+  }).catch(err => console.log(err));
 }
 
   loadFeed = () => {
@@ -67,13 +66,21 @@ killSession() {
   handleFormSubmit = event => {
     event.preventDefault();
     if ( this.state.link) {
-      API.postMeme({
-        // poster: this.state.poster,
-        link: this.state.link,
-        channel:this.props.match.params.channel,
-        userName:this.state.User.userName
+      // API.postMeme({
+      //   // poster: this.state.poster,
+      //   link: this.state.link,
+      //   channel:this.props.match.params.channel,
+      //   userName:this.state.User.userName
         
-      })
+      // })
+      //   .then(res => this.loadFeed())
+      //   .catch(err => console.log(err));
+        API.addMeme({
+          // poster: this.state.poster,
+          meme: this.state.link,
+          channelName:this.props.match.params.channel,
+          userId:this.state.User._id
+        })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));
     }

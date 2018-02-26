@@ -30,7 +30,9 @@ export default {
   postMeme: function (feedData) {
     return axios.post("/api/channel", feedData);
   },
- 
+  addMeme: function (data) {
+    return axios.post("/api/channel/addMeme", data);
+  },
   getMemesByChannelName: function (channel) {
     return axios.get('/api/channel/'+ channel);
   },

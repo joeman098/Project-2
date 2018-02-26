@@ -37,6 +37,10 @@ var UserSchema = new Schema({
         type: String,
         required: false
     },
+    banner: {
+        type: String,
+        required: false
+    },
     bio: {
         type: String,
         required: false,
@@ -69,7 +73,11 @@ var UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    socialitPost: [{
+        type: Schema.Types.ObjectId,
+        ref: "SocialitPost"
+    }],
 });
 
 var User = mongoose.model("User", UserSchema);

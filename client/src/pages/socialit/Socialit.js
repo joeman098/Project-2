@@ -13,27 +13,27 @@ import SocialitPost from "../../components/SocialitPost/SocialitPost";
 import "./socialit.css";
 class socialit extends Component {
   state = {
-    books: [],
+    posts: [],
     title: "",
     author: "",
     synopsis: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadposts();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadposts = () => {
+    API.getposts()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ posts: res.data, link: "", upvotes: "", body: "" ,body: ""})
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deletepost = id => {
+    API.deletepost(id)
+      .then(res => this.loadposts())
       .catch(err => console.log(err));
   };
 
@@ -47,12 +47,12 @@ class socialit extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.author) {
-      API.saveBook({
+      API.savepost({
         title: this.state.title,
         author: this.state.author,
         synopsis: this.state.synopsis
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadposts())
         .catch(err => console.log(err));
     }
   };
@@ -100,15 +100,15 @@ class socialit extends Component {
           <Col size="md-6 sm-12">
       
               <h1>Posts</h1>
-              {this.state.books.length ? (
+              {this.state.posts.length ? (
                 <div>
-                {this.state.books.map(book => (
+                {this.state.posts.map(post => (
                 <SocialitPost
-                  key= {book._id}
-                  link ={"/socialit/" + book._id}
-                  title ={book.title} 
-                  author = {book.author}
-                  // delete ={this.deleteBook(book._id)}
+                  key= {post._id}
+                  link ={"/socialit/" + post._id}
+                  title ={post.title} 
+                  author = {post.author}
+                  // delete ={this.deletepost(post._id)}
                /> ))}
                </div>
               ) : (

@@ -22,7 +22,8 @@ class Feed extends Component {
     poster: "",
     link: "",
     modalIsOpen: false,
-    channel: {}
+    channel: {},
+
   };
 
   componentDidMount() {
@@ -30,6 +31,8 @@ class Feed extends Component {
 
 
   }
+
+
 
   loadFeed = () => {
     API.getMemesByChannelName(this.props.match.params.channel)
@@ -51,7 +54,9 @@ class Feed extends Component {
       API.postMeme({
         // poster: this.state.poster,
         link: this.state.link,
-        channel:this.props.match.params.channel
+        channel:this.props.match.params.channel,
+        userName:this.state.User.userName
+        
       })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));
@@ -93,7 +98,7 @@ class Feed extends Component {
         }
       }]
     };
-
+    console.log(this.state)
     return (
       <div id="main-twitch-container">
         <video autoPlay loop muted preload="true" className="fullscreen-bg_video">

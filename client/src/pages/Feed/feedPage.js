@@ -95,90 +95,98 @@ class Feed extends Component {
     };
 
     return (
-      <div>
+      <div id="main-twitch-container">
+        <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
+          <source src="../../../video/Circuit_Background.mp4"></source>
+        </video>
         <LoginNav />
         <Container fluid>
           <Row>
-            <Col s={10} className="offset-s1" id="twitch-container">
-              <Row className="tv-player">
-                <Col s={8} id="tv-player-col"> 
-                  {/* <div id="twitch-embed"></div> */}
-                  <iframe
-                    className="player"
-                    src={`http://player.twitch.tv/?channel=${
-                      this.props.match.params.channel
-                    }&muted=true   `}
-                    frameBorder="<frameborder>"
-                    scrolling="<scrolling>"
-                    allowFullScreen="<allowfullscreen>"
-                    id="stream-embed"
-                  />
+            <Col s={10} className="offset-s1" id="content">
+              <Row>
+                <Col s={12} id="twitch-container">
+                  <Row className="tv-player">
+                    <Col s={8} id="tv-player-col"> 
+                      {/* <div id="twitch-embed"></div> */}
+                      <iframe
+                        className="player"
+                        src={`http://player.twitch.tv/?channel=${
+                          this.props.match.params.channel
+                        }&muted=true   `}
+                        frameBorder="<frameborder>"
+                        scrolling="<scrolling>"
+                        allowFullScreen="<allowfullscreen>"
+                        id="stream-embed"
+                      />
+                    </Col>
+                    <Col s={4} id="chat-col">
+                      <iframe
+                        frameBorder="0"
+                        scrolling="no"
+                        id="chat_embed"
+                        src={`http://www.twitch.tv/embed/${this.props.match.params.channel}/chat`}
+                        height="500px"
+                        width="100%"
+                      />
+                    </Col>
+                  </Row>
                 </Col>
-                <Col s={4} id="chat-col">
-                  <iframe
-                    frameBorder="0"
-                    scrolling="no"
-                    id="chat_embed"
-                    src={`http://www.twitch.tv/embed/${this.props.match.params.channel}/chat`}
-                    height="500px"
-                    width="100%"
-                  />
+              </Row>
+              <Row>
+                <Col s={12} id="post-container">
+                  <Row>
+                    <h4 id="post-title">Share a Meme</h4>
+                    <form>
+                      <Col s={10}>
+                        {/* <Input2
+                          value={this.state.poster}
+                          onChange={this.handleInputChange}
+                          name="poster"
+                          placeholder="poster (required)"
+                        /> */}
+                        <Input2
+                          value={this.state.link}
+                          onChange={this.handleInputChange}
+                          name="link"
+                          placeholder="Meme Link (required)"
+                        />
+                      </Col>
+                      <Col s={2}>
+                        <FormBtn
+                          disabled={!(this.state.link)}
+                          onClick={this.handleFormSubmit}
+                        >
+                          Post Meme
+                        </FormBtn>
+                      </Col>
+                    </form>
+                  </Row>
+                  <Row>
+                    <Col s={12}>
+                      <Slider {...settings}>
+                        {this.state.feedz.map(feed => (
+                          <div key={feed._id}>
+                            <FeedModal
+                              id={feed._id}
+                              poster={feed.poster}
+                              link={feed.link}
+                              openModal={this.openModal}
+                            />
+                            <FeedCard
+                              id={feed._id}
+                              poster={feed.poster}
+                              link={feed.link}
+                              // openModal={this.openModal}
+                            />
+                          </div>
+                        ))}
+                      </Slider>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </Col>
-          </Row>
-          <Row>
-            <Col s={10} className="offset-s1" id="post-container">
-              <Row>
-                <form>
-                  <Col s={10}>
-                    {/* <Input2
-                      value={this.state.poster}
-                      onChange={this.handleInputChange}
-                      name="poster"
-                      placeholder="poster (required)"
-                    /> */}
-                    <Input2
-                      value={this.state.link}
-                      onChange={this.handleInputChange}
-                      name="link"
-                      placeholder="link (required)"
-                    />
-                  </Col>
-                  <Col s={2}>
-                    <FormBtn
-                      disabled={!(this.state.link)}
-                      onClick={this.handleFormSubmit}
-                    >
-                      Submit Link
-                    </FormBtn>
-                  </Col>
-                </form>
-              </Row>
-              <Row>
-                <Col s={12}>
-                  <Slider {...settings}>
-                    {this.state.feedz.map(feed => (
-                      <div key={feed._id}>
-                        <FeedModal
-                          id={feed._id}
-                          poster={feed.poster}
-                          link={feed.link}
-                          openModal={this.openModal}
-                        />
-                        <FeedCard
-                          id={feed._id}
-                          poster={feed.poster}
-                          link={feed.link}
-                          // openModal={this.openModal}
-                        />
-                      </div>
-                    ))}
-                  </Slider>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+          </Row>      
         </Container>
       </div>
     );

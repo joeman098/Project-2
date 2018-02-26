@@ -337,11 +337,6 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
 
 }
 
-#profile-logo:hover {
-    color: lightgray;
-    background: none;
-}
-
 #username-display, #username-display-dashboard{
     position: absolute;
     left: 360px;

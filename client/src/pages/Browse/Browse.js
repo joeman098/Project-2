@@ -24,7 +24,8 @@ class Browse extends Component {
     checkSession = () => {
         API.getSessionData()
         .then(res => {
-            if(res) {
+            console.log(res);
+            if(res.data) {
                 this.setState({sessionStatus: "LOG OUT"});
             }
             else {

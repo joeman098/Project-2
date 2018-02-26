@@ -10,6 +10,88 @@ var flash = require('express-flash');
 const mongoose = require("mongoose");
 require('dotenv').config();
 const routes = require("./routes");
+var PORT = process.env.PORT || 3001;
+var http = require('http');
+var app = express();
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+
+
+//======= 
+// SOCKET.IO
+
+// usernames which are currently connected to the chat
+var usernames = {};
+
+// rooms which are currently available in chat
+var rooms = ['room1', 'room2', 'room3'];
+// Handle connection
+io.sockets.on('connection', function (socket) {
+  console.log("Connected succesfully to the socket ...");
+
+
+  socket.on('adduser', function (username) {
+    // store the username in the socket session for this client
+    socket.username = username;
+    // store the room name in the socket session for this client
+    socket.room = 'room1';
+    // add the client's username to the global list
+    usernames[username] = username;
+    // send client to room 1
+    socket.join('room1');
+    // echo to room 1 that a person has connected to their room
+    socket.broadcast.to('room1').emit('updatechat', 'SERVER', username + ' has connected to this room');
+    socket.emit('updaterooms', rooms, 'room1');
+  });
+
+  // when the client emits 'sendchat', this listens and executes
+  socket.on('sendchat', function (chatId, userId, data) {
+    var message = data;
+    db.Message.create({
+      message: message,
+      sender: userId
+    }).then(function (messageObj) {
+      const id = messageObj._id;
+
+      db.Chat.updateOne({ _id: chatId }, { $push: { messages: id } })
+        .then(function (result) {
+          // we tell the client to execute 'updatechat' with 2 parameters
+        })
+        .catch(err => console.log(err));
+    }).catch(err => console.log(err));
+    io.in(socket.room).emit('updatechat', {message: message, sender: userId, date: new Date()});
+
+
+  });
+
+  socket.on('writing', function (username) {
+    io.in(socket.room).emit('iswriting', username);
+  });
+  socket.on('notwriting', function (username) {
+    io.in(socket.room).emit('isnotwriting', username);
+  });
+
+  socket.on('switchRoom', function (newroom) {
+    // leave the current room (stored in session)
+    socket.leave(socket.room);
+    // join new room, received as function parameter
+    socket.join(newroom);
+    // update socket session room title
+    socket.room = newroom;
+    socket.emit('updaterooms', rooms, newroom);
+  });
+
+  // when the user disconnects.. perform this
+  socket.on('disconnect', function () {
+    // remove the username from global usernames list
+    delete usernames[socket.username];
+    // update list of users in chat, client-side
+    io.sockets.emit('updateusers', usernames);
+    // echo globally that this client has left
+    socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+    socket.leave(socket.room);
+  });
+});
 
 
 //========
@@ -18,9 +100,7 @@ process.on('unhandledRejection', function (reason, p) { // moar reasons for unha
   console.log("Possibly Unhandled Rejection at: Promise ", p, " reason: ", reason);
 });
 
-var PORT = process.env.PORT || 3001;
 
-var app = express();
 
 
 // Serve static content for the app from the "public" directory in the application directory.
@@ -69,7 +149,7 @@ require('./config/passport/passport.js')(passport);
 //==============================================
 //Listen with no sync
 
-app.get("/auth/twitch",  passport.authenticate("twitch"));
+app.get("/auth/twitch", passport.authenticate("twitch"));
 
 app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedirect: "/" }), function (req, res) {
   req.session.user = req.session.passport.user[0];
@@ -77,9 +157,6 @@ app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedire
   return res.redirect("http://localhost:3000/browse");
 });
 
-app.listen(PORT, function() {
-  console.log("App now listening at localhost:" + PORT);
-});
 app.use(routes);
 //Syncing our sequelize models and then starting our Express app
 //=============================================================
@@ -99,3 +176,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/Socialer"
 );
+
+server.listen(PORT, function () {
+  console.log("App now listening at localhost:" + PORT);
+});

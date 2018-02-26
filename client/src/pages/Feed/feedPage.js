@@ -82,7 +82,8 @@ getSessionData = () => {
           // poster: this.state.poster,
           meme: this.state.link,
           channelName:this.props.match.params.channel,
-          userId:this.state.User._id
+          userId:this.state.User._id,
+          username:this.state.User.username
         })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));

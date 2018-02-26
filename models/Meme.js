@@ -21,6 +21,10 @@ var MemeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Channel"
     },
+    poster: {
+        type: String,
+        required: true  
+    }
 });
 
 var Meme = mongoose.model("Meme", MemeSchema);

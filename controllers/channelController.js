@@ -3,12 +3,21 @@ const db = require("../models");
 // Defining methods for the channelController
 module.exports = {
     getMemesByChannelName: function (req, res) {
-        console.log(req.params.channel);
-        channel = req.params.channel;
-        db.Channel
-            .find({ channel: channel })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+        channelName = req.body.channelName;
+        db.Channel.find({name:channelName}).then(function(result) {
+            if(result.length == 0) {
+                
+            } else {
+                db.Meme
+                .find({ channel: result[0]._id })
+                .then(result =>{
+                    console.log(result);
+                    res.json(result)
+                })
+                .catch(err => res.status(422).json(err));
+            }
+        }).catch(err => console.log(err));
+    
     },
     postMeme: function (req, res) {
         console.log(req.body);

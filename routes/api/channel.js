@@ -15,6 +15,10 @@ router.route("/getMemesByChannelTwitchId")
     .post(channelController.getMemesByChannelTwitchId);
 router.route("/createChannel")
     .post(channelController.createChannel);
+    router.route("/getMemesByChannelName")
+    .post(channelController.getMemesByChannelName);
+
+    
 
 
 

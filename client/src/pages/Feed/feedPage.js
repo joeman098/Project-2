@@ -38,10 +38,13 @@ getSessionData = () => {
 }
 
   loadFeed = () => {
-    API.getMemesByChannelName(this.props.match.params.channel)
-      .then(res => this.setState({ feedz: res.data, link: "" }))
-      .catch(err => console.log(err));
-  };
+    API.getMemesByChannelName({channelName: this.props.match.params.channel})
+      .then(res => {
+          console.log("_______________________");
+        console.log(res.data);
+        this.setState({ feedz: res.data, link: "" });
+      }).catch(err => console.log(err));
+  }
 
 
   handleInputChange = event => {
@@ -49,7 +52,7 @@ getSessionData = () => {
     this.setState({
       [name]: value
     });
-  };
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -109,7 +112,6 @@ getSessionData = () => {
         }
       }]
     };
-    console.log(this.state)
     return (
       <div id="main-twitch-container">
         <video autoPlay loop muted preload="true" className="fullscreen-bg_video">

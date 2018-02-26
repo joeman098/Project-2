@@ -51,7 +51,8 @@ class Feed extends Component {
       API.postMeme({
         // poster: this.state.poster,
         link: this.state.link,
-        channel:this.props.match.params.channel
+        channel:this.props.match.params.channel,
+        
       })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));
@@ -63,7 +64,7 @@ class Feed extends Component {
       showArrows: true,
       dots: true,
       infinite: true,
-      slidesToShow: 4,
+      slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,

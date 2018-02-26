@@ -24,6 +24,8 @@ module.exports = function (passport) {
         scope: process.env.TWITCH_SCOPE
       },
       function (accessToken, refreshToken, profile, done) {
+        console.log(profile.username);
+      
         const json = profile._json;
         User.find({ TwitchId: profile.id }, function (err, result) {
           if (result.length === 0) {

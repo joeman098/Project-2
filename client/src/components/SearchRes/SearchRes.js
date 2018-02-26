@@ -52,7 +52,9 @@ else{
         >
           <Row>
             <Col m={12} s={12}>
+            <a href={`stream/${props.userName}`}>
                 <img alt={"h"} onClick={()=>props.GameStreams(props.id)} src={fixed(props.pic)} className="" />
+                </a>
             </Col>
             <Col m={12} s={12}>
            {props.title}

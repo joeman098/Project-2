@@ -4,6 +4,7 @@ const db = require("../models");
 module.exports = {
     getMemesByChannelName: function(req, res) {
         console.log(req.params.channel);
+        // console.log(req.session.user.username)
         channel = req.params.channel;
         db.Channel
           .find({channel:channel})

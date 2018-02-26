@@ -3,6 +3,7 @@ import LoginNav from "../../components/LoginNav";
 import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/socialitAPI";
+import API2 from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row,  } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
@@ -21,6 +22,20 @@ class socialit extends Component {
 
   componentDidMount() {
     this.loadposts();
+    this.getSessionData();
+
+  }
+
+  getSessionData = () => {
+    API2.getSessionData().then(res => {
+      this.setState({User: res.data});
+      if(res.data) {
+        this.setState({sessionStatus: "LOG OUT"});
+      }
+      else {
+        this.setState({sessionStatus: "LOG IN"});
+      }
+    }).catch(err => console.log(err));
   }
 
   loadposts = () => {
@@ -46,11 +61,15 @@ class socialit extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    console.log(this.props.match.params.channel)
+    if (this.state.title) {
       API.savepost({
         title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        imageLink: this.state.imagelink,
+        body: this.state.body,
+        // userId:this.state.User._id,
+        channelName:this.props.match.params.channel,
+        // username:this.state.User.username
       })
         .then(res => this.loadposts())
         .catch(err => console.log(err));
@@ -78,19 +97,19 @@ class socialit extends Component {
                 placeholder="Title (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.imagelink}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="imageLink"
+                placeholder="image-link (optional)"
               />
               <TextArea
-                value={this.state.synopsis}
+                value={this.state.body}
                 onChange={this.handleInputChange}
-                name="synopsis"
+                name="body"
                 placeholder="Content (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.title)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Post
@@ -105,7 +124,7 @@ class socialit extends Component {
                 {this.state.posts.map(post => (
                 <SocialitPost
                   key= {post._id}
-                  link ={"/socialit/" + post._id}
+                  link ={"/socialit/p/" + post._id}
                   title ={post.title} 
                   author = {post.author}
                   // delete ={this.deletepost(post._id)}

@@ -28,11 +28,14 @@ class Feed extends Component {
 
   componentDidMount() {
     this.loadFeed();
-
-
+    this.getSessionData();
   }
 
-
+getSessionData = () => {
+  API.getSessionData().then(res => {
+    this.setState({User: res.data});
+  }).catch(err => console.log(err));
+}
 
   loadFeed = () => {
     API.getMemesByChannelName(this.props.match.params.channel)
@@ -51,13 +54,21 @@ class Feed extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if ( this.state.link) {
-      API.postMeme({
-        // poster: this.state.poster,
-        link: this.state.link,
-        channel:this.props.match.params.channel,
-        userName:this.state.User.userName
+      // API.postMeme({
+      //   // poster: this.state.poster,
+      //   link: this.state.link,
+      //   channel:this.props.match.params.channel,
+      //   userName:this.state.User.userName
         
-      })
+      // })
+      //   .then(res => this.loadFeed())
+      //   .catch(err => console.log(err));
+        API.addMeme({
+          // poster: this.state.poster,
+          meme: this.state.link,
+          channelName:this.props.match.params.channel,
+          userId:this.state.User._id
+        })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));
     }

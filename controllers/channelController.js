@@ -2,21 +2,56 @@ const db = require("../models");
 
 // Defining methods for the channelController
 module.exports = {
-    getMemesByChannelName: function(req, res) {
+    getMemesByChannelName: function (req, res) {
         console.log(req.params.channel);
         channel = req.params.channel;
         db.Channel
-          .find({channel:channel})
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
-      postMeme: function(req, res) {
-          console.log(req.body);
+            .find({ channel: channel })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    postMeme: function (req, res) {
+        console.log(req.body);
         db.Channel
-          .create(req.body)
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    addMeme: function (req, res) {
+        var meme = req.body.meme;
+        var userId = req.body.userId;
+        var channelName = req.body.channelName;
+        db.Channel.find({ name: channelName }).then(function (result) {
+            if (result.length === 0) {
+                db.Channel.create({
+                    name: channelName
+                }).then(function (result) {
+                    const cId = result._id;
+                    db.Meme.create({
+                        link: meme,
+                        channel: cId
+                    }).then(function (result) {
+                        console.log(result);
+                        db.User.updateOne({_id: userId}, {$push:{memes: result._id}}).then(function(result){
+                            res.json("Channel and meme added!")
+                        }).catch(err => console.log(err));
+                    }).catch(err => console.log(err));
+                }).catch(err => console.log(err));
+           } else {
+                const cId = result[0]._id;
+                db.Meme.create({
+                    link: meme,
+                    channel: cId
+                }).then(function (result) {                       
+                    console.log(result);
+                    db.User.updateOne({_id: userId}, {$push:{memes: result._id}}).then(function(result){
+                        res.json("Meme added to existing channel!")
+                    }).catch(err => console.log(err));
+                }).catch(err => console.log(err));
+
+            }
+        }).catch(err => console.log(err));
+    },
 
 
 

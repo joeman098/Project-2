@@ -8,67 +8,69 @@ import "./Browse.css";
 
 class Browse extends Component {
     state = {
-        results:[],
+        results: [],
         search: "",
         selected: "users"
     }
-    
-    componentDidMount(){
-        this.setState({search: ""})
-     
+
+    componentDidMount() {
+        this.setState({ search: "" })
+        this.TopGames();
+
     }
-    
+
     Top = () => {
         twitch.Top()
-        .then(res => {
-            this.setState({ results: res.data.data })
-            console.log(res.data.data);
-            this.UserIdFix();
-        });
+            .then(res => {
+                this.setState({ results: res.data.data })
+                console.log(res.data.data);
+                this.UserIdFix();
+            });
     }
 
     TopGames = () => {
         twitch.TopGames()
-        .then(res => {
-            this.setState({ results: res.data.data })
-            console.log(res.data.data);
-            
-        });
+            .then(res => {
+                this.setState({ results: res.data.data })
+                console.log(res.data.data);
+
+            });
     }
 
     GameStreams = (search) => {
         twitch.GameStreams(search)
-        .then(res => {
-            this.setState({ results: res.data.data })
-            console.log(res.data.data);
-            this.UserIdFix();
-        });
+            .then(res => {
+                this.setState({ results: res.data.data })
+                console.log(res.data.data);
+                this.UserIdFix();
+            });
     }
 
     UserIdFix = () => {
-        const stream =[...this.state.results]
+        const stream = [...this.state.results]
         const streams = stream
-        const fixer = streams => streams.user_id
+        const fixer = streams => streams.user_id || streams.id
         let fixedarray = streams.map(fixer)
-        const ass= fixedarray.join("&id=")
- 
-        
-         const getUserById = id =>{
-     
+        const ass = fixedarray.join("&id=")
+
+
+        const getUserById = id => {
+
             twitch.GetUserById(id).then(res => {
-              const balls = res.data.data
-              const dicks = balls => balls.login
+                const balls = res.data.data
+                const dicks = balls => balls.login
                 let hairy = balls.map(dicks)
                 for (let i = 0; i < stream.length; i++) {
                     let thing = stream[i]
-                  thing["user_login"] = hairy[i];
-                  thing["kind"] = "stream";
-                    
-                }                
-                this.setState({results:stream})
+                    thing["user_login"] = hairy[i];
+                    thing["kind"] = "stream";
+
+                }
+                this.setState({ results: stream })
                 console.log(this.state.results)
-            })};
-            getUserById(ass)
+            })
+        };
+        getUserById(ass)
     }
 
 
@@ -78,11 +80,11 @@ class Browse extends Component {
 
     Gamesearch = (search) => {
         twitch.GameByName(search)
-        .then(res => {
-            this.setState({ results: res.data.data })
-            console.log(res.data.data);
-            
-        });
+            .then(res => {
+                this.setState({ results: res.data.data })
+                console.log(res.data.data);
+
+            });
     }
 
 
@@ -91,11 +93,12 @@ class Browse extends Component {
 
     UserSearch = (search) => {
         twitch.UserSearch(search)
-        .then(res => {
-            this.setState({ results: res.data.data })
-            console.log(res.data.data);
-            this.UserIdFix();
-        });
+            .then(res => {
+                this.setState({ results: res.data.data })
+                console.log(res.data.data);
+                this.UserIdFix();
+                console.log(this.state.results)
+            });
     }
 
 
@@ -108,42 +111,42 @@ class Browse extends Component {
     };
 
     handleSelectChange = event => {
-        this.setState({selected: event.target.value})
+        this.setState({ selected: event.target.value })
     }
 
     handleSearchSubmit = (event) => {
         event.preventDefault();
         const selected = this.state.selected;
-        if(selected === "users") {
+        if (selected === "users") {
             this.UserSearch(this.state.search);
         }
-        else if(selected === "games") {
+        else if (selected === "games") {
             this.Gamesearch(this.state.search);
         }
         console.log(this.state.selected);
     }
 
     render() {
-        return(
+        return (
             <div>
                 <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
-                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} handleSelectChange={this.handleSelectChange}/>
+                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} handleSelectChange={this.handleSelectChange} />
                 <Container>
                     <Row>
-                    <div className="search-results">
-                    {this.state.results.map(res => (
-                    <SearchRes 
-                        userName={res.user_login}
-                        id={res.id}
-                        pic ={res.thumbnail_url ? res.thumbnail_url : res.box_art_url ? res.box_art_url :res.profile_image_url } 
-                        title={res.title ? res.title : res.name}
-                        className="browse-results"
-                        GameStreams ={this.GameStreams}
-                        kind ={res.kind}
-                    />))}
-                    </div>
+                        <div className="search-results">
+                            {this.state.results.map(res => (
+                                <SearchRes
+                                    userName={res.user_login}
+                                    id={res.id}
+                                    pic={res.thumbnail_url ? res.thumbnail_url : res.box_art_url ? res.box_art_url : res.profile_image_url}
+                                    title={res.title ? res.title : res.name}
+                                    className="browse-results"
+                                    GameStreams={this.GameStreams}
+                                    kind={res.kind}
+                                />))}
+                        </div>
                     </Row>
                 </Container>
             </div>

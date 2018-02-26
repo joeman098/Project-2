@@ -29,13 +29,12 @@ class Feed extends Component {
   componentDidMount() {
     this.loadFeed();
     this.SessionData();
-    console.log(this.state)
 
   }
 
 SessionData = () =>{
   API.getSessionData()
-  .then(res => this.setState({User: res}))
+  .then(res => this.setState({User: res.data}) )
   .catch(err => console.log(err)) 
 };
 
@@ -59,7 +58,9 @@ SessionData = () =>{
       API.postMeme({
         // poster: this.state.poster,
         link: this.state.link,
-        channel:this.props.match.params.channel
+        channel:this.props.match.params.channel,
+        userName:this.state.User.userName
+        
       })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));
@@ -101,7 +102,7 @@ SessionData = () =>{
         }
       }]
     };
-
+    console.log(this.state)
     return (
       <div>
         <LoginNav />

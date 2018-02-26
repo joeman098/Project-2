@@ -14,18 +14,10 @@ class Browse extends Component {
         selected: "users",
         sessionStatus: "",
     }
-<<<<<<< HEAD
-
-    componentDidMount() {
-        this.setState({ search: "" })
-        this.TopGames();
-
-    }
-
-=======
     
     componentDidMount(){
         this.setState({search: ""})
+        this.TopGames();
         this.checkSession()
      
     }
@@ -42,7 +34,6 @@ class Browse extends Component {
         })
     }
     
->>>>>>> master
     Top = () => {
         twitch.Top()
             .then(res => {

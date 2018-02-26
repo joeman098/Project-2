@@ -10,6 +10,11 @@
     cursor: pointer;
 }
 
+#img-col > img {
+    width: 200px;
+    height: 200px;
+}
+
 .card .card-content {
     padding: 0 !important;
 }

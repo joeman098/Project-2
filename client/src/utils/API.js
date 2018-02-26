@@ -18,18 +18,25 @@ export default {
   getSessionData: function () {
     return axios.get('/api/user/getSession');
   },
+  destroySession: function() {
+    return axios.get('/api/auth/logout');
+  },
   getMemesByUser: function (user) {
     return axios.post('/api/user/getMemesByUser', user);
   },
   uploadMeme: function (meme) {
     return axios.post('/api/user/uploadMeme', meme);
   },
-  getMemesByChannelName: function (channelName) {
-    return axios.post('/api/channel/getMemesByChannelName', channelName);
+  postMeme: function (feedData) {
+    return axios.post("/api/channel", feedData);
   },
-  getMemesByChannelTwitchId: function (channelTwitchId) {
-    return axios.post('/api/channel/getMemesByChannelTwitchId', channelTwitchId);
+ 
+  getMemesByChannelName: function (channel) {
+    return axios.get('/api/channel/'+ channel);
   },
+  // getMemesByChannelTwitchId: function () {
+  //   return axios.post('/api/channel/getMemesByChannelTwitchId', channelTwitchId);
+  // },
   getMemesByChannelId: function (channelId) {
     return axios.post('/api/channel/getMemesByChannelId', channelId);
   },

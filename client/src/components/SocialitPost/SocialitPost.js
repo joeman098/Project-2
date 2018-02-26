@@ -10,7 +10,7 @@ const SocialitPost = props => {
     <div className="SocalitPost">
 
 
-      <Card className='small'
+      <Card className='small socialitCard'
 	header={<CardTitle image='https://react-materialize.github.io/img/sample-1.jpg'>{props.title}</CardTitle>}
 	actions={[<a href='#'>Comment</a>]}>
 	Submited by {props.author}

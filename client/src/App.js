@@ -12,11 +12,10 @@ import PrivateMessages from "./pages/PrivateMessages"
 
 const App = () =>
 <Router>
-  <div>
+  <div id="app">
     <Switch>
         <Route exact path="/" component = {Login} />
         {/* <Route exact path="/dashboard" component = {Dashboard} /> */}
-        <Route exact path="/feedPage" component={Feed} />
         {/* <Route exact path="dashboard/update" component={UpdateDashboard} /> */}
         <Route exact path="/profile/:id" component={Profile} />
         {/* <Route exact path="profilelist" component={ProfileList} /> */}
@@ -24,6 +23,8 @@ const App = () =>
         <Route exact path="/socialit" component={socialit} />
         <Route exact path="/PrivateMessages" component={PrivateMessages} />
         <Route exact path="/PrivateMessages/:id" component={PrivateMessages} />
+        <Route exact path="/socialit/:channel" component={socialit} />
+        <Route exact path="/:channel" component={Feed} />
         <Route component={NoMatch} />
     </Switch>
   </div>

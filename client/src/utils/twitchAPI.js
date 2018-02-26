@@ -15,11 +15,20 @@ export default {
     return twitch.get();
   },
   GameStreams: function (gameID) {  
-    twitch.defaults.baseURL = `https://api.twitch.tv/helix/streams?first=50?game_id=${gameID}`;  
+    twitch.defaults.baseURL = `https://api.twitch.tv/helix/streams?game_id=${gameID}`;  
     return twitch.get();
   },
   UserSearch: (userName) => {
-    twitch.defaults.baseURL = `https://api.twitch.tv/helix/streams?user_login=${userName}`
+    twitch.defaults.baseURL = `https://api.twitch.tv/helix/users?login=${userName}`
+    return twitch.get();
+  },
+  GetUserById:(id) =>{
+    twitch.defaults.baseURL = ` https://api.twitch.tv/helix/users?id=${id}`
+    return twitch.get();
+  },
+  GameByName: (name) =>{
+    twitch.defaults.baseURL = `https://api.twitch.tv/helix/games?name=${name}`
     return twitch.get();
   }
+
 };

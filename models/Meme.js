@@ -10,7 +10,7 @@ var MemeSchema = new Schema({
     },
     upvotes: {
         type: Number,
-        required: true,
+        required: false,
         default: 0
     },
     date: {

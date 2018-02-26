@@ -4,11 +4,11 @@ import CustomInput from "../../components/Form/Input";
 import { Input } from "react-materialize";
 import "./SearchNav.css";
 
-const SearchNav = props =>
+const SearchNav = props => {
+
+    return (
     <nav className="row" id="search-nav">
-        <Link to={"/dashboard"} id="profile-logo">
-            0
-        </Link> 
+        <h3 id="profile-logo">0</h3>
         <span className="input-field col m5 offset-m1 l5 offset-l1" id="post-bar-col">
             <CustomInput 
                 placeholder="Search"
@@ -17,8 +17,12 @@ const SearchNav = props =>
                 id="search-input"
                 onChange={props.handleInputChange}
             />
-            <Input name='search-type' type='radio' value='users' label='Users' />
-            <Input name='search-type' type='radio' value='games' label='Games' />
+            <div id="select-wrapper">
+            <Input s={3} type='select' label="Search For" defaultValue='users' name="search-dropdown" onChange={props.handleSelectChange}>
+                <option value='users'>Users</option>
+                <option value='games'>Games</option>
+	        </Input>
+            </div>
             <CustomInput 
                 className="btn" 
                 type="submit" 
@@ -31,8 +35,10 @@ const SearchNav = props =>
             <li onClick={props.topStreams} className="clickable-li">TOP STREAMS</li>
             <li onClick={props.topGames} className="clickable-li">TOP GAMES</li>
             <li><Link to={"/profilelist"} className="" id="main-chat-link">PROFILE LIST</Link></li>
-            <li><Link to={"/"} className="main-chat-link">LOG IN</Link></li>
+            <li><Link to={"/"} className="main-chat-link" onClick={props.killSession}>{props.session}</Link></li>
         </ul>
     </nav>
+    )
+}
 
 export default SearchNav;

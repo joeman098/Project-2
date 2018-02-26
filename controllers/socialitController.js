@@ -2,6 +2,14 @@ const db = require("../models");
 
 // Defining methods for the socialitsController
 module.exports = {
+  getPostsByChannelName: function(req, res) {
+    console.log(req.params.channel);
+    channel = req.params.channel;
+    db.Channel
+      .find({channel:channel})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findAll: function(req, res) {
     db.Socialit
       .find(req.query)

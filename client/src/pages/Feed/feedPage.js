@@ -23,7 +23,8 @@ class Feed extends Component {
     link: "",
     modalIsOpen: false,
     channel: {},
-    sessionStatus: ""
+    sessionStatus: "",
+    memeTitle: ""
   };
 
   componentDidMount() {
@@ -41,10 +42,16 @@ getSessionData = () => {
   API.getSessionData().then(res => {
     this.setState({User: res.data});
     if(res.data) {
-      this.setState({sessionStatus: "LOG OUT"});
+      this.setState({
+        sessionStatus: "LOG OUT",
+        memeTitle: "Share a Meme"
+      });
     }
     else {
-      this.setState({sessionStatus: "LOG IN"});
+      this.setState({
+        sessionStatus: "LOG IN",
+        memeTitle: "Log In With Twitch to Share a Meme"
+      });
     }
   }).catch(err => console.log(err));
 }
@@ -163,7 +170,7 @@ getSessionData = () => {
               <Row>
                 <Col s={12} id="post-container">
                   <Row>
-                    <h4 id="post-title">Share a Meme</h4>
+                    <h4 id="post-title">{this.state.memeTitle}</h4>
                     <form>
                       <Col s={10}>
                         {/* <Input2
@@ -181,7 +188,7 @@ getSessionData = () => {
                       </Col>
                       <Col s={2}>
                         <FormBtn
-                          disabled={!(this.state.link)}
+                          disabled={!(this.state.link) || (this.state.sessionStatus === "LOG IN")}
                           onClick={this.handleFormSubmit}
                         >
                           Post Meme

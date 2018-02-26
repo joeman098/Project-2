@@ -18,6 +18,9 @@ export default {
   getSessionData: function () {
     return axios.get('/api/user/getSession');
   },
+  destroySession: function() {
+    return axios.get('/api/auth/logout');
+  },
   getMemesByUser: function (user) {
     return axios.post('/api/user/getMemesByUser', user);
   },

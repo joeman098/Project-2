@@ -11,7 +11,7 @@ import socialit from "./pages/socialit"
 
 const App = () =>
 <Router>
-  <div>
+  <div id="app">
     <Switch>
         <Route exact path="/" component = {Login} />
         {/* <Route exact path="/dashboard" component = {Dashboard} /> */}

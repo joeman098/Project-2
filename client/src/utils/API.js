@@ -16,7 +16,7 @@ export default {
     return axios.post("/api/feeds", feedData);
   },
   getSessionData: function () {
-    return axios.get('/api/user/session');
+    return axios.get('/api/user/getSession');
   },
   getMemesByUser: function (user) {
     return axios.post('/api/user/getMemesByUser', user);
@@ -27,7 +27,7 @@ export default {
   getMemesByChannelName: function (channelName) {
     return axios.post('/api/channel/getMemesByChannelName', channelName);
   },
-  getMemesByChannelTwitchId: function () {
+  getMemesByChannelTwitchId: function (channelTwitchId) {
     return axios.post('/api/channel/getMemesByChannelTwitchId', channelTwitchId);
   },
   getMemesByChannelId: function (channelId) {
@@ -35,6 +35,27 @@ export default {
   },
   createChannel: function (channel) {
     return axios.post('/api/channel/createChannel', channel);
+  },
+  getUserData: function(userId) {
+    return axios.post("/api/user/getUser", userId);
+  },
+  updateProfile: function(profile) {
+    return axios.post("/api/user/updateProfile", profile);
+  },
+  getChats: function() {
+    return axios.get("/api/user/getChats");
+  },
+  sendMessage: function(message) {
+    return axios.post("/api/chat/sendMessage", message);
+  },
+  isAllowedIntoChat: function(data) {
+    return axios.post("/api/chat/isAllowedIntoChat", data);
+  },
+  getMessages: function(data) {
+    return axios.post("/api/chat/getMessages", data);
+  },
+  getChat: function(data) {
+    return axios.post("/api/chat/getChat", data);
   }
 
 }

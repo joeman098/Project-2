@@ -37,6 +37,10 @@ var UserSchema = new Schema({
         type: String,
         required: false
     },
+    banner: {
+        type: String,
+        required: false
+    },
     bio: {
         type: String,
         required: false,

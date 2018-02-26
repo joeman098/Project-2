@@ -23,16 +23,32 @@ class Feed extends Component {
     link: "",
     modalIsOpen: false,
     channel: {},
-
+    sessionStatus: ""
   };
 
   componentDidMount() {
     this.loadFeed();
-
+    this.checkSession();
 
   }
 
+  checkSession = () => {
+    API.getSessionData()
+    .then(res => {
+        console.log(res);
+        if(res.data) {
+            this.setState({sessionStatus: "LOG OUT"});
+        }
+        else {
+            this.setState({sessionStatus: "LOG IN"});
+        }
+    })
+}
 
+killSession() {
+  API.destroySession()
+  .then(res => console.log(res));
+}
 
   loadFeed = () => {
     API.getMemesByChannelName(this.props.match.params.channel)
@@ -104,7 +120,7 @@ class Feed extends Component {
         <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
           <source src="../../../video/Circuit_Background.mp4"></source>
         </video>
-        <LoginNav />
+        <LoginNav killSession={this.killSession} session={this.state.sessionStatus}/>
         <Container fluid>
           <Row>
             <Col s={10} className="offset-s1" id="content">

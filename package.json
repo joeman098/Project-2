@@ -50,6 +50,7 @@
     "react-jss": "^8.3.3",
     "react-materialize": "^1.1.2",
     "react-slick": "^0.18.1",
-    "sequelize": "^4.32.2"
+    "sequelize": "^4.32.2",
+    "socket.io": "^2.0.4"
   }
 }

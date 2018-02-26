@@ -69,7 +69,11 @@ var UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    socialitPost: [{
+        type: Schema.Types.ObjectId,
+        ref: "SocialitPost"
+    }],
 });
 
 var User = mongoose.model("User", UserSchema);

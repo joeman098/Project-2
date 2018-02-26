@@ -12,7 +12,7 @@ class Browse extends Component {
         results: [],
         search: "",
         selected: "users",
-        sessionStatus: "",
+        sessionStatus: ""
     }
     
     componentDidMount(){
@@ -147,16 +147,23 @@ class Browse extends Component {
                 <Container>
                     <Row>
                         <div className="search-results">
-                            {this.state.results.map(res => (
+                            {this.state.results.map(res => {
+                                if(res.title) {
+                                    var streamTitle = res.title;
+                                    if(streamTitle.length > 45) {
+                                        streamTitle = streamTitle.substring(0, 45) + "...";
+                                    }
+                                }
+                                return (
                                 <SearchRes
                                     userName={res.user_login}
                                     id={res.id}
                                     pic={res.thumbnail_url ? res.thumbnail_url : res.box_art_url ? res.box_art_url : res.profile_image_url}
-                                    title={res.title ? res.title : res.name}
+                                    title={streamTitle ? streamTitle : res.name}
                                     className="browse-results"
                                     GameStreams={this.GameStreams}
                                     kind={res.kind}
-                                />))}
+                                />)})}
                         </div>
                     </Row>
                 </Container>

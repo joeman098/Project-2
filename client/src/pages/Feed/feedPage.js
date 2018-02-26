@@ -23,7 +23,7 @@ class Feed extends Component {
     link: "",
     modalIsOpen: false,
     channel: {},
-
+    sessionStatus: ""
   };
 
   componentDidMount() {
@@ -31,9 +31,21 @@ class Feed extends Component {
     this.getSessionData();
   }
 
+killSession() {
+  API.destroySession()
+  .then(res => console.log(res));
+    this.getSessionData();
+  }
+
 getSessionData = () => {
   API.getSessionData().then(res => {
     this.setState({User: res.data});
+    if(res.data) {
+      this.setState({sessionStatus: "LOG OUT"});
+    }
+    else {
+      this.setState({sessionStatus: "LOG IN"});
+    }
   }).catch(err => console.log(err));
 }
 
@@ -115,7 +127,7 @@ getSessionData = () => {
         <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
           <source src="../../../video/Circuit_Background.mp4"></source>
         </video>
-        <LoginNav />
+        <LoginNav killSession={this.killSession} session={this.state.sessionStatus}/>
         <Container fluid>
           <Row>
             <Col s={10} className="offset-s1" id="content">

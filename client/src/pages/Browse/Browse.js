@@ -3,6 +3,7 @@ import SearchNav from "../../components/SearchNav";
 import twitch from "../../utils/twitchAPI";
 import SearchRes from "../../components/SearchRes";
 import { Container, Row } from "react-materialize";
+import API from "../../utils/API.js"
 import "./Browse.css";
 
 
@@ -10,8 +11,10 @@ class Browse extends Component {
     state = {
         results: [],
         search: "",
-        selected: "users"
+        selected: "users",
+        sessionStatus: "",
     }
+<<<<<<< HEAD
 
     componentDidMount() {
         this.setState({ search: "" })
@@ -19,6 +22,27 @@ class Browse extends Component {
 
     }
 
+=======
+    
+    componentDidMount(){
+        this.setState({search: ""})
+        this.checkSession()
+     
+    }
+
+    checkSession = () => {
+        API.getSessionData()
+        .then(res => {
+            if(res) {
+                this.setState({sessionStatus: "LOG OUT"});
+            }
+            else {
+                this.setState({sessionStatus: "LOG IN"});
+            }
+        })
+    }
+    
+>>>>>>> master
     Top = () => {
         twitch.Top()
             .then(res => {
@@ -73,11 +97,6 @@ class Browse extends Component {
         getUserById(ass)
     }
 
-
-
-
-
-
     Gamesearch = (search) => {
         twitch.GameByName(search)
             .then(res => {
@@ -86,10 +105,6 @@ class Browse extends Component {
 
             });
     }
-
-
-
-
 
     UserSearch = (search) => {
         twitch.UserSearch(search)
@@ -101,6 +116,10 @@ class Browse extends Component {
             });
     }
 
+    killSession() {
+        API.destroySession()
+        .then(res => console.log(res));
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -132,7 +151,7 @@ class Browse extends Component {
                 <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
-                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} handleSelectChange={this.handleSelectChange} />
+                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} handleSelectChange={this.handleSelectChange} session={this.state.sessionStatus} killSession={this.killSession}/>
                 <Container>
                     <Row>
                         <div className="search-results">

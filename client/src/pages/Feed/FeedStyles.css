@@ -7,11 +7,10 @@
     transform             : 'translate(-50%; -50%)';
   } */
 
-  iframe.player{
-   
-    width:100%;
-    height: 500px;
-  }
+iframe.player{
+  width:100%;
+  height: 500px;
+}
 /* 
 
   .feedRow {
@@ -20,24 +19,27 @@
       margin-bottom: 20px;
       margin-top: 80px;
   } */
-  body{
-    background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
-  }
-  .slizider{
-    opacity: 100;
-  }
 
-  .slider .slides li {
-    opacity: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: inherit;
-    overflow: hidden;
+#content {
+  background-color: rgba(255, 255, 255, 0.95);
+  background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+}
+.slizider{
+  opacity: 100;
+}
+
+.slider .slides li {
+  opacity: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: inherit;
+  overflow: hidden;
 }
 /* why dis here -joe */
+/* idk -john */
 /* .search-results {
   margin-top: 75px;
 } */
@@ -52,28 +54,22 @@
   z-index: -100;
 }
 
-#main-page-container {
-  width: 100%;
-  height: 100vh;
-  padding: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: -100;
+#main-twitch-container {
+  padding-bottom: 0;
 }
 
 #post-container {
-  background-color: white;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-top: 0;
   margin-bottom: 0;
 }
 
+#post-title {
+  font-family: 'Audiowide', cursive;
+}
+
 #twitch-container {
-  background-color: white;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-top: 0;
@@ -84,21 +80,21 @@
   color: #6441a5;
 }
 
-  .tv-player{
-    margin-top: 75px;
-    margin-bottom: 0;
-    padding-bottom : 0 !important;
-  }
+.tv-player{
+  margin-top: 75px;
+  margin-bottom: 0;
+  padding-bottom : 0 !important;
+}
 
-  #tv-player-col {
-    padding-left: 0 !important;
-  }
+#tv-player-col {
+  padding-left: 0 !important;
+}
 
-  #chat-col {
-    padding-right: 0 !important;
-  }
+#chat-col {
+  padding-right: 0 !important;
+}
 
-  #stream-embed {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-  }
+#stream-embed {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}

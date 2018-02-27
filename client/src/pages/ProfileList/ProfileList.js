@@ -4,19 +4,19 @@ import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import ProfileCard from "../../components/ProfileCard";
-import SearchNav from "../../components/SearchNav";
 import "./ProfileList.css";
 
 class ProfileList extends React.Component {
 
     state = {
         users: [],
-        userData: {}
+        userData: {},
+        sessionStatus:""
     }
 
     componentDidMount = () => {
         this.getUsers();
-        this.getSession
+        this.getSession();
     }
 
     goToProfile = event => {
@@ -28,8 +28,19 @@ class ProfileList extends React.Component {
         API.getSessionData()
             .then(function (result) {
                 this.setState({ userData: result.data });
+                if(result.data) {
+                    this.setState({sessionStatus: "LOG OUT"});
+                }
+                else {
+                    this.setState({sessionStatus: "LOG IN"});
+                }
             }.bind(this))
             .catch(err => console.log(err));
+    }
+
+    killSession() {
+        API.destroySession()
+        .then(res => console.log(res));
     }
 
     goToChat = event => {
@@ -51,7 +62,7 @@ class ProfileList extends React.Component {
                 <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
-                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} isUserChecked={this.state.isUserChecked} isGameChecked={this.state.isGameChecked} />
+                <LoginNav killSession={this.killSession} session={this.state.sessionStatus} />
                 <div className="profile-list-container">
                     {this.state.users.length > 0 ?
                         this.state.users.map(user => {

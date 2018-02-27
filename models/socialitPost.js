@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const socialitSchema = new Schema({
-  link: {
+  imageLink: {
     type: String,
     required: false
+  },
+  title: {
+    type: String,
+    required: true
   },
   upvotes: {
     type: Number,
@@ -31,12 +35,12 @@ const socialitSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Channel"
   },
-  sender: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  }
+  poster: {
+    type: String,
+    required: true  
+}
 });
 
-const socialit = mongoose.model("socialit", socialitSchema);
+const socialitPost = mongoose.model("socialitPost", socialitSchema);
 
-module.exports = socialit;
+module.exports = socialitPost;

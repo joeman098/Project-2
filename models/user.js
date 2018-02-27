@@ -74,7 +74,7 @@ var UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    socialitPost: [{
+    socialitPosts: [{
         type: Schema.Types.ObjectId,
         ref: "SocialitPost"
     }],

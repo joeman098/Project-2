@@ -35,3 +35,17 @@
     padding: 0;
     width: 14%;
 }
+
+.main-chat-link {
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 587px) {
+    .main-chat-link {
+        font-size: 14px;
+    }
+
+    #login-logo {
+        font-size: 45px;
+    }
+}

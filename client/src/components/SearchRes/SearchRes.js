@@ -11,16 +11,18 @@ const SearchRes = props => {
   };
 
   let cardStyle = {};
-  if(props.title[1] === props.title[1].toUpperCase()) {
-    cardStyle = {
-      "font-size": "13px",
-      "background-color": "rgba(255, 255, 255, 0.9)"
+  if(props.title) {
+    if(props.title[1] === props.title[1].toUpperCase()) {
+      cardStyle = {
+        "font-size": "13px",
+        "background-color": "rgba(255, 255, 255, 0.9)"
+      }
     }
-  }
-  else {
-    cardStyle={
-      "font-size":"16px",
-      "background-color": "rgba(255, 255, 255, 0.9)"
+    else {
+      cardStyle={
+        "font-size":"16px",
+        "background-color": "rgba(255, 255, 255, 0.9)"
+      }
     }
   }
 
@@ -36,7 +38,7 @@ const SearchRes = props => {
         >
           <Row>
             <Col m={12} s={12}>
-              <a href={`/${props.userName}`}>
+              <a href={`/${props.userName}`} id="img-col">
                 <img alt={"h"}  src={fixed(props.pic)} className="" />
               </a>
             </Col>

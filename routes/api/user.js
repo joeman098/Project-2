@@ -23,8 +23,10 @@ router.route("/seed")
     .get(userController.seed);
 router.route("/getChats")
     .get(userController.getChats);
-    router.route("/getAvatars")
+router.route("/getAvatars")
     .post(userController.getAvatars);
+router.route("/getAll")
+    .get(userController.getAll);
 
 
 

@@ -137,8 +137,10 @@ class PrivateMessages extends React.Component {
     }
 
     sendMessage = () => {
-        socket.emit('sendchat', this.state.chatId, this.state.userId, this.state.message);
-        socket.emit('notwriting', this.state.usernames[this.state.userId]);
+        if (this.state.message !== "" && this.state.message !== null && this.state.message !== false) {
+            socket.emit('sendchat', this.state.chatId, this.state.userId, this.state.message);
+            socket.emit('notwriting', this.state.usernames[this.state.userId]);
+        }
     }
 
     goToChat = event => {

@@ -140,6 +140,7 @@ input:focus{
 	padding: 10px;
     font-weight: bold;
     background-color: whitesmoke;
+    border-bottom: 1px solid lightgray;
 }
 
 .chat:hover {

@@ -8,7 +8,7 @@ import openSocket from 'socket.io-client';
 import { Link } from "react-router-dom";
 
 const Navigation = require('react-router').Navigation;
-const socket = openSocket('http://localhost:3001');
+const socket = openSocket('https://s0cial3r.herokuapp.com');
 const dateFormat = require('dateformat');
 
 class PrivateMessages extends React.Component {

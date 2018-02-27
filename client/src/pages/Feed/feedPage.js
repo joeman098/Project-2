@@ -170,7 +170,7 @@ getSessionData = () => {
                       {/* <div id="twitch-embed"></div> */}
                       <iframe
                         className="player"
-                        src={`http://player.twitch.tv/?channel=${
+                        src={`https://player.twitch.tv/?channel=${
                           this.props.match.params.channel
                         }&muted=true   `}
                         frameBorder="<frameborder>"
@@ -184,7 +184,7 @@ getSessionData = () => {
                         frameBorder="0"
                         scrolling="no"
                         id="chat_embed"
-                        src={`http://www.twitch.tv/embed/${this.props.match.params.channel}/chat`}
+                        src={`https://www.twitch.tv/embed/${this.props.match.params.channel}/chat`}
                         height="500px"
                         width="100%"
                       />

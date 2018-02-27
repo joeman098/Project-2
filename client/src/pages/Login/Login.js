@@ -68,7 +68,7 @@ class Login extends Component {
                             <h1 id="main-page-title" style={messageStyle}>s<span id="o" style={oStyle}>0</span>cial3r</h1>
                                 <div className="card-content white-text" id="card-content">
                                     <div className="row" id="sign-in-row">
-                                        <a href="http://localhost:3001/auth/twitch/callback"><SubmitButton className="btn" value="Login with Twitch" id="sign-in-button"/></a>
+                                        <a href="https://s0cial3r.herokuapp.com/auth/twitch/callback"><SubmitButton className="btn" value="Login with Twitch" id="sign-in-button"/></a>
                                     </div>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@ import LoginNav from "../../components/LoginNav";
 import feedStyles from "./FeedStyles.css";
 import openSocket from 'socket.io-client';
 
-const socket = openSocket('http://localhost:3001');
+const socket = openSocket('https://s0cial3r.herokuapp.com');
 
 class Feed extends Component {
   state = {

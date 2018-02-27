@@ -163,7 +163,7 @@ app.use(cookieSession({
   maxAge: 60 * 60 * 1000,
   secure: false,
   overwrite: false,
-  secret: 'keyboard cat'
+  secret: 'Franklin is da queen he shows us daee when adam does not know dwea'
 }));
 
 

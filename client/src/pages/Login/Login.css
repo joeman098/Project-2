@@ -90,7 +90,7 @@
 #sign-in-button:hover {
     background-color: #7C50CC;
 }
-@media only screen and (max-width: 1375px) and (orientation: landscape) {
+@media only screen and (min-width: 1050px) and (max-width: 1375px) and (orientation: landscape) {
 
     #sign-in-button {
         height: 50px;
@@ -106,19 +106,24 @@
     }
 }
 
-@media only screen and (max-width: 1050px) and (orientation: landscape) {
+@media only screen and (min-width: 750px) and (max-width: 1050px) and (orientation: landscape) {
 
     #sign-in-button {
         height: 50px;
     }
 
     #main-page-title {
-        font-size: 18vw;
+        font-size: 60px;
         margin-top: 0;
+    }
+
+    .welcomeMessage {
+        font-size: 20px;
+        margin: 0;
     }
 }
 
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1050px) and (orientation: portrait) {
 
     #main-page-title {
         font-size: 18vw;
@@ -146,5 +151,10 @@
 @media only screen and (max-width: 587px) {
     .welcomeMessage {
         font-size: 35px;
+    }
+
+    #main-page-title {
+        margin-left: 0;
+        font-size: 60px;
     }
 }

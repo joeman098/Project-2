@@ -206,7 +206,7 @@ class PrivateMessages extends React.Component {
                                     this.state.messages.map(message => {
                                         if (message.sender === this.state.userId) {
                                             return (
-                                                <li key={message._id}>
+                                                <li className="message-container" key={message._id}>
                                                     <div className="msj-rta macro">
                                                         <div className="text text-r">
                                                             <p className="message">
@@ -222,7 +222,7 @@ class PrivateMessages extends React.Component {
                                         } else {
                                             return (
 
-                                                <li key={message._id} className="pleft">
+                                                <li key={message._id} className=" message-container pleft">
                                                     <div className="msj macro">
                                                         <div className="avatar"><img className="img-circle" src={this.state.avatars[message.sender]} /></div>
                                                         <div className="text text-l">

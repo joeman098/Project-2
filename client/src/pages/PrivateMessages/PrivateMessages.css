@@ -181,3 +181,6 @@ input:focus{
 .bold {
     font-weight: bold;
 }
+.message-container {
+    height: 13vh;
+}

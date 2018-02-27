@@ -98,3 +98,71 @@ iframe.player{
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
+
+@media only screen and (min-width: 450px) and (max-width: 1050px) and (orientation: portrait) {
+  #post-meme-btn {
+    font-size: 15px;
+    padding: 0;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  #post-title {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 1050px) and (orientation: landscape) {
+  #post-meme-btn {
+    font-size: 15px;
+    padding: 0;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  #post-title {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 450px) and (orientation: portrait) {
+  #post-meme-btn {
+    font-size: 10px;
+    padding: 0;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  #chat-col {
+    padding-left: 0 !important;
+  }
+
+  #tv-player-col {
+    padding-right: 0 !important;
+  }
+
+  #post-title {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 450px) and (orientation: landscape) {
+  #post-meme-btn {
+    font-size: 10px;
+    padding: 0;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  #chat-col {
+    padding-left: 0 !important;
+  }
+
+  #tv-player-col {
+    padding-right: 0 !important;
+  }
+
+  #post-title {
+    text-align: center;
+  }
+}

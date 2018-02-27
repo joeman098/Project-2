@@ -27,7 +27,8 @@
     background-color: white;
     height: 100vh;
     width: 85%;
-    position: static;
+	position: static;
+	margin-top: 0;
 }
 .fb-image-lg {
     width: 100%;
@@ -35,7 +36,8 @@
 }
 
 .thumbnail {
-    width: 25%;
+	width: 25%;
+	margin-right: 20px;
 }
 .fb-profile {
     position: static;
@@ -49,10 +51,31 @@
     right:10px;
 }
 
+#profile-page {
+	margin-top: 0;
+}
+
 .clear {
 	clear: both;
 }
 
 button[data-class='PM-button'] {
 	float: right;
+}
+
+.username {
+	font-size: 4vw;
+	margin-left: 2%
+}
+
+@media screen and (max-width: 1024px) {
+	.bio {
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.username {
+		font-size: 25px;
+	}
 }

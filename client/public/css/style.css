@@ -1,5 +1,5 @@
 
-* {
+/* * {
     box-sizing: border-box;
 }
 
@@ -166,22 +166,22 @@
 #message-headlinegood {
     font-size: 20px;
     color: rgb(15, 240, 53);
-}
+} */
 
 /* Profile Page CSS */
 
-#profile-body {
+/* #profile-body {
     bottom: 0;
-    top: 185px;
+    top: 185px; */
     /* background-color: lightgray; */
-    width: 100%;
+    /* width: 100%;
     height: 100%;
     margin: 0;
     z-index: -10;
     background-color: #4600c9;
-background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.png"); */
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
+/* }
 
 .profile-page-container {
     position: relative;
@@ -200,15 +200,15 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
     left: 0;
     right: 0;
     width: 100%;
-    height: 95px;
+    height: 95px; */
     /* background: linear-gradient(rgba(33,33,33,1), rgba(88,88,88,1)); */
-    margin: 0;
+    /* margin: 0;
     z-index: 10;
     background-color: #1e2124;;
-    background-image: url("https://www.transparenttextures.com/patterns/diagonales-decalees.png");
+    background-image: url("https://www.transparenttextures.com/patterns/diagonales-decalees.png"); */
     /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
+/* }
 
 
 #profile-header-background-type {
@@ -246,10 +246,10 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
     background-color:	#7289DA;
     height: 62px;
     z-index: 10;
-    background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+    background-image: url("https://www.transparenttextures.com/patterns/gplay.png"); */
     /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
+/* }
 #why{
 
     color: white;
@@ -495,13 +495,13 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
 #forgot-form input[type=text]:focus {
     border-bottom: 1px solid #7289da !important;
     box-shadow: 0 1px 0 0 #7289da !important;  
-}
+} */
 /* label focus color */
-.input-field input:focus + label {
+/* .input-field input:focus + label {
     color: #7289da !important;
-}
+} */
 /* label underline focus color */
-.input-field input[type=text]:focus {
+/* .input-field input[type=text]:focus {
     border-bottom: 1px solid #7289da !important;
     box-shadow: 0 1px 0 0 #7289da !important;
 }
@@ -518,17 +518,17 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
 
 #reply:hover {
     color: #5567A3;
-}
+} */
 
-#post {
+/* #post { */
     /* background-color: white; */
-    border-radius: 5px;
+    /* border-radius: 5px;
     background-color: #1e2124;
-    background-image: url("https://www.transparenttextures.com/patterns/diagonales-decalees.png");
+    background-image: url("https://www.transparenttextures.com/patterns/diagonales-decalees.png"); */
     /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
+/* }
 
 #post-body {
     margin-bottom: 10px;
@@ -560,20 +560,20 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
 
 #friends-count {
     color: 	#7289da;
-}
+} */
 
-#friends-card {
+/* #friends-card {
     position: fixed;
     top: 230px;
     z-index: 10;
     border-radius: 5px;
     background-color:#1e2124;
-    background-image: url("https://www.transparenttextures.com/patterns/diagonales-decalees.png");
+    background-image: url("https://www.transparenttextures.com/patterns/diagonales-decalees.png"); */
     /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
+/* } */
 
-.highlighted {
+/* .highlighted {
     background-color: #5567A3;
 }
 
@@ -866,4 +866,4 @@ background-image: url("https://www.transparenttextures.com/patterns/dark-mosaic.
     #friend-add-message, #friend-error-message {
         left: 450px;
     }
-}
+} */

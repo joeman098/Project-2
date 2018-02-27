@@ -181,3 +181,15 @@ input:focus{
 .bold {
     font-weight: bold;
 }
+
+.profile-pic-chat {
+    width: 70%;
+}
+
+#chat-message {
+    padding: 10px;
+}
+
+#poster {
+    padding-bottom: 10px;
+}

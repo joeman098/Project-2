@@ -142,7 +142,7 @@ class Profile extends React.Component {
             }]
         };
         return (
-            <div>
+            <div id="profile-page">
                 <RModal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
@@ -170,7 +170,7 @@ class Profile extends React.Component {
                                 <button onClick={this.openModal} className="btn btn-primary updateBanner">Change Banner</button>
 
                                 <img align="left" className="fb-image-lg" src={this.state.userData.banner ? this.state.userData.banner : "https://wikitravel.org/upload/shared//6/6a/Default_Banner.jpg"} alt="Profile image example" />
-                                <img align="left" className="fb-image-profile thumbnail" src={this.state.userData.avatar} alt="Profile image example" />
+                                <img align="left" className="fb-image-profile thumbnail" src={this.state.userData.avatar ? this.state.userData.avatar : "http://spaceacre.co.za/wp-content/uploads/avatar-1.png"} alt="Profile image example" />
 
                                 <div className="fb-profile-text">
                                     <h1 className="username">{this.state.userData.username}</h1>
@@ -214,7 +214,7 @@ class Profile extends React.Component {
 
                                 <div className="fb-profile-text">
                                     <h1 className="username">{this.state.userData.username}</h1>
-                                    <Button data-class="PM-button" data-id={this.state.userData._id} onClick={this.goToChat}>PM</Button>
+                                    <Button data-class="PM-button-profile" data-id={this.state.userData._id} onClick={this.goToChat} id="PM-button" Button>PM</Button>
                                     <p className="bio">{this.state.userData.bio}</p>
                                 </div>
                             </div>

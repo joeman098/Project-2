@@ -82,7 +82,7 @@ io.sockets.on('connection', function (socket) {
     // send client to room 1
     socket.join('room1');
     // echo to room 1 that a person has connected to their room
-    socket.broadcast.to('room1').emit('updatechat', 'SERVER', username + ' has connected to this room');
+    // socket.broadcast.to('room1').emit('updatechat', 'SERVER', username + ' has connected to this room');
     socket.emit('updaterooms', rooms, 'room1');
   });
 
@@ -135,7 +135,7 @@ io.sockets.on('connection', function (socket) {
     // update list of users in chat, client-side
     io.sockets.emit('updateusers', usernames);
     // echo globally that this client has left
-    socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+    // socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
     socket.leave(socket.room);
   });
 });

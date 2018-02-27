@@ -31,14 +31,14 @@ const socialitSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  channelName: {
+  channel: {
     type: Schema.Types.ObjectId,
     ref: "Channel"
   },
-  username: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  }
+  poster: {
+    type: String,
+    required: true  
+}
 });
 
 const socialitPost = mongoose.model("socialitPost", socialitSchema);

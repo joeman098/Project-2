@@ -39,9 +39,10 @@ class socialit extends Component {
   }
 
   loadposts = () => {
-    API.getposts()
+    
+    API.getposts({channelName: this.props.match.params.channel})
       .then(res =>
-        this.setState({ posts: res.data, link: "", upvotes: "", body: "" ,body: ""})
+        this.setState({ posts: res.data, link: "", upvotes: "", body: "" ,body: "", _id:"" })
       )
       .catch(err => console.log(err));
   };
@@ -62,14 +63,15 @@ class socialit extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.props.match.params.channel)
+    console.log(this.state.User._id,)
     if (this.state.title) {
       API.savepost({
         title: this.state.title,
-        imageLink: this.state.imagelink,
+        imageLink: this.state.imageLink,
         body: this.state.body,
-        // userId:this.state.User._id,
+        userId:this.state.User._id,
         channelName:this.props.match.params.channel,
-        // username:this.state.User.username
+        username:this.state.User.username
       })
         .then(res => this.loadposts())
         .catch(err => console.log(err));
@@ -77,6 +79,7 @@ class socialit extends Component {
   };
 
   render() {
+    const channelName =this.props.match.params.channel
     return (
    
 
@@ -97,10 +100,10 @@ class socialit extends Component {
                 placeholder="Title (required)"
               />
               <Input
-                value={this.state.imagelink}
+                value={this.state.imageLink}
                 onChange={this.handleInputChange}
                 name="imageLink"
-                placeholder="image-link (optional)"
+                placeholder="imageLink (optional)"
               />
               <TextArea
                 value={this.state.body}
@@ -124,9 +127,10 @@ class socialit extends Component {
                 {this.state.posts.map(post => (
                 <SocialitPost
                   key= {post._id}
-                  link ={"/socialit/p/" + post._id}
+                  link ={`/socialit/${channelName}/${post._id}`}
                   title ={post.title} 
-                  author = {post.author}
+                  poster = {post.poster}
+                  image ={post.imageLink ? post.imageLink :"https://www.transparenttextures.com/patterns/gplay.png"}
                   // delete ={this.deletepost(post._id)}
                /> ))}
                </div>

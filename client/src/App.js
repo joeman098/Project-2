@@ -8,6 +8,7 @@ import NoMatch from "./pages/NoMatch";
 import Feed from "./pages/Feed";
 import Browse from "./pages/Browse";
 import socialit from "./pages/socialit"
+import socialitComment from "./pages/socialit/SocialitComment"
 import PrivateMessages from "./pages/PrivateMessages"
 
 const App = () =>
@@ -24,6 +25,7 @@ const App = () =>
         <Route exact path="/PrivateMessages" component={PrivateMessages} />
         <Route exact path="/PrivateMessages/:id" component={PrivateMessages} />
         <Route exact path="/socialit/:channel" component={socialit} />
+        <Route exact path="/socialit/:channel/:id" component={socialitComment} />
         <Route exact path="/:channel" component={Feed} />
         <Route component={NoMatch} />
     </Switch>

@@ -11,9 +11,10 @@ const SocialitPost = props => {
 
 
       <Card className='small socialitCard'
-	header={<CardTitle image='https://react-materialize.github.io/img/sample-1.jpg'>{props.title}</CardTitle>}
-	actions={[<a href='#'>Comment</a>]}>
-	Submited by {props.author}
+	header={<CardTitle image={props.image}>{props.title}</CardTitle>}
+	actions={<Link to={props.link} className="" id="main-chat-link">Comments</Link>}
+  >
+	    Submited by {props.poster}
         </Card>
  
 

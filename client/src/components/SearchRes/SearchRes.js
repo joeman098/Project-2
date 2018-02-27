@@ -64,6 +64,7 @@ else{
           <Row>
             <Col m={12} s={12} id="img-col">
                 <img alt={"h"} onClick={()=>props.GameStreams(props.id)} src={fixed(props.pic)} className="" />
+                
             </Col>
             <Col m={12} s={12} id="result-title">
               <p>{props.title}</p>

@@ -10,6 +10,20 @@ const SearchRes = props => {
     return fixpics;
   };
 
+  let cardStyle = {};
+  if(props.title[1] === props.title[1].toUpperCase()) {
+    cardStyle = {
+      "font-size": "13px",
+      "background-color": "rgba(255, 255, 255, 0.9)"
+    }
+  }
+  else {
+    cardStyle={
+      "font-size":"16px",
+      "background-color": "rgba(255, 255, 255, 0.9)"
+    }
+  }
+
 
   if(props.kind == "stream"){
   return (
@@ -18,10 +32,7 @@ const SearchRes = props => {
         <Card
           className="search-result-card"
           textClassName="black-text"
-          style={{
-            "font-size": "16px",
-            "background-color": "rgba(255, 255, 255, 0.9)"
-          }}
+          style={cardStyle}
         >
           <Row>
             <Col m={12} s={12}>
@@ -29,10 +40,8 @@ const SearchRes = props => {
                 <img alt={"h"}  src={fixed(props.pic)} className="" />
               </a>
             </Col>
-            <Col m={12} s={12}>
-            <div id="result-title-div">
-              <p id="result-title">{props.title}</p>
-            </div>
+            <Col m={12} s={12} id="result-title">
+              <p>{props.title}</p>
             </Col>
           </Row>
         </Card>
@@ -41,23 +50,21 @@ const SearchRes = props => {
   );
 }
 else{
+  
   return (
     <div className="SearchRes">
       <Col m={3} s={6}>
         <Card
           className="search-result-card"
           textClassName="black-text"
-          style={{
-            "font-size": "16px",
-            "background-color": "rgba(255, 255, 255, 0.9)"
-          }}
+          style={cardStyle}
         >
           <Row>
             <Col m={12} s={12} id="img-col">
                 <img alt={"h"} onClick={()=>props.GameStreams(props.id)} src={fixed(props.pic)} className="" />
             </Col>
-            <Col m={12} s={12}>
-           {props.title}
+            <Col m={12} s={12} id="result-title">
+              <p>{props.title}</p>
             </Col>
           </Row>
         </Card>

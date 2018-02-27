@@ -88,6 +88,16 @@ li:visited {
 
 #post-bar-col {
     width: 55%;
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 1275px) {
+    #nav-mobile {
+        display: block;
+    }
+    #nav-dashboard {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1050px) {
@@ -108,13 +118,7 @@ li:visited {
     }
 }
 
-@media only screen and (max-width: 780px) {
-    #nav-mobile {
-        display: block;
-    }
-    #nav-dashboard {
-        display: none;
-    }
+@media only screen and (max-width: 815px) {
 
     #clickable-li > Icon:hover {
         background-color: #4A307A;
@@ -127,11 +131,34 @@ li:visited {
 
     #search-input {
         margin-left: 10px;
-        
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 750px) {
+    #post-bar-col {
+        width: 55%;
+    }
+ 
+    #search-button {
+        width: 18%;
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 675px) {
+    #profile-logo {
+        display: none;
+    }
+    #search-input {
+        margin-left: 0;
+    }
+    #post-bar-col {
+        margin-left: 0;
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 587px) {
     #profile-logo {
         display: none;
     }
@@ -139,6 +166,12 @@ li:visited {
     #post-bar-col {
         width: 100%;
         margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0;
+    }
+
+    #search-nav {
+        height: 50px;
     }
 
     #search-input {
@@ -150,7 +183,7 @@ li:visited {
     }
 
     #nav-mobile {
-        background-color: rgba(0, 0, 0, 1);
+        background-color: #4F4F4F;
         width: 100%;
         margin: 0 auto;
         height: 45px;
@@ -159,11 +192,18 @@ li:visited {
 
     .clickable-li {
         height: 45px;
-        padding-bottom: 10px;
-        padding-right: 20px;
+        padding-bottom: 15px;
+        padding-right: 9%;
     }
 
     .clickable-li:first-child {
-        padding-left: 75px;
+        padding-left: 20%;
+    }
+
+    .clickable-li:last-child {
+        padding-right: 20%;
+    }
+    .main-chat-links {
+        margin-bottom: 5px;
     }
 }

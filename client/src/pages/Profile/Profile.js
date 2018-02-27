@@ -1,7 +1,7 @@
 import React from "react";
 import UserMemes from "../../components/UserMemes";
 import API from "../../utils/API";
-import SearchNav from "../../components/SearchNav";
+import LoginNav from "../../components/LoginNav";
 import "./Profile.css";
 import SearchRes from "../../components/SearchRes";
 import { Container } from "../../components/Grid/";
@@ -28,7 +28,8 @@ class Profile extends React.Component {
         isOwn: false,
         modalIsOpen: false,
         banner: "",
-        feedz: []
+        feedz: [],
+        sessionStatus: ""
     }
 
 
@@ -54,9 +55,21 @@ class Profile extends React.Component {
                 if (result.data.username === this.props.match.params.username) {
                     this.setState({ isOwn: true });
                 }
+
+                if(result.data) {
+                    this.setState({sessionStatus: "LOG OUT"});
+                }
+                else {
+                    this.setState({sessionStatus: "LOG IN"});
+                }
                 this.getUserData();
             }.bind(this))
             .catch(err => console.log(err));
+    }
+
+    killSession() {
+        API.destroySession()
+        .then(res => console.log(res));
     }
 
     getUserData() {
@@ -147,7 +160,7 @@ class Profile extends React.Component {
                 <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
-                <SearchNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} topGames={this.TopGames} topStreams={this.Top} isUserChecked={this.state.isUserChecked} isGameChecked={this.state.isGameChecked} />
+                <LoginNav killSession={this.killSession} session={this.state.sessionStatus} />
                 {
                     this.state.isOwn ?
                         // is own profile include chat and user management

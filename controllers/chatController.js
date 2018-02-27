@@ -2,6 +2,27 @@ const db = require("../models");
 
 // Defining methods for the booksController
 module.exports = {
+    goToChat: function(req, res) {
+        const user = req.session.user._id;
+        const user2 = req.params.id;
+        db.Chat.find({ 
+            $or: [
+                 {participants: { $eq:  [user,user2] } },
+                 {participants: { $eq:  [user2,user]  } }
+                ] 
+             })
+        .then(function(result){
+            if (result.length === 0) {
+                db.Chat.create({
+                    participants: [user,user2]
+                }).then(function(result) {
+                    return res.json(result._id);
+                }).catch(err => console.log(err));
+            } else {
+                return res.json(result[0]._id);
+            }
+        }).catch(err => console.log(err));
+    },
     sendMessage: function (req, res) {
         const message = req.body;
         db.Message.create({

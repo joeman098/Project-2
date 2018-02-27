@@ -37,7 +37,16 @@ module.exports = function (passport) {
               return done(err, result);
             });
           } else {
-            return done(err, result);
+            User.findOneAndUpdate(
+              { TwitchId: profile.id },
+              {
+                email: profile.email,
+                avatar: json.logo,
+                bio: json.bio
+              },
+              function (err, result) {
+                return done(err, result);
+              });
           }
         });
       }

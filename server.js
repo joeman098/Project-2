@@ -113,7 +113,7 @@ app.use(express.static("client/build"));
 
 app.use(cookieSession({
   httpOnly: true,
-  maxAge: 30 * 60 * 1000,
+  maxAge: 60 * 60 * 1000,
   secure: false,
   overwrite: false,
   secret: 'keyboard cat'
@@ -152,7 +152,12 @@ require('./config/passport/passport.js')(passport);
 app.get("/auth/twitch", passport.authenticate("twitch"));
 
 app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedirect: "/" }), function (req, res) {
-  req.session.user = req.session.passport.user[0];
+
+  if (req.session.user = req.session.passport.user[0]) {
+    req.session.user = req.session.passport.user[0];
+  } else {
+    req.session.user = req.session.passport.user;
+  }
   console.log(req.session.user)
   return res.redirect("http://localhost:3000/browse");
 });

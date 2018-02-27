@@ -10,6 +10,8 @@ router.route("/getMessages")
     .post(chatController.getMessages);
 router.route("/getChat")
     .post(chatController.getChat);
+router.route("/goToChat/:id")
+    .get(chatController.goToChat);
 
 
 

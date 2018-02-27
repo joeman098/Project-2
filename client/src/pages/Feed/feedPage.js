@@ -15,6 +15,9 @@ import Slider from "../../slider";
 import { Button, Icon, Modal, Row, Col } from "react-materialize";
 import LoginNav from "../../components/LoginNav";
 import feedStyles from "./FeedStyles.css";
+import openSocket from 'socket.io-client';
+
+const socket = openSocket('http://localhost:3001');
 
 class Feed extends Component {
   state = {
@@ -28,9 +31,28 @@ class Feed extends Component {
   };
 
   componentDidMount() {
+  
     this.loadFeed();
     this.getSessionData();
+  const date = new Date();
+  const ts = date.getTime();
+  const channel = this.props.match.params.channel
+    socket.on('connect', function() {
+      socket.emit('adduser', ts);
+      socket.emit('switchRoom', channel);
+    });
+    socket.on("updatememe", (result) => {
+      const joined = this.state.feedz.map(m => m);
+      joined.push(result);
+      this.setState({ feedz: joined });
+      this.setState({ link: "" });
+  });
   }
+
+ 
+
+
+  
 
 killSession() {
   API.destroySession()
@@ -76,24 +98,14 @@ getSessionData = () => {
   handleFormSubmit = event => {
     event.preventDefault();
     if ( this.state.link) {
-      // API.postMeme({
-      //   // poster: this.state.poster,
-      //   link: this.state.link,
-      //   channel:this.props.match.params.channel,
-      //   userName:this.state.User.userName
-        
-      // })
-      //   .then(res => this.loadFeed())
-      //   .catch(err => console.log(err));
-        API.addMeme({
-          // poster: this.state.poster,
-          meme: this.state.link,
-          channelName:this.props.match.params.channel,
-          userId:this.state.User._id,
-          username:this.state.User.username
-        })
-        .then(res => this.loadFeed())
-        .catch(err => console.log(err));
+      const meme = {
+        // poster: this.state.poster,
+        meme: this.state.link,
+        channelName:this.props.match.params.channel,
+        userId:this.state.User._id,
+        username:this.state.User.username
+      };
+      socket.emit('sendmeme', meme);
     }
   };
 
@@ -176,13 +188,7 @@ getSessionData = () => {
                     <h4 id="post-title">{this.state.memeTitle}</h4>
                     <form>
                       <Col s={10}>
-                        {/* <Input2
-                          value={this.state.poster}
-                          onChange={this.handleInputChange}
-                          name="poster"
-                          placeholder="poster (required)"
-                        /> */}
-                        <Input2
+                       <Input2
                           value={this.state.link}
                           onChange={this.handleInputChange}
                           name="link"

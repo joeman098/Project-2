@@ -29,6 +29,48 @@ var rooms = ['room1', 'room2', 'room3'];
 io.sockets.on('connection', function (socket) {
   console.log("Connected succesfully to the socket ...");
 
+  socket.on('sendmeme', function (memeObject) {
+    var meme = memeObject.meme;
+    var userId = memeObject.userId;
+    var username = memeObject.username;
+    var channelName = memeObject.channelName;
+    db.Channel.find({ name: channelName }).then(function (result) {
+        if (result.length === 0) {
+            db.Channel.create({
+                name: channelName
+            }).then(function (result) {
+                const cId = result._id;
+                db.Meme.create({
+                    link: meme,
+                    channel: cId,
+                    poster: username
+                }).then(function (result) {
+                  io.in(socket.room).emit('updatememe', result);
+                    console.log(result);
+                    db.User.updateOne({_id: userId}, {$push:{memes: result._id}}).then(function(result){
+                        res.json("Channel and meme added!")
+                    }).catch(err => console.log(err));
+                }).catch(err => console.log(err));
+            }).catch(err => console.log(err));
+       } else {
+            const cId = result[0]._id;
+            db.Meme.create({
+                link: meme,
+                channel: cId,
+                poster: username
+            }).then(function (result) {  
+              io.in(socket.room).emit('updatememe', result);
+                console.log(result);
+                db.User.updateOne({_id: userId}, {$push:{memes: result._id}}).then(function(result){
+                    res.json("Meme added to existing channel!")
+                }).catch(err => console.log(err));
+            }).catch(err => console.log(err));
+
+        }
+    }).catch(err => console.log(err));
+  });
+
+
 
   socket.on('adduser', function (username) {
     // store the username in the socket session for this client

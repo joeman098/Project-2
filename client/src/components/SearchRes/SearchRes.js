@@ -36,7 +36,7 @@ const SearchRes = props => {
         >
           <Row>
             <Col m={12} s={12}>
-              <a href={`/${props.userName}`}>
+              <a href={`/${props.userName}`} id="img-col">
                 <img alt={"h"}  src={fixed(props.pic)} className="" />
               </a>
             </Col>

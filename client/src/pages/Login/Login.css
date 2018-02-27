@@ -13,6 +13,7 @@
     color: white;
     font-family: 'Helvetica', sans-serif;
     text-shadow: .05em .05em .1em black;
+    font-size: 4.2rem;
 }
 #login-card {
     position: relative;
@@ -89,31 +90,23 @@
 #sign-in-button:hover {
     background-color: #7C50CC;
 }
-
-@media only screen and (max-width: 1050px) {
-
-    #login-email-label, #login-password-label, #email, #password, #sign-in-button {
-        font-size: 25px;
-    } 
+@media only screen and (max-width: 1375px) and (orientation: landscape) {
 
     #sign-in-button {
         height: 50px;
+        font-size: 25px;
     }
 
     #main-page-title {
-        font-size: 18vw;
-        margin-top: 150px
+        font-size: 12vw;
+        margin-top: 0;
     }
     #login-card {
         margin-top: 100px;
     }
 }
 
-@media only screen and (max-width: 780px) {
-
-    #login-email-label, #login-password-label, #email, #password, #sign-in-button {
-        font-size: 20px;
-    } 
+@media only screen and (max-width: 1050px) and (orientation: landscape) {
 
     #sign-in-button {
         height: 50px;
@@ -121,10 +114,37 @@
 
     #main-page-title {
         font-size: 18vw;
-        margin-top: 150px
+        margin-top: 0;
     }
+}
 
+@media only screen and (max-width: 1050px) {
+
+    #main-page-title {
+        font-size: 18vw;
+        margin-top: 0;
+    }
     #login-card {
         margin-top: 100px;
+    }
+}
+
+@media only screen and (max-width: 750) and (orientation: landscape) {
+    #main-page-title {
+        font-size: 12px;
+        margin-top: 0;
+    }
+    #login-card {
+        margin-top: 0;
+    }
+    .welcomeMessage {
+        font-size: 40px !important;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 587px) {
+    .welcomeMessage {
+        font-size: 35px;
     }
 }

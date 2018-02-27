@@ -56,7 +56,9 @@ class Login extends Component {
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
                 <div className="row" id="main-page-content-row">
+                <div>
                 <LoginNav handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit}/>
+                </div>
                     <div className="col s1 m1 l1 xl2" id="left-bar-main">
                     </div>
                     <div className="col s10 m10 l10 xl8" id="main-page-content">

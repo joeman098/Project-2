@@ -22,6 +22,10 @@
     margin-left: 0px;
 }
 
+#nav-mobile {
+    display: none;
+}
+
 #search-button {
     height: 45px;
     font-size: 15px;
@@ -84,4 +88,82 @@ li:visited {
 
 #post-bar-col {
     width: 55%;
+}
+
+@media only screen and (max-width: 1050px) {
+    #nav-dashboard > li {
+        font-size: 16px;
+    }
+
+    #post-bar-col {
+        width: 45%;
+    }
+
+    #search-button {
+        width: 20%;
+    }
+
+    #select-wrapper {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    #nav-mobile {
+        display: block;
+    }
+    #nav-dashboard {
+        display: none;
+    }
+
+    #clickable-li > Icon:hover {
+        background-color: #4A307A;
+        background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+    }
+
+    #post-bar-col {
+        width: 60%;
+    }
+
+    #search-input {
+        margin-left: 10px;
+        
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #profile-logo {
+        display: none;
+    }
+
+    #post-bar-col {
+        width: 100%;
+        margin-bottom: 0 !important;
+    }
+
+    #search-input {
+        width: 45%;
+    }
+    
+    #search-button {
+        font-size: 13px;
+    }
+
+    #nav-mobile {
+        background-color: rgba(0, 0, 0, 1);
+        width: 100%;
+        margin: 0 auto;
+        height: 45px;
+        padding-top: 0px;
+    }
+
+    .clickable-li {
+        height: 45px;
+        padding-bottom: 10px;
+        padding-right: 20px;
+    }
+
+    .clickable-li:first-child {
+        padding-left: 75px;
+    }
 }

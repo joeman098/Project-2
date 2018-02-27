@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CustomInput from "../../components/Form/Input";
-import { Input } from "react-materialize";
+import { Input, Icon } from "react-materialize";
 import "./SearchNav.css";
 
 const SearchNav = props => {
@@ -26,17 +26,24 @@ const SearchNav = props => {
             <CustomInput 
                 className="btn" 
                 type="submit" 
-                value="SEARCH" 
+                value="SEARCH"
                 id="search-button" 
                 onClick={props.handleSearchSubmit}
             />
         </span>
-        <ul id="nav-dashboard" className="right hide-on-small-only search-nav-links">
+        <ul id="nav-dashboard" className="right search-nav-links">
             <li onClick={props.topStreams} className="clickable-li">TOP STREAMS</li>
             <li onClick={props.topGames} className="clickable-li">TOP GAMES</li>
             <li><Link to={"/profilelist"} className="" id="main-chat-link">PROFILE LIST</Link></li>
             <li><Link to={"/"} className="main-chat-link" onClick={props.killSession}>{props.session}</Link></li>
         </ul>
+        <ul id="nav-mobile" className="right search-nav-links">
+            <li onClick={props.topStreams} className="clickable-li"><Icon large>live_tv</Icon></li>
+            <li onClick={props.topGames} className="clickable-li"><Icon large>videogame_asset</Icon></li>
+            <li><Link to={"/profilelist"} className="" id="main-chat-link"><Icon large>group</Icon></Link></li>
+            <li><Link to={"/"} className="main-chat-link" onClick={props.killSession}>{props.session}</Link></li>
+        </ul>
+
     </nav>
     )
 }

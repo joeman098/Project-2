@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 var cookieSession = require('cookie-session');
 var discord = require("discord.js");
 var db = require("./models");
-var flash = require('express-flash');
+const flash = require('express-flash');
 const mongoose = require("mongoose");
 require('dotenv').config();
 const routes = require("./routes");

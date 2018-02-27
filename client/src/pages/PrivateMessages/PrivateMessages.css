@@ -201,3 +201,9 @@ input:focus{
     height: 13vh;
     margin: 1vh;
 }
+
+@media only screen and (max-width: 768px) {
+    #presentation-date {
+        font-size: 6px;
+    }
+}

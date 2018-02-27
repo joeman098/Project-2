@@ -230,7 +230,7 @@ class PrivateMessages extends React.Component {
                                                                 <b id="poster"> {this.state.usernames[message.sender]}</b><br />
                                                                 {message.message}
                                                             </p>
-                                                            <p><small>{this.presentationDate(message.date)}</small></p>
+                                                            <p id="presentation date"><small>{this.presentationDate(message.date)}</small></p>
                                                         </div>
                                                     </div>
                                                 </li>

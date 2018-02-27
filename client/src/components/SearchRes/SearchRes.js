@@ -14,7 +14,7 @@ const SearchRes = props => {
   if(props.kind == "stream"){
   return (
     <div className="SearchRes">
-      <Col m={3} s={3}>
+      <Col m={3} s={6}>
         <Card
           className="search-result-card"
           textClassName="black-text"
@@ -30,7 +30,9 @@ const SearchRes = props => {
               </a>
             </Col>
             <Col m={12} s={12}>
-              {props.title}
+            <div id="result-title-div">
+              <p id="result-title">{props.title}</p>
+            </div>
             </Col>
           </Row>
         </Card>
@@ -41,7 +43,7 @@ const SearchRes = props => {
 else{
   return (
     <div className="SearchRes">
-      <Col m={3} s={3}>
+      <Col m={3} s={6}>
         <Card
           className="search-result-card"
           textClassName="black-text"
@@ -51,10 +53,9 @@ else{
           }}
         >
           <Row>
-            <Col m={12} s={12}>
-            <a href={`stream/${props.userName}`}>
+            <Col m={12} s={12} id="img-col">
                 <img alt={"h"} onClick={()=>props.GameStreams(props.id)} src={fixed(props.pic)} className="" />
-                </a>
+                
             </Col>
             <Col m={12} s={12}>
            {props.title}

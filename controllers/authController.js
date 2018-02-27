@@ -3,22 +3,15 @@ var router = express.Router();
 var passport = require("passport");
 var db = require("../models");
 
+module.exports = {
+  logout: function (req, res) {
+    req.session = null; // destroys cookie session
+    res.json("session ended");
+  },
+}
 
 
 
-router.get("/", function(req, res) {
-
-});
-
-router.get("/api/auth/logout", function (req, res) {
-  req.session = null; // destroys cookie session
-  res.redirect('/');
-});
-
-
-
-
-module.exports = router;
 
 
 // var exports = module.exports = {}

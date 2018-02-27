@@ -1,4 +1,4 @@
-.search-results {
+div.container {
     margin-top: 75px;
 }
 
@@ -24,3 +24,8 @@
 	z-index: -100;
 }
 
+@media only screen and (max-width: 400px) {
+	div.container {
+		margin-top: 150px;
+	}
+}

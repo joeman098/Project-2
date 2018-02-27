@@ -5,6 +5,7 @@ module.exports = {
     Meme: require("./Meme"),
     FeedMessage: require("./FeedMessage"),
     Message: require("./Message"),
-    Socialit: require("./socialit")
+    Socialit: require("./socialit"),
+    Chat: require("./Chat")
   };
   

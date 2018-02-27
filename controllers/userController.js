@@ -56,20 +56,74 @@ module.exports = {
     db.User.find({ // find user
       _id: userId
     })
-    .populate('memes')
-    .then(function (result) {
-      console.log(result);
-      var memes = result[0].memes;
-      db.Meme.find({
-        _id: { $in: memes }
-      }).then(function (result) { // find memes
+      .populate('memes')
+      .then(function (result) {
         console.log(result);
-        res.json(result);
+        var memes = result[0].memes;
+        db.Meme.find({
+          _id: { $in: memes }
+        }).then(function (result) { // find memes
+          console.log(result);
+          res.json(result);
+        });
       });
-    });
   },
   getSession: function (req, res) {
-      res.json(req.session.user);
+    res.json(req.session.user);
+  },
+  getUser: function (req, res) {
+    db.User.find({ _id: req.body.userId }).then(function (result) {
+      console.log(result);
+      return res.json(result[0]);
+    }).catch(err => console.log(err));
+  },
+  getChats: function (req, res) {
+    const userId = req.session.user._id;
+    db.Chat.find({
+      participants: userId
+    })
+    .populate("participants")
+    .then(function(result) {
+      return res.json(result);
+    }).catch(err => console.log(err));
+    // db.User.find({ _id: req.body.userId }).then(function (result) {
+    //   return res.json(result[0]);
+    // }).catch(err => console.log(err));
+  },
+  updateProfile: function (req, res) {
+    db.User
+      .findOneAndUpdate({ _id: req.session.user._id }, req.body).then(
+      result => {
+        return res.json(result);
+      }).catch(err => console.log(err));
+  },
+  getAvatars: function(req, res) {
+    const ids = req.body.ids;
+    db.User.find({
+      _id: {$in: ids}
+    }).then(function(result) {
+      const json = {};
+      for (let key in result) {
+        json[result[key]._id] = result[key].avatar;
+      }
+      res.json(json);
+    }).catch(err => console.log(err));
+  },
+  seed: function(req, res) {
+    db.User.create({
+      TwitchId: 23444332222,
+      username: "Test",
+      email: "r@gmail.com"
+    }).then(function(result) {
+      const userId = result._id;
+      console.log(userId);
+      console.log(req.session.user._id);
+      db.Chat.create({
+      participants: [ userId, req.session.user._id ] 
+      }).then(function(result){
+        res.json("success");
+      });
+    });
   }
 };
 

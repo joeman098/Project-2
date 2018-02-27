@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 
 var MessageSchema = new Schema({
-    body: {
+    message: {
         type: String,
         required: true
     },

@@ -23,22 +23,47 @@ class Feed extends Component {
     link: "",
     modalIsOpen: false,
     channel: {},
-
+    sessionStatus: "",
+    memeTitle: ""
   };
 
   componentDidMount() {
     this.loadFeed();
-
-
+    this.getSessionData();
   }
 
+killSession() {
+  API.destroySession()
+  .then(res => console.log(res));
+    this.getSessionData();
+  }
 
+getSessionData = () => {
+  API.getSessionData().then(res => {
+    this.setState({User: res.data});
+    if(res.data) {
+      this.setState({
+        sessionStatus: "LOG OUT",
+        memeTitle: "Share a Meme"
+      });
+    }
+    else {
+      this.setState({
+        sessionStatus: "LOG IN",
+        memeTitle: "Log In With Twitch to Share a Meme"
+      });
+    }
+  }).catch(err => console.log(err));
+}
 
   loadFeed = () => {
-    API.getMemesByChannelName(this.props.match.params.channel)
-      .then(res => this.setState({ feedz: res.data, link: "" }))
-      .catch(err => console.log(err));
-  };
+    API.getMemesByChannelName({channelName: this.props.match.params.channel})
+      .then(res => {
+          console.log("_______________________");
+        console.log(res.data);
+        this.setState({ feedz: res.data, link: "" });
+      }).catch(err => console.log(err));
+  }
 
 
   handleInputChange = event => {
@@ -46,18 +71,27 @@ class Feed extends Component {
     this.setState({
       [name]: value
     });
-  };
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
     if ( this.state.link) {
-      API.postMeme({
-        // poster: this.state.poster,
-        link: this.state.link,
-        channel:this.props.match.params.channel,
-        // userName:this.state.User.userName
+      // API.postMeme({
+      //   // poster: this.state.poster,
+      //   link: this.state.link,
+      //   channel:this.props.match.params.channel,
+      //   userName:this.state.User.userName
         
-      })
+      // })
+      //   .then(res => this.loadFeed())
+      //   .catch(err => console.log(err));
+        API.addMeme({
+          // poster: this.state.poster,
+          meme: this.state.link,
+          channelName:this.props.match.params.channel,
+          userId:this.state.User._id,
+          username:this.state.User.username
+        })
         .then(res => this.loadFeed())
         .catch(err => console.log(err));
     }
@@ -98,13 +132,12 @@ class Feed extends Component {
         }
       }]
     };
-    console.log(this.state)
     return (
       <div id="main-twitch-container">
         <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
           <source src="../../../video/Circuit_Background.mp4"></source>
         </video>
-        <LoginNav />
+        <LoginNav killSession={this.killSession} session={this.state.sessionStatus}/>
         <Container fluid>
           <Row>
             <Col s={10} className="offset-s1" id="content">
@@ -140,7 +173,7 @@ class Feed extends Component {
               <Row>
                 <Col s={12} id="post-container">
                   <Row>
-                    <h4 id="post-title">Share a Meme</h4>
+                    <h4 id="post-title">{this.state.memeTitle}</h4>
                     <form>
                       <Col s={10}>
                         {/* <Input2
@@ -158,7 +191,7 @@ class Feed extends Component {
                       </Col>
                       <Col s={2}>
                         <FormBtn
-                          disabled={!(this.state.link)}
+                          disabled={!(this.state.link) || (this.state.sessionStatus === "LOG IN")}
                           onClick={this.handleFormSubmit}
                         >
                           Post Meme

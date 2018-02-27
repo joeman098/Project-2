@@ -101,7 +101,12 @@ io.sockets.on('connection', function (socket) {
         })
         .catch(err => console.log(err));
     }).catch(err => console.log(err));
-    io.in(socket.room).emit('updatechat', {message: message, sender: userId, date: new Date()});
+    if (!data || data === null || data === "") {
+
+    } else {
+      io.in(socket.room).emit('updatechat', {message: message, sender: userId, date: new Date()});
+
+    }
 
 
   });

@@ -151,9 +151,6 @@ if (process.env.NODE_ENV === 'production') {
   const path = require('path')
   console.log('YOU ARE IN THE PRODUCTION ENV')
   app.use('/static', express.static(path.join(__dirname, './client/build/static')));
-  app.get('/', (req, res) => {
-      res.sendFile(path.join(__dirname, './client/build/'))
-  });
 }
 
 
@@ -209,7 +206,7 @@ app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedire
     req.session.user = req.session.passport.user;
   }
   console.log(req.session.user)
-  return res.redirect("http://localhost:3000/browse");
+  return res.redirect("https://s0cial3r.herokuapp.com/browse");
 });
 
 app.use(routes);

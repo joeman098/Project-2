@@ -120,9 +120,28 @@ li:visited {
 
 @media only screen and (max-width: 815px) {
 
+    li:hover {
+        background-color: #424242;
+    }
+    
+    li:active {
+        background-color: #424242;
+    }
+    
+    li:visited {
+        background-color: #424242;
+    }
+
     #clickable-li > Icon:hover {
-        background-color: #4A307A;
-        background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+        background-color: #424242;
+    }
+
+    #clickable-li > Icon:visited {
+        background-color: #424242;
+    }
+
+    #clickable-li > Icon:active{
+        background-color: #424242;
     }
 
     #post-bar-col {

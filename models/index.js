@@ -1,6 +1,6 @@
 module.exports = {
     Feed: require("./feedModel.js"),
-    User: require("./User"),
+    User: require("./user"),
     Channel: require("./Channel"),
     Meme: require("./Meme"),
     FeedMessage: require("./FeedMessage"),

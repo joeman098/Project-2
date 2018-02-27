@@ -86,11 +86,19 @@ class Profile extends React.Component {
         }).catch(err => console.log(err));
     }
     render() {
+        let Johnswfvariablename = this.state.feedz.length -1
+        let auto = true
+        if(Johnswfvariablename  == 0){
+          Johnswfvariablename = 1
+        }
+        if(Johnswfvariablename >= 5){
+          Johnswfvariablename = 5
+        }
         const settings = {
             showArrows: true,
             dots: true,
             infinite: true,
-            slidesToShow: 3,
+            slidesToShow: Johnswfvariablename,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 1000,

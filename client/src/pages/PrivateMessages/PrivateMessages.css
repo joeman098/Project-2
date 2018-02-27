@@ -130,7 +130,7 @@ input:focus{
     overflow-y: scroll;
     background-color: rgba(255, 255, 255, 0.95);
     background-color: #6441a5;
-    background-image: url("https://www.transparenttextures.com/patterns/gplay.png");    padding: 0px;
+    background-image: url("/img/gplay.png");   padding: 0px;
 }
 
 

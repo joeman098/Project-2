@@ -51,6 +51,9 @@
     padding-right:10px;
     height: 13vh;
 }
+.avatar img {
+    height: 13vh;
+}
 .macro{
     margin-top:5px;width:80%;border-radius:5px;padding:5px;display:flex;
 }

@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 var cookieSession = require('cookie-session');
 var discord = require("discord.js");
 var db = require("./models");
-var flash = require('express-flash');
+const flash = require('express-flash');
 const mongoose = require("mongoose");
 require('dotenv').config();
 const routes = require("./routes");
@@ -29,6 +29,48 @@ var rooms = ['room1', 'room2', 'room3'];
 io.sockets.on('connection', function (socket) {
   console.log("Connected succesfully to the socket ...");
 
+  socket.on('sendmeme', function (memeObject) {
+    var meme = memeObject.meme;
+    var userId = memeObject.userId;
+    var username = memeObject.username;
+    var channelName = memeObject.channelName;
+    db.Channel.find({ name: channelName }).then(function (result) {
+        if (result.length === 0) {
+            db.Channel.create({
+                name: channelName
+            }).then(function (result) {
+                const cId = result._id;
+                db.Meme.create({
+                    link: meme,
+                    channel: cId,
+                    poster: username
+                }).then(function (result) {
+                  io.in(socket.room).emit('updatememe', result);
+                    console.log(result);
+                    db.User.updateOne({_id: userId}, {$push:{memes: result._id}}).then(function(result){
+                        res.json("Channel and meme added!")
+                    }).catch(err => console.log(err));
+                }).catch(err => console.log(err));
+            }).catch(err => console.log(err));
+       } else {
+            const cId = result[0]._id;
+            db.Meme.create({
+                link: meme,
+                channel: cId,
+                poster: username
+            }).then(function (result) {  
+              io.in(socket.room).emit('updatememe', result);
+                console.log(result);
+                db.User.updateOne({_id: userId}, {$push:{memes: result._id}}).then(function(result){
+                    res.json("Meme added to existing channel!")
+                }).catch(err => console.log(err));
+            }).catch(err => console.log(err));
+
+        }
+    }).catch(err => console.log(err));
+  });
+
+
 
   socket.on('adduser', function (username) {
     // store the username in the socket session for this client
@@ -40,7 +82,7 @@ io.sockets.on('connection', function (socket) {
     // send client to room 1
     socket.join('room1');
     // echo to room 1 that a person has connected to their room
-    socket.broadcast.to('room1').emit('updatechat', 'SERVER', username + ' has connected to this room');
+    // socket.broadcast.to('room1').emit('updatechat', 'SERVER', username + ' has connected to this room');
     socket.emit('updaterooms', rooms, 'room1');
   });
 
@@ -59,7 +101,12 @@ io.sockets.on('connection', function (socket) {
         })
         .catch(err => console.log(err));
     }).catch(err => console.log(err));
-    io.in(socket.room).emit('updatechat', {message: message, sender: userId, date: new Date()});
+    if (!data || data === null || data === "") {
+
+    } else {
+      io.in(socket.room).emit('updatechat', {message: message, sender: userId, date: new Date()});
+
+    }
 
 
   });
@@ -88,7 +135,7 @@ io.sockets.on('connection', function (socket) {
     // update list of users in chat, client-side
     io.sockets.emit('updateusers', usernames);
     // echo globally that this client has left
-    socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+    // socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
     socket.leave(socket.room);
   });
 });
@@ -104,7 +151,12 @@ process.on('unhandledRejection', function (reason, p) { // moar reasons for unha
 
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("client/build"));
+// app.use(express.static(__dirname+"./client/build"));
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path')
+  console.log('YOU ARE IN THE PRODUCTION ENV')
+  app.use('/static', express.static(path.join(__dirname, './client/build/static')));
+}
 
 
 // ==========For Passport=============
@@ -116,7 +168,7 @@ app.use(cookieSession({
   maxAge: 60 * 60 * 1000,
   secure: false,
   overwrite: false,
-  secret: 'keyboard cat'
+  secret: 'Franklin is da queen he shows us daee when adam does not know dwea'
 }));
 
 
@@ -159,7 +211,7 @@ app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedire
     req.session.user = req.session.passport.user;
   }
   console.log(req.session.user)
-  return res.redirect("http://localhost:3000/browse");
+  return res.redirect("https://s0cial3r.herokuapp.com/browse");
 });
 
 app.use(routes);

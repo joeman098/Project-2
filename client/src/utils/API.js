@@ -45,8 +45,8 @@ export default {
   createChannel: function (channel) {
     return axios.post('/api/channel/createChannel', channel);
   },
-  getUserData: function(userId) {
-    return axios.post("/api/user/getUser", userId);
+  getUserData: function(username) {
+    return axios.post("/api/user/getUser", username);
   },
   updateProfile: function(profile) {
     return axios.post("/api/user/updateProfile", profile);
@@ -65,6 +65,13 @@ export default {
   },
   getChat: function(data) {
     return axios.post("/api/chat/getChat", data);
+  },
+  getAllUsers: function() {
+    return axios.get("/api/user/getAll");
+  },
+  goToChat: function(userId) {
+    return axios.get(`/api/chat/goToChat/${userId}`);
   }
+
 
 }

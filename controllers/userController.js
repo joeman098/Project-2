@@ -2,6 +2,11 @@ const db = require("../models");
 
 // Defining methods for the userController
 module.exports = {
+  getAll: function (req, res) {
+    db.User.find({}).then(result => { // oh god
+      return res.json(result);
+    });
+  },
   uploadMeme: function (req, res) {
     const userId = req.session.user._id;
     db.Meme.create(req.body)
@@ -50,29 +55,24 @@ module.exports = {
     });
   },
   getMemesByUser: function (req, res) {
-    const userId = req.body.userId;
-    console.log("___________________");
-    console.log(userId);
+    const username = req.body.username;
+    console.log(username);
     db.User.find({ // find user
-      _id: userId
+      username: username
     })
       .populate('memes')
       .then(function (result) {
         console.log(result);
         var memes = result[0].memes;
-        db.Meme.find({
-          _id: { $in: memes }
-        }).then(function (result) { // find memes
-          console.log(result);
-          res.json(result);
-        });
+        res.json(memes);
       });
   },
   getSession: function (req, res) {
     res.json(req.session.user);
   },
   getUser: function (req, res) {
-    db.User.find({ _id: req.body.userId }).then(function (result) {
+    console.log(req.body);
+    db.User.find({ username: req.body.username }).then(function (result) {
       console.log(result);
       return res.json(result[0]);
     }).catch(err => console.log(err));
@@ -82,10 +82,10 @@ module.exports = {
     db.Chat.find({
       participants: userId
     })
-    .populate("participants")
-    .then(function(result) {
-      return res.json(result);
-    }).catch(err => console.log(err));
+      .populate("participants")
+      .then(function (result) {
+        return res.json(result);
+      }).catch(err => console.log(err));
     // db.User.find({ _id: req.body.userId }).then(function (result) {
     //   return res.json(result[0]);
     // }).catch(err => console.log(err));
@@ -97,11 +97,11 @@ module.exports = {
         return res.json(result);
       }).catch(err => console.log(err));
   },
-  getAvatars: function(req, res) {
+  getAvatars: function (req, res) {
     const ids = req.body.ids;
     db.User.find({
-      _id: {$in: ids}
-    }).then(function(result) {
+      _id: { $in: ids }
+    }).then(function (result) {
       const json = {};
       for (let key in result) {
         json[result[key]._id] = result[key].avatar;
@@ -109,18 +109,18 @@ module.exports = {
       res.json(json);
     }).catch(err => console.log(err));
   },
-  seed: function(req, res) {
+  seed: function (req, res) {
     db.User.create({
       TwitchId: 23444332222,
       username: "Test",
       email: "r@gmail.com"
-    }).then(function(result) {
+    }).then(function (result) {
       const userId = result._id;
       console.log(userId);
       console.log(req.session.user._id);
       db.Chat.create({
-      participants: [ userId, req.session.user._id ] 
-      }).then(function(result){
+        participants: [userId, req.session.user._id]
+      }).then(function (result) {
         res.json("success");
       });
     });

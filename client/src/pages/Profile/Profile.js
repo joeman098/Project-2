@@ -4,40 +4,54 @@ import API from "../../utils/API";
 import SearchNav from "../../components/SearchNav";
 import "./Profile.css";
 import SearchRes from "../../components/SearchRes";
-import { Container, Row } from "../../components/Grid/";
-import Modal from 'react-modal';
-
+import { Container } from "../../components/Grid/";
+import RModal from 'react-modal';
+import Slider from "../../slider";
+import { Button, Icon, Modal, Row, Col } from "react-materialize";
+import FeedCard from "../../components/FeedCard";
+import FeedModal from "../../components/FeedModal";
 const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
     }
-  };
+};
 
 class Profile extends React.Component {
     state = {
-        userId: "",
+        username: "",
         userData: {},
         isOwn: false,
         modalIsOpen: false,
-        banner: ""
+        banner: "",
+        feedz: []
     }
 
+
     componentDidMount() {
-        this.setState({ userId: this.props.match.params.id });
+        this.setState({ username: this.props.match.params.username });
         this.getSession();
+        this.loadFeed();
+    }
+
+    loadFeed = () => {
+        API.getMemesByUser({ username: this.props.match.params.username })
+            .then(res => {
+                console.log("_______________________");
+                console.log(res.data);
+                this.setState({ feedz: res.data });
+            }).catch(err => console.log(err));
     }
 
     getSession = () => {
         API.getSessionData()
             .then(function (result) {
-                console.log(result.data._id);
-                console.log(this.props.match.params.id);
-                if (result.data._id === this.props.match.params.id) {
+                console.log(result.data);
+                if (result.data.username === this.props.match.params.username) {
                     this.setState({ isOwn: true });
                 }
                 this.getUserData();
@@ -46,8 +60,7 @@ class Profile extends React.Component {
     }
 
     getUserData() {
-        API.getUserData({ userId: this.state.userId }).then(function (result) {
-            console.log(result);
+        API.getUserData({ username: this.state.username }).then(function (result) {
             this.setState({ userData: result.data });
         }.bind(this)).catch(err => console.log(err));
     }
@@ -55,21 +68,61 @@ class Profile extends React.Component {
         this.setState({ modalIsOpen: false });
     }
 
-    openModal = ()  => {
+    goToChat = event => {
+        API.goToChat(event.target.dataset.id).then(res => {
+            window.location.href = `/PrivateMessages/${res.data}`
+        }).catch(err => console.log(err));
+    }
+
+    openModal = () => {
         this.setState({ modalIsOpen: true });
     }
-    handleFormInput = event =>  {
-        this.setState({banner: event.target.value});
+    handleFormInput = event => {
+        this.setState({ banner: event.target.value });
     }
     handleFormSubmit = () => {
-        API.updateProfile({banner: this.state.banner}).then(res => {
+        API.updateProfile({ banner: this.state.banner }).then(res => {
             this.getUserData();
         }).catch(err => console.log(err));
     }
     render() {
+        const settings = {
+            showArrows: true,
+            dots: true,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1000,
+            pauseOnHover: true,
+            swipeToSlide: true,
+            mobileFirst: true,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            }, {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            }, {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }]
+        };
         return (
             <div>
-                <Modal
+                <RModal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
@@ -82,7 +135,7 @@ class Profile extends React.Component {
                         <input type="text" name="banner" onChange={this.handleFormInput} />
                         <button onClick={this.handleFormSubmit}>Submit</button>
                     </form>
-                </Modal>
+                </RModal>
                 <video autoPlay loop muted preload="true" className="fullscreen-bg_video">
                     <source src="../../../video/Circuit_Background.mp4"></source>
                 </video>
@@ -103,24 +156,77 @@ class Profile extends React.Component {
                                     <p className="bio">{this.state.userData.bio}</p>
                                 </div>
                             </div>
+                            <br className="clear" /><br /><br /><br />
+                            <Container fluid>
+                                <Row>
+                                    <Col s={12}>
+                                        <Slider {...settings}>
+                                            {this.state.feedz.map(feed => (
+                                                <div key={feed._id}>
+                                                    <FeedModal
+                                                        id={feed._id}
+                                                        poster={feed.poster}
+                                                        link={feed.link}
+                                                        openModal={this.openModal}
+                                                    />
+                                                    <FeedCard
+                                                        id={feed._id}
+                                                        poster={feed.poster}
+                                                        link={feed.link}
+                                                    // openModal={this.openModal}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </Slider>
+                                    </Col>
+                                </Row>
+                            </Container>
                         </div>
                         :
 
                         <div className="container profile">
 
-                        <div className="fb-profile">
+                            <div className="fb-profile">
 
-                            <img align="left" className="fb-image-lg" src={this.state.userData.banner ? this.state.userData.banner : "https://wikitravel.org/upload/shared//6/6a/Default_Banner.jpg"} alt="Profile image example" />
-                            <img align="left" className="fb-image-profile thumbnail" src={this.state.userData.avatar} alt="Profile image example" />
+                                <img align="left" className="fb-image-lg" src={this.state.userData.banner ? this.state.userData.banner : "https://wikitravel.org/upload/shared//6/6a/Default_Banner.jpg"} alt="Profile image example" />
+                                <img align="left" className="fb-image-profile thumbnail" src={this.state.userData.avatar} alt="Profile image example" />
 
-                            <div className="fb-profile-text">
-                                <h1 className="username">{this.state.userData.username}</h1>
-                                <p className="bio">{this.state.userData.bio}</p>
+                                <div className="fb-profile-text">
+                                    <h1 className="username">{this.state.userData.username}</h1>
+                                    <Button data-class="PM-button" data-id={this.state.userData._id} onClick={this.goToChat}>PM</Button>
+                                    <p className="bio">{this.state.userData.bio}</p>
+                                </div>
                             </div>
+                            <br className="clear" /><br /><br /><br />
+                            <Container fluid>
+
+                                <Row>
+                                    <Col s={12}>
+                                        <Slider {...settings}>
+                                            {this.state.feedz.map(feed => (
+                                                <div key={feed._id}>
+                                                    <FeedModal
+                                                        id={feed._id}
+                                                        poster={feed.poster}
+                                                        link={feed.link}
+                                                        openModal={this.openModal}
+                                                    />
+                                                    <FeedCard
+                                                        id={feed._id}
+                                                        poster={feed.poster}
+                                                        link={feed.link}
+                                                    // openModal={this.openModal}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </Slider>
+                                    </Col>
+                                </Row>
+                            </Container>
                         </div>
-                    </div>
 
                 }
+
 
 
             </div>

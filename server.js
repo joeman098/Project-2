@@ -146,7 +146,7 @@ process.on('unhandledRejection', function (reason, p) { // moar reasons for unha
 
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("./client/build"));
+app.use(express.static(__dirname+"./client/build"));
 
 
 // ==========For Passport=============

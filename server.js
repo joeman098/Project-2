@@ -150,7 +150,7 @@ process.on('unhandledRejection', function (reason, p) { // moar reasons for unha
 if (process.env.NODE_ENV === 'production') {
   const path = require('path')
   console.log('YOU ARE IN THE PRODUCTION ENV')
-  app.use('/static', express.static(path.join(__dirname, './client/build/static')));
+  app.use('/static', express.static(path.join(__dirname, './client/build')));
 }
 
 

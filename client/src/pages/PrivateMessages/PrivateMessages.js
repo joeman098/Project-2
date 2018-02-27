@@ -91,7 +91,9 @@ class PrivateMessages extends React.Component {
         API.getSessionData()
             .then(result => {
                 const userId = result.data._id;
+                const username = result.data.username;
                 this.setState({ userId: userId });
+                this.setState({ username: username });
                 this.getChats();
                 this.getChat();
                 if (this.state.chatId) {
@@ -182,7 +184,7 @@ class PrivateMessages extends React.Component {
                                     <h4 class='bold'>Browse</h4>
                                 </Link>
 
-                                <Link to={`/profile/${this.state.userId}`} className="" >
+                                <Link to={`/profile/${this.state.username}`} className="" >
                                     <h4 class='bold'>Your Profile</h4>
                                 </Link>
                                 <h4 class='bold'>Chats</h4>

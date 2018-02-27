@@ -7,3 +7,10 @@
     overflow-y: scroll;
     padding-top: 100px;
 }
+
+.avatar-list {
+    position: relative;
+    top: -220px;
+    background-color: whitesmoke;
+    height: 10vh;
+}

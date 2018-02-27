@@ -181,13 +181,13 @@ class PrivateMessages extends React.Component {
 
                             <div id="chatheader">
                                 <Link to={"/browse"}>
-                                    <h4 class='bold'>Browse</h4>
+                                    <h4 className='bold'>Browse</h4>
                                 </Link>
 
                                 <Link to={`/profile/${this.state.username}`} className="" >
-                                    <h4 class='bold'>Your Profile</h4>
+                                    <h4 className='bold'>Your Profile</h4>
                                 </Link>
-                                <h4 class='bold'>Chats</h4>
+                                <h4 className='bold'>Chats</h4>
                             </div>
                             {
                                 this.state.chats.length > 0 ?
@@ -200,7 +200,7 @@ class PrivateMessages extends React.Component {
                         </div>
                         <div className="col-lg-10 col-xs-12 col-md-9 frame" id="messages">
 
-                            <ul class="message-list">
+                            <ul className="message-list">
 
                                 {this.state.messages.length > 0 ?
                                     this.state.messages.map(message => {
@@ -215,7 +215,7 @@ class PrivateMessages extends React.Component {
                                                             </p>
                                                             <p><small className="mright">{this.presentationDate(message.date)}</small></p>
                                                         </div>
-                                                        <div className="avatar"><img className="img-circle" src={this.state.avatars[message.sender]} /></div>
+                                                        <div className="avatar"><img className="img-circle profile-pic-chat" src={this.state.avatars[message.sender]} /></div>
                                                     </div>
                                                 </li>
                                             )
@@ -226,8 +226,8 @@ class PrivateMessages extends React.Component {
                                                     <div className="msj macro">
                                                         <div className="avatar"><img className="img-circle" src={this.state.avatars[message.sender]} /></div>
                                                         <div className="text text-l">
-                                                            <p className="message">
-                                                                <b> {this.state.usernames[message.sender]}</b><br />
+                                                            <p className="message" id="chat-message">
+                                                                <b id="poster"> {this.state.usernames[message.sender]}</b><br />
                                                                 {message.message}
                                                             </p>
                                                             <p><small>{this.presentationDate(message.date)}</small></p>

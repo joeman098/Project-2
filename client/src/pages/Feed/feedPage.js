@@ -162,11 +162,11 @@ getSessionData = () => {
         <LoginNav killSession={this.killSession} session={this.state.sessionStatus}/>
         <Container fluid>
           <Row>
-            <Col s={10} className="offset-s1" id="content">
+            <Col s={12} m={10}className="offset-m1" id="content">
               <Row>
                 <Col s={12} id="twitch-container">
                   <Row className="tv-player">
-                    <Col s={8} id="tv-player-col"> 
+                    <Col s={12} m={8} id="tv-player-col"> 
                       {/* <div id="twitch-embed"></div> */}
                       <iframe
                         className="player"
@@ -179,7 +179,7 @@ getSessionData = () => {
                         id="stream-embed"
                       />
                     </Col>
-                    <Col s={4} id="chat-col">
+                    <Col s={12} m={4} id="chat-col">
                       <iframe
                         frameBorder="0"
                         scrolling="no"
@@ -197,7 +197,7 @@ getSessionData = () => {
                   <Row>
                     <h4 id="post-title">{this.state.memeTitle}</h4>
                     <form>
-                      <Col s={10}>
+                      <Col s={8}>
                        <Input2
                           value={this.state.link}
                           onChange={this.handleInputChange}
@@ -205,10 +205,10 @@ getSessionData = () => {
                           placeholder="Meme Link (required)"
                         />
                       </Col>
-                      <Col s={2}>
+                      <Col s={4}>
                         <FormBtn
                           disabled={!(this.state.link) || (this.state.sessionStatus === "LOG IN")}
-                          onClick={this.handleFormSubmit}
+                          onClick={this.handleFormSubmit} id="post-meme-btn"
                         >
                           Post Meme
                         </FormBtn>

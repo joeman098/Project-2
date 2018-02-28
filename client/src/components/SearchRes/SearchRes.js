@@ -11,7 +11,7 @@ const SearchRes = props => {
   };
 
   let cardStyle = {};
-  if(props.title) {
+  if(props.title.length > 1 || typeof props.title == "undefined") {
     if(props.title[1] === props.title[1].toUpperCase()) {
       cardStyle = {
         "font-size": "13px",

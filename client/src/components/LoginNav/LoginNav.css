@@ -49,3 +49,9 @@
         font-size: 45px;
     }
 }
+
+@media only screen and (max-width: 350px) {
+    #login-logo {
+        display: none;
+    }
+}

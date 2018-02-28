@@ -227,3 +227,22 @@ li:visited {
         margin-bottom: 5px;
     }
 }
+
+@media screen and (max-width: 350px) {
+    .clickable-li:first-child {
+        padding-left: 50px;
+    }
+
+    a.main-chat-links {
+        padding-left: 10px;
+        padding-right: 15px;
+    }
+
+    #search-button {
+        width: 22%;
+    }
+
+    #select-wrapper {
+        width: 27%;
+    }
+}

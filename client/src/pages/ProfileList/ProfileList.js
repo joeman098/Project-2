@@ -70,7 +70,7 @@ class ProfileList extends React.Component {
                                 <ProfileCard goToProfile={this.goToProfile} sessionId={this.state.userData._id} key={user._id} goToChat={this.goToChat} id={user._id} banner={user.banner} avatar={user.avatar} username={user.username} />
                             )
                         })
-                        : "<h1>No Users Found</h1>"
+                        : <h5 id="no-users">No Users Found</h5>
                     }
                 </div>
             </div>

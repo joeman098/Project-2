@@ -1,68 +1,103 @@
-## s0cial3r
+## s0cial3r (v.2.0)
     
 ### Overview
 
-S0cial3r is a social media platform designed to bring together people who have common interests. The site allows users to create profiles, make friends, and SEARCH & JOIN communities within specific games/shows/sports/movies categories. S0cial3r is also used as a recruiting tool used by groups looking to gain members. Whether you are trying to discuss the latest episode of the hottest sitcom or simply looking for a partner to play an online multiplayer game, s0cial3r is for you.
+S0cial3r is the newest social media platform that was designed to build a community around the popular website twitch.tv. Users can watch Twitch streams and chat in the public Twitch chat just like on the main Twitch site, but they can also share memes on their channel of choice both while the stream is live and when it is offline, and can also private message each other, fostering a community environment that keeps users engaged and interacting with each other even when their favorite streamer is offline. 
 
 ### Getting Started 
-1. Create a Profile by visiting the s0cial3r homepage and selecting "REGISTER" (bottom left)
-2. You then will be brought to a page where you will fill in your information including your user name/password, a link to a photo of yourself, and your interests. Once completed, click "CREATE PROFILE" 
-3. Using the email address and password you provided when you created your profile, you can now log in to see your dashboard page, which will display the picture you inserted, your username, and your profile number. The profile number (upper left-hand corner) also acts as a "home" button which will bring you back to your personal dashboard page when browsing other pages on the site. 
 
-![Creating a Profile](https://media.giphy.com/media/xT1R9T0bdcXISXMK9G/giphy.gif)
+1. Choose either to browse for and view top streams without logging in, or choose "Login with Twitch" on the main page to enter your twitch credentials and unlock the full site functionality. 
 
-![Logging in and Editing Profile](https://media.giphy.com/media/l3dj76oiR1rfHO8us/giphy.gif)
+2. Users can select Top Streams to pull up a list of the most popular streams, or top games for the most popular games. They can also search for games or streamers specifically by name using the search bar. Once they are logged in and watching the stream of their choice, users can post memes on the channel for all users to view. 
+
+3. To connect with a user personally, users can navigate to the profile list and select the profile of the user they want to interact with. Then they can choose to private message the person or simply look at their profile to get to know the individual better. 
+
+#### Logging In
+
+![Logging in](https://media.giphy.com/media/lVBecvNGVcqPl9bpHF/giphy.gif)
+
+#### Searching and Viewing a Stream
+
+![Searching and viewing a stream](https://media.giphy.com/media/dZoFpc49dkppMwlsqm/giphy.gif)
 
 
 ### Features
-- meet and gain Friends which can then be seen on your dashboard
-- search each chat feed (Main, Gaming, TV, Movie, and Sports) for new friends to add and groups to join.
-- seamless DISCORD integration to connect with your friends/groups
-- edit profile at any time
-- search all user profiles on the site to find members to add as friends
-- form your own discords and recruit new members based on your interests 
 
-![Posting to a Chat](https://media.giphy.com/media/l3diLOB22H1Kjds3e/giphy.gif)
+- search for and view your favorite twitch streams 
+- meet new friends using s0cial3r's private messaging feature
+- post funny memes to pass the time between stream sessions
+- customize your personal profile to fit your personality
 
-![Posting to s0cial3r fron Discord](https://media.giphy.com/media/l3diDkOuwtJlR3SZa/giphy.gif)
+#### Posting a Meme
+
+![Posting a Meme](https://media.giphy.com/media/u45hSuLtecsWZfJK1A/giphy.gif)
+
+#### Browsing Profiles and Private Messaging
+
+![Browsing profiles and private messaging ](https://media.giphy.com/media/23bAA4q4Fvyo8nbLZ3/giphy.gif)
 
 
 ### Technologies Used
-- HTML5
+
+s0cial3r utilizes the MERN stack (MongoDB, Express.js, React.js, Node.js) with usage of the following specific technologies: 
+
+- JSX
 - CSS3
-	- Materialize.css
-- Handlebars.js 
+- React.js 
+	- react-materialize: "^1.1.2"
+	- axios: "^0.18.0",
+    - dateformat: "^3.0.3",
+    - react: "^16.2.0",
+    - react-addons-css-transition-group: "^15.6.2",
+    - react-dom: "^16.2.0",
+    - react-materialize: "^1.1.2",
+    - react-modal: "^3.3.1",
+    - react-responsive-carousel: "^3.1.33",
+    - react-router-dom: "^4.2.2",
+    - react-scripts: "1.1.1",
+    - react-slick: "^0.18.1",
+    - socket.io-client: "^2.0.4"
 - JavaScript
-- jQuery
+- Express.js
 - Node.js 
-	- async
-	- async waterfall
-	- bcrypt-nodejs
-	- body-parser
-	- discord.js 
-	- nodemailer
-	- Express.js 
-	- Passport.js 
-	- Sequelize
-- MySQL
+    - @sendgrid/mail: "^6.2.1",
+    - async: "^2.6.0",
+    - async-waterfall: "^0.1.5",
+    - bcrypt-nodejs: "0.0.3",
+    - body-parser: "^1.18.2",
+    - cookie-session: "^2.0.0-beta.3",
+    - cookie-sessions: "^0.0.2",
+    - dotenv: "^5.0.0",
+    - express: "^4.16.2",
+    - express-flash: "0.0.2",
+    - express-session: "^1.15.6",
+    - mongoose: "^5.0.6",
+    - passport: "^0.4.0",
+    - passport-local: "^1.0.0",
+    - passport-twitch: "^1.0.3",
+    - react-jss: "^8.3.3",
+    "socket.io": "^2.0.4"
+- MongoDB
 
 ### Test Login
 
-To test the site functionality without signing up, use our test credentials:
--email: test@test.com
--password: test
+For those who do not have a Twitch account but want to test the functionlity of the site, please use our twitch test credentials:
+
+- username: socialerTest
+- password: socialerTest
 
 Have fun!
 
 ### Version
-ALPHA 1.0
+ALPHA 2.0
 
 ### Developers 
-- Charles Ferguson - Routing, Sequelize, MySQL, Discord chat integration, server-side backend logic
-- John LaTona - Lead Front-End Developer
-- Joe Logue - User Authentication, Routing, Sequelize, MySQL, server-side backend logic, Handlebars
+- Charles Ferguson - Twitch API implementation, dynamic meme carousel, MongoDB, React.js
+- John LaTona - Lead Front-End and React.js Developer, design, mobile responsiveness
+- Joe Logue - OAuth implementation, back end logic, game and user search logic, React.js
+- Brad Pulaski - Socket.io, routing, controllers, MongoDB, profiles, React.js
 - Mark McPherson - Quality Assurance and usability testing
  
 
-### Acknowledgments
+### Acknowledgements
 Rutgers Coding Bootcamp Teaching Staff

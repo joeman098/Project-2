@@ -105,7 +105,7 @@ class Browse extends Component {
                 console.log(res.data.data);
                 this.UserIdFix();
                 console.log(this.state.results)
-            });
+            }).catch(err => console.log(err));
     }
 
     killSession() {
